@@ -5,6 +5,7 @@
 #include "Modules/SceneModule.h"
 #include "Modules/TimeModule.h"
 #include "Modules/WindowModule.h"
+#include "Modules/CameraModule.h"
 
 ModuleManager::~ModuleManager()
 {
@@ -18,6 +19,7 @@ void ModuleManager::CreateDefaultModules()
 	CreateModule<InputModule>();
 	CreateModule<WindowModule>();
 	CreateModule<SceneModule>();
+	CreateModule<CameraModule>();
 	CreateModule<ImGuiModule>();
 }
 

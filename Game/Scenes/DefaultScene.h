@@ -3,6 +3,7 @@
 #include "Scene.h"
 #include "TileMap.h"
 #include "SquareCollider.h"
+#include "SpriteRenderer.h"
 
 class DefaultScene final : public Scene
 {
@@ -39,9 +40,12 @@ public:
 		square_collider->SetWidth(20.f);
 		square_collider->SetHeight(20.f);
 
-		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
-		shape_renderer->SetColor(_color);
-		shape_renderer->SetSize(Maths::Vector2f(200.f, 200.f));
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		//sprite_renderer->LoadSprite("Test.png");
+
+		//RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
+		//shape_renderer->SetColor(_color);
+		//shape_renderer->SetSize(Maths::Vector2f(200.f, 200.f));
 
 		return game_object;
 	}

@@ -3,6 +3,8 @@
 
 #include "ModuleManager.h"
 #include "Modules/WindowModule.h"
+#include "Modules/SceneModule.h"
+#include "Modules/TimeModule.h"
 
 void InputModule::Start()
 {
@@ -15,8 +17,25 @@ void InputModule::Update()
 {
 	Module::Update();
 
-	if (IsKeyPressed(sf::Keyboard::Left)) {
-		std::cout << "left";
+	TimeModule* clock = moduleManager->GetModule<TimeModule>();
+
+	// IN-GAME INPUTS
+	if (moduleManager->GetModule<SceneModule>()->GetMainScene()->GetName() == "DefaultScene") {
+		GameObject* player = moduleManager->GetModule<SceneModule>()->GetMainScene()->FindGameObject("Player");
+		if (player) {
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
+				player->SetPosition(player->GetPosition() + Maths::Vector2f(0, -1) * clock->GetDeltaTime() * 50);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+				player->SetPosition(player->GetPosition() + Maths::Vector2f(-1, 0) * clock->GetDeltaTime() * 50);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+				player->SetPosition(player->GetPosition() + Maths::Vector2f(0, 1) * clock->GetDeltaTime() * 50);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+				player->SetPosition(player->GetPosition() + Maths::Vector2f(1, 0) * clock->GetDeltaTime() * 50);
+			}
+		}
 	}
 }
 
