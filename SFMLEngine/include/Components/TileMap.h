@@ -46,8 +46,6 @@ private:
             // Dessiner le vertexArray
             target.draw(*m_layers[i], states);
         }
-
-        std::cout << "drawing";
     }
 
     std::vector<sf::VertexArray*> m_layers;

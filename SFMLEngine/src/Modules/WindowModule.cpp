@@ -5,6 +5,7 @@
 #include <SFML/Window/Event.hpp>
 
 #include "Engine.h"
+#include "Modules/InputModule.h"
 
 void WindowModule::Init()
 {
