@@ -41,7 +41,7 @@ public:
 		square_collider->SetHeight(20.f);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		//sprite_renderer->LoadSprite("Test.png");
+		sprite_renderer->LoadSprite("Test.png");
 
 		//RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		//shape_renderer->SetColor(_color);
