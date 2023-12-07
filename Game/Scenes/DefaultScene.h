@@ -10,15 +10,12 @@ class DefaultScene final : public Scene
 public:
 	DefaultScene() : Scene("DefaultScene")
 	{
-		GameObject* map = CreateMapGameObject("Map", "Lvl01");
+		GameObject* map = CreateMapGameObject("Map", "map_ship");
 
-		GameObject* player = CreateDummyGameObject("Player", 200.f, sf::Color::Red);
+		GameObject* player = CreateDummyGameObject("Player", 32*25.f, sf::Color::Red);
 
 		GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
 		GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
-
-		//TileMap* map = new TileMap;
-		//map->LoadMap("Lvl01", *this);
 	}
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)
@@ -38,16 +35,12 @@ public:
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Test.png");
-		sprite_renderer->SetScale(0.5f);
+		sprite_renderer->SetScale(1.f);
 		sprite_renderer->SetAnimSpeed(50);
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
-
-		//RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
-		//shape_renderer->SetColor(_color);
-		//shape_renderer->SetSize(Maths::Vector2f(200.f, 200.f));
 
 		return game_object;
 	}

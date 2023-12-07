@@ -16,3 +16,18 @@ bool SquareCollider::WillCollide(const SquareCollider& _collider_a, Maths::Vecto
 	const Maths::Vector2f position_b = _collider_b.GetOwner()->GetPosition();
 	return position_a.x < position_b.x + _collider_b.GetWidth() && position_a.x + _collider_a.GetWidth() > position_b.x && position_a.y < position_b.y + _collider_b.GetHeight() && position_a.y + _collider_a.GetHeight() > position_b.y;
 }
+
+void SquareCollider::MoveBack(int _direction) {
+	if (GetOwner()) {
+		switch (_direction) {
+		case 0:
+			GetOwner()->SetPosition(Maths::Vector2f(old_position.x, GetOwner()->GetPosition().y));
+			break;
+		case 1:
+			GetOwner()->SetPosition(Maths::Vector2f(GetOwner()->GetPosition().x, old_position.y));
+			break;
+		default:
+			break;
+		}
+	}
+}

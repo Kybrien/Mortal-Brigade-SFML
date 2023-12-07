@@ -28,17 +28,10 @@ void InputModule::Update()
 		if (player) {
 			SpriteRenderer* playerSprite = player->GetComponent<SpriteRenderer>();
 			SquareCollider* playerCollider = player->GetComponent<SquareCollider>();
+			playerCollider->SetOldPosition(player->GetPosition());
+
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, -1) * clock->GetDeltaTime() * 50;
-				bool canMove = true;
-
-				for (int i = 0; i < scene->GetColliders().size(); i++) {
-					SquareCollider* wall = scene->GetColliders()[i];
-					if (SquareCollider::WillCollide(*playerCollider, newPos, *wall)) {
-						canMove = false;
-						break;
-					}
-				}
 
 				player->SetPosition(newPos);
 				playerSprite->SetAnimation(1);
@@ -46,15 +39,6 @@ void InputModule::Update()
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(-1, 0) * clock->GetDeltaTime() * 50;
-				bool canMove = true;
-
-				for (int i = 0; i < scene->GetColliders().size(); i++) {
-					SquareCollider* wall = scene->GetColliders()[i];
-					if (SquareCollider::WillCollide(*playerCollider, newPos, *wall)) {
-						canMove = false;
-						break;
-					}
-				}
 
 				player->SetPosition(newPos);
 				playerSprite->SetAnimation(3);
@@ -62,15 +46,6 @@ void InputModule::Update()
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, 1) * clock->GetDeltaTime() * 50;
-				bool canMove = true;
-
-				for (int i = 0; i < scene->GetColliders().size(); i++) {
-					SquareCollider* wall = scene->GetColliders()[i];
-					if (SquareCollider::WillCollide(*playerCollider, newPos, *wall)) {
-						canMove = false;
-						break;
-					}
-				}
 
 				player->SetPosition(newPos);
 				playerSprite->SetAnimation(0);
@@ -78,18 +53,27 @@ void InputModule::Update()
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(1, 0) * clock->GetDeltaTime() * 50;
-				bool canMove = true;
 
-				for (int i = 0; i < scene->GetColliders().size(); i++) {
-					SquareCollider* wall = scene->GetColliders()[i];
-					if (SquareCollider::WillCollide(*playerCollider, newPos, *wall)) {
-						canMove = false;
-						break;
-					}
-				}
 				player->SetPosition(newPos);
 				playerSprite->SetAnimation(2);
 				playerSprite->IncrementCount();
+			}
+
+			for (int i = 0; i < scene->GetColliders().size(); i++) {
+				if (SquareCollider::IsColliding(*playerCollider, *scene->GetColliders()[i])) {
+					// Gérer les collisions horizontales et verticales séparément
+					float deltaX = playerCollider->GetOwner()->GetPosition().x - scene->GetColliders()[i]->GetOwner()->GetPosition().x;
+					float deltaY = playerCollider->GetOwner()->GetPosition().y - scene->GetColliders()[i]->GetOwner()->GetPosition().y;
+
+					if (abs(deltaX) > abs(deltaY)) {
+						// Collision horizontale
+						playerCollider->MoveBack(0);
+					}
+					else {
+						// Collision verticale
+						playerCollider->MoveBack(1);
+					}
+				}
 			}
 		}
 	}
