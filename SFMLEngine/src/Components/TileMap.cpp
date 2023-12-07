@@ -90,9 +90,9 @@ bool TileMap::LoadMap(const std::string& tileset, Scene& scene) {
 
             unsigned int width = data["layers"][i]["width"];
             unsigned int height = data["layers"][i]["height"];
-            sf::Vector2u tileSize(16, 16);
+            sf::Vector2u tileSize(data["tilesets"][0]["tilewidth"], data["tilesets"][0]["tileheight"]);
 
-            m_size.SetXY(width * 16, height * 16);
+            m_size.SetXY(width * data["tilesets"][0]["tilewidth"], height * data["tilesets"][0]["tileheight"]);
 
             if (data["layers"][i]["name"] != "Collision") {
                 Load(tileSize, data["tilesets"][0]["image"], level, width, height);

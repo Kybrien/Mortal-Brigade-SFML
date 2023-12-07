@@ -18,4 +18,5 @@ public:
 	void SetHeight(const float _height) { height = _height; }
 
 	static bool IsColliding(const SquareCollider& _collider_a, const SquareCollider& _collider_b);
+	static bool WillCollide(const SquareCollider& _collider_a, Maths::Vector2f& _new_c_a_pos, const SquareCollider& _collider_b);
 };

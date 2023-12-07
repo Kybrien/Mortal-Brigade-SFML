@@ -36,12 +36,14 @@ public:
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(Maths::Vector2f(_position, _position));
 
-		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
-		square_collider->SetWidth(20.f);
-		square_collider->SetHeight(20.f);
-
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Test.png");
+		sprite_renderer->SetScale(0.5f);
+		sprite_renderer->SetAnimSpeed(50);
+
+		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+		square_collider->SetWidth(32.f);
+		square_collider->SetHeight(32.f);
 
 		//RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		//shape_renderer->SetColor(_color);

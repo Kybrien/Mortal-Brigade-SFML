@@ -23,6 +23,7 @@ public:
 	void AddCollider(SquareCollider* collider) {
 		colliders.push_back(collider);
 	}
+	std::vector<SquareCollider*> GetColliders() { return colliders; }
 
 private:
 	std::string name;
