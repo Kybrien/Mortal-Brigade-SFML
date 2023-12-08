@@ -54,7 +54,7 @@ void SpriteRenderer::Render(sf::RenderWindow* _window)
 	const GameObject* owner = GetOwner();
 
 	const Maths::Vector2<float> position = owner->GetPosition();
-	sprite->setPosition(position.x, position.y);
+	sprite->setPosition(position.x - 8, position.y - 8);
 	sprite->setRotation(owner->GetRotation());
 
 	_window->draw(*sprite);
