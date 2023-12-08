@@ -19,6 +19,7 @@ public:
 	void SetSprite(sf::Sprite* _sprite) { sprite = _sprite; }
 
 	void SetScale(float _scale) { sprite->setScale(_scale, _scale); }
+
 	void SetAnimSpeed(int _anim_speed) { anim_speed = _anim_speed; }
 
 	void Update(float _delta_time) override;

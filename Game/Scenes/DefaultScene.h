@@ -4,6 +4,7 @@
 #include "TileMap.h"
 #include "SquareCollider.h"
 #include "SpriteRenderer.h"
+#include "Light.h"
 
 class DefaultScene final : public Scene
 {
@@ -41,6 +42,8 @@ public:
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
+
+		//Light* flashlight = game_object->CreateComponent<Light>();
 
 		return game_object;
 	}
