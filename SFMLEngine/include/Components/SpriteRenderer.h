@@ -13,6 +13,10 @@ public:
 	sf::Vector2i GetAnimation() { return animation; }
 	void SetAnimation(int y) { animation.y = y; }
 
+	void SetBegin(sf::Vector2i begin) { beginTexture = begin; }
+	void SetEnd(sf::Vector2i end) { endTexture = end; }
+	void SetDirection(sf::String _direction) { direction = _direction; }
+
 	void IncrementCount() { count++; }
 
 	void LoadSprite(std::string _name);
@@ -25,11 +29,15 @@ public:
 	void Render(sf::RenderWindow* _window) override;
 
 private:
-	enum Direction { DOWN, UP, RIGHT, LEFT };
 	sf::Sprite* sprite = nullptr;
 	sf::Texture* texture = nullptr;
-	sf::Vector2i animation = sf::Vector2i(1, DOWN);
+	sf::Vector2i animation;
 	int count = 0;
 	int anim_speed = 10;
-	int texture_size = 32;
+	int texture_size_x = 360;
+	int texture_size_y = 300;
+	sf::String direction = "";
+	sf::String lastDirection = "";
+	sf::Vector2i beginTexture = sf::Vector2i(0,0);
+	sf::Vector2i endTexture = sf::Vector2i(0, 0);
 };
