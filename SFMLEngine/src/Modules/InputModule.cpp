@@ -34,28 +34,36 @@ void InputModule::Update()
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, -1) * clock->GetDeltaTime() * 50;
 
 				player->SetPosition(newPos);
-				playerSprite->SetAnimation(1);
+				playerSprite->SetDirection("UP");
+				playerSprite->SetBegin(sf::Vector2i(4,3));
+				playerSprite->SetEnd(sf::Vector2i(1, 5));
 				playerSprite->IncrementCount();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(-1, 0) * clock->GetDeltaTime() * 50;
 
 				player->SetPosition(newPos);
-				playerSprite->SetAnimation(3);
+				playerSprite->SetDirection("LEFT");
+				playerSprite->SetBegin(sf::Vector2i(6, 1));
+				playerSprite->SetEnd(sf::Vector2i(3, 3));
 				playerSprite->IncrementCount();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, 1) * clock->GetDeltaTime() * 50;
 
 				player->SetPosition(newPos);
-				playerSprite->SetAnimation(0);
+				playerSprite->SetDirection("DOWN");
+				playerSprite->SetBegin(sf::Vector2i(0, 0));
+				playerSprite->SetEnd(sf::Vector2i(5, 1));
 				playerSprite->IncrementCount();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(1, 0) * clock->GetDeltaTime() * 50;
 
 				player->SetPosition(newPos);
-				playerSprite->SetAnimation(2);
+				playerSprite->SetDirection("RIGHT");
+				playerSprite->SetBegin(sf::Vector2i(2, 5));
+				playerSprite->SetEnd(sf::Vector2i(7, 6));
 				playerSprite->IncrementCount();
 			}
 

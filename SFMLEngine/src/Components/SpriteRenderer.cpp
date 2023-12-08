@@ -1,10 +1,11 @@
 #include "Components/SpriteRenderer.h"
 #include "SFML/Graphics/Texture.hpp"
+#include <iostream>
 
 SpriteRenderer::SpriteRenderer() {
 	sprite = new sf::Sprite();
 	texture = new sf::Texture();
-	sprite->setTextureRect(sf::IntRect(animation.x * texture_size, animation.y * texture_size, texture_size, texture_size));
+	sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x, animation.y * texture_size_y, texture_size_x, texture_size_y));
 }
 
 SpriteRenderer::~SpriteRenderer() {
@@ -23,14 +24,27 @@ void SpriteRenderer::LoadSprite(std::string _name) {
 }
 
 void SpriteRenderer::Update(float _delta_time) {
+	if (direction != lastDirection) {
+		animation = beginTexture;
+		std::cout << "new Direction" << std::endl;
+	}
 	if (count > anim_speed) {
 		animation.x++;
-		if (animation.x * texture_size >= texture->getSize().x) {
+		if (animation.x * texture_size_x >= texture->getSize().x) {
 			animation.x = 0;
+			animation.y++;
+			
 		}
-		sprite->setTextureRect(sf::IntRect(animation.x * texture_size, animation.y * texture_size, texture_size, texture_size));
+		if (animation.x == endTexture.x && animation.y == endTexture.y) {
+			
+			animation = beginTexture;
+		}
+		sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x, animation.y * texture_size_y, texture_size_x, texture_size_y));
 		count = 0;
 	}
+	lastDirection = direction;
+
+
 }
 
 void SpriteRenderer::Render(sf::RenderWindow* _window)

@@ -35,9 +35,9 @@ public:
 		game_object->SetPosition(Maths::Vector2f(_position, _position));
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Test.png");
-		sprite_renderer->SetScale(1.f);
-		sprite_renderer->SetAnimSpeed(50);
+		sprite_renderer->LoadSprite("Walk.png");
+		sprite_renderer->SetScale(0.15f);
+		sprite_renderer->SetAnimSpeed(35);
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 		square_collider->SetWidth(32.f);
