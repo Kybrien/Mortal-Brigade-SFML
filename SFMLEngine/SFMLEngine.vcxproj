@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\Light.cpp" />
+    <ClCompile Include="src\Components\ProximityPrompt.cpp" />
     <ClCompile Include="src\Components\TileMap.cpp" />
     <ClCompile Include="src\Lighting\LightDirectionEmission.cpp" />
     <ClCompile Include="src\Lighting\LightPointEmission.cpp" />
+    <ClCompile Include="src\Lighting\LightShape.cpp" />
+    <ClCompile Include="src\Lighting\LightSprite.cpp" />
     <ClCompile Include="src\Lighting\LightSystem.cpp" />
-    <ClCompile Include="src\Maths\LTBLMath.cpp" />
     <ClCompile Include="src\Modules\CameraModule.cpp" />
     <ClCompile Include="src\Modules\ImGuiModule.cpp" />
     <ClCompile Include="ImGui\imgui-SFML.cpp" />
@@ -39,13 +41,16 @@
     <ClCompile Include="src\Modules\TimeModule.cpp" />
     <ClCompile Include="src\Modules\WindowModule.cpp" />
     <ClInclude Include="include\Components\Light.h" />
+    <ClInclude Include="include\Components\ProximityPrompt.h" />
     <ClInclude Include="include\json.hpp" />
     <ClInclude Include="include\Components\TileMap.h" />
-    <ClInclude Include="include\Lighting\LightDirectionEmission.h" />
-    <ClInclude Include="include\Lighting\LightPointEmission.h" />
-    <ClInclude Include="include\Lighting\LightShape.h" />
-    <ClInclude Include="include\Lighting\LightSystem.h" />
-    <ClInclude Include="include\Maths\LTBLMath.h" />
+    <ClInclude Include="include\Lighting\LightDirectionEmission.hpp" />
+    <ClInclude Include="include\Lighting\LightPointEmission.hpp" />
+    <ClInclude Include="include\Lighting\LightResources.hpp" />
+    <ClInclude Include="include\Lighting\LightShape.hpp" />
+    <ClInclude Include="include\Lighting\LightSprite.hpp" />
+    <ClInclude Include="include\Lighting\LightSystem.hpp" />
+    <ClInclude Include="include\Maths\Utils.hpp" />
     <ClInclude Include="include\Modules\CameraModule.h" />
     <ClInclude Include="include\Modules\ImGuiModule.h" />
     <ClInclude Include="include\Engine.h" />
@@ -54,11 +59,6 @@
     <ClInclude Include="include\Components\SquareCollider.h" />
     <ClInclude Include="include\Component.h" />
     <ClInclude Include="include\GameObject.h" />
-    <ClInclude Include="include\Quadtree\DynamicQuadtree.h" />
-    <ClInclude Include="include\Quadtree\Quadtree.h" />
-    <ClInclude Include="include\Quadtree\QuadtreeNode.h" />
-    <ClInclude Include="include\Quadtree\QuadtreeOccupant.h" />
-    <ClInclude Include="include\Quadtree\StaticQuadtree.h" />
     <ClInclude Include="include\Scene.h" />
     <ClInclude Include="include\Maths\Vector2.h" />
     <ClCompile Include="src\ModuleManager.cpp" />
@@ -75,11 +75,6 @@
     <ClInclude Include="include\Modules\InputModule.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Quadtree\DynamicQuadtree.cpp" />
-    <ClCompile Include="src\Quadtree\Quadtree.cpp" />
-    <ClCompile Include="src\Quadtree\QuadtreeNode.cpp" />
-    <ClCompile Include="src\Quadtree\QuadtreeOccupant.cpp" />
-    <ClCompile Include="src\Quadtree\StaticQuadtree.cpp" />
     <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\Component.cpp" />
     <ClCompile Include="src\Components\SquareCollider.cpp" />

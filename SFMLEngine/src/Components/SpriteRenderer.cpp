@@ -6,6 +6,7 @@ SpriteRenderer::SpriteRenderer() {
 	sprite = new sf::Sprite();
 	texture = new sf::Texture();
 	sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x, animation.y * texture_size_y, texture_size_x, texture_size_y));
+	//sprite->setOrigin(sprite->getLocalBounds().width / 2.f, sprite->getLocalBounds().height / 2.f);
 }
 
 SpriteRenderer::~SpriteRenderer() {

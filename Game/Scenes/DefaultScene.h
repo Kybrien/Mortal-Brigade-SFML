@@ -5,6 +5,7 @@
 #include "SquareCollider.h"
 #include "SpriteRenderer.h"
 #include "Light.h"
+#include "ProximityPrompt.h"
 
 class DefaultScene final : public Scene
 {
@@ -15,8 +16,10 @@ public:
 
 		GameObject* player = CreateDummyGameObject("Player", 32*25.f, sf::Color::Red);
 
-		GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
-		GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
+		//GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
+		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
+
+		GameObject* door = CreateProximityPromptGameObject("Door1", 10.0f, "Test");
 	}
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)
@@ -43,7 +46,18 @@ public:
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
 
-		//Light* flashlight = game_object->CreateComponent<Light>();
+		Light* flashlight = game_object->CreateComponent<Light>();
+		flashlight->SetShapes(GetLightColliders());
+
+		return game_object;
+	}
+
+	GameObject* CreateProximityPromptGameObject(const std::string& _name, const float _position, const std::string _text)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(Maths::Vector2f(_position, _position));
+
+		ProximityPrompt* proximity_prompt = game_object->CreateComponent<ProximityPrompt>();
 
 		return game_object;
 	}

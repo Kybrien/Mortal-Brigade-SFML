@@ -75,34 +75,28 @@
     <ClInclude Include="include\Components\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Quadtree\DynamicQuadtree.h">
+    <ClInclude Include="include\Components\ProximityPrompt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Quadtree\Quadtree.h">
+    <ClInclude Include="include\Maths\Utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Quadtree\QuadtreeNode.h">
+    <ClInclude Include="include\Lighting\LightDirectionEmission.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Quadtree\QuadtreeOccupant.h">
+    <ClInclude Include="include\Lighting\LightPointEmission.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Quadtree\StaticQuadtree.h">
+    <ClInclude Include="include\Lighting\LightResources.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Lighting\LightDirectionEmission.h">
+    <ClInclude Include="include\Lighting\LightShape.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Lighting\LightPointEmission.h">
+    <ClInclude Include="include\Lighting\LightSprite.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Lighting\LightShape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Lighting\LightSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Maths\LTBLMath.h">
+    <ClInclude Include="include\Lighting\LightSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -182,31 +176,22 @@
     <ClCompile Include="src\Components\Light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Components\ProximityPrompt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\Lighting\LightDirectionEmission.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Lighting\LightPointEmission.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Lighting\LightShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Lighting\LightSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\Lighting\LightSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Quadtree\DynamicQuadtree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Quadtree\Quadtree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Quadtree\QuadtreeNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Quadtree\QuadtreeOccupant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Quadtree\StaticQuadtree.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Maths\LTBLMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

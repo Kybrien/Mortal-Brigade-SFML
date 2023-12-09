@@ -5,6 +5,7 @@
 #include "Modules/WindowModule.h"
 #include "Modules/SceneModule.h"
 #include "Components/TileMap.h"
+#include "Components/SquareCollider.h"
 
 void CameraModule::Start()
 {

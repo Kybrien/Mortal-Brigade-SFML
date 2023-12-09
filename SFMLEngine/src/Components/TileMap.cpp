@@ -52,7 +52,7 @@ bool TileMap::Unload() {
     return 1;
 }
 
-bool TileMap::AddCollider(sf::Vector2u tileSize, const std::vector<int> tiles, unsigned int width, unsigned int height, Scene& scene) {
+bool TileMap::AddCollider(sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height, Scene& scene) {
     for (unsigned int i = 0; i < width; ++i)
         for (unsigned int j = 0; j < height; ++j)
         {
@@ -69,6 +69,62 @@ bool TileMap::AddCollider(sf::Vector2u tileSize, const std::vector<int> tiles, u
                 scene.AddCollider(collider);
             }
         }
+
+    AddLightCollider(tileSize, tiles, width, height, scene);
+
+    return true;
+}
+
+bool TileMap::AddLightCollider(sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height, Scene& scene) {
+    std::vector<std::vector<bool>> visited(width, std::vector<bool>(height, false));
+
+    for (unsigned int i = 0; i < width; ++i) {
+        for (unsigned int j = 0; j < height; ++j) {
+            if (!visited[i][j] && tiles[i + j * width] - 1 >= 0) {
+                visited[i][j] = true;
+
+                // Fusionner horizontalement
+                unsigned int colliderWidth = 1;
+                while (i + colliderWidth < width && tiles[i + colliderWidth + j * width] - 1 >= 0) {
+                    visited[i + colliderWidth][j] = true;
+                    ++colliderWidth;
+                }
+
+                // Fusionner verticalement
+                unsigned int colliderHeight = 1;
+                while (j + colliderHeight < height) {
+                    bool canMerge = true;
+                    for (unsigned int k = 0; k < colliderWidth; ++k) {
+                        if (i + k < width && j + colliderHeight < height && tiles[i + k + (j + colliderHeight) * width] - 1 < 0) {
+                            canMerge = false;
+                            break;
+                        }
+                    }
+
+                    if (canMerge) {
+                        for (unsigned int k = 0; k < colliderWidth; ++k) {
+                            if (i + k < width && j + colliderHeight < height) {
+                                visited[i + k][j + colliderHeight] = true;
+                            }
+                        }
+                        ++colliderHeight;
+                    }
+                    else {
+                        break;
+                    }
+                }
+
+                // Créer la collision en une seule pièce
+                GameObject* colliderobj = new GameObject;
+                colliderobj->SetPosition(Maths::Vector2f(i * tileSize.x, j * tileSize.y));
+                SquareCollider* collider = new SquareCollider;
+                collider->SetWidth(static_cast<float>(colliderWidth * tileSize.x));
+                collider->SetHeight(static_cast<float>(colliderHeight * tileSize.y));
+                colliderobj->AddComponent(collider);
+                scene.AddLightCollider(collider);
+            }
+        }
+    }
 
     return true;
 }

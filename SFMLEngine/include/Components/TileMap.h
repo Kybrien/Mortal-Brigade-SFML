@@ -17,7 +17,8 @@ public:
 
     bool Load(sf::Vector2u tileSize, std::string tileFile, const std::vector<int> tiles, unsigned int width, unsigned int height);
 
-    bool AddCollider(sf::Vector2u tileSize, const std::vector<int> tiles, unsigned int width, unsigned int height, Scene& scene);
+    bool AddCollider(sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height, Scene& scene);
+    bool AddLightCollider(sf::Vector2u tileSize, const std::vector<int>& tiles, unsigned int width, unsigned int height, Scene& scene);
 
     bool Unload();
 
