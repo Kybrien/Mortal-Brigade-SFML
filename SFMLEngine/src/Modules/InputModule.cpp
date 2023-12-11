@@ -7,6 +7,7 @@
 #include "Modules/TimeModule.h"
 
 #include "Components/SpriteRenderer.h"
+#include <SFML/Graphics.hpp>
 
 void InputModule::Start()
 {
@@ -82,7 +83,7 @@ void InputModule::Update()
 						playerCollider->MoveBack(1);
 					}
 				}
-			}
+			}			
 		}
 	}
 }

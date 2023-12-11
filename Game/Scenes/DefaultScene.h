@@ -39,8 +39,8 @@ public:
 		sprite_renderer->SetAnimSpeed(35);
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
-		square_collider->SetWidth(32.f);
-		square_collider->SetHeight(32.f);
+		square_collider->SetWidth(20.f);
+		square_collider->SetHeight(20);
 
 		return game_object;
 	}
