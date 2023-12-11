@@ -26,9 +26,9 @@ void CameraModule::Update()
 		GameObject* map = moduleManager->GetModule<SceneModule>()->GetMainScene()->FindGameObject("Map");
 
 		if (player && map) {
-			camera->setSize(window->getSize().x / 5, window->getSize().y / 5);
+			camera->setSize(window->getSize().x / 5.f, window->getSize().y / 5.f);
 
-			sf::Vector2f playerPosition = sf::Vector2f(player->GetPosition().x, player->GetPosition().y);
+			sf::Vector2f playerPosition = sf::Vector2f(player->GetPosition().x + player->GetComponent<SquareCollider>()->GetWidth() / 2, player->GetPosition().y + player->GetComponent<SquareCollider>()->GetHeight() / 2);
 
 			sf::Vector2u windowSize(window->getSize().x, window->getSize().y);
 

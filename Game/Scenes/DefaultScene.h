@@ -14,12 +14,13 @@ public:
 	{
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
 
-		GameObject* player = CreateDummyGameObject("Player", 32*25.f, sf::Color::Red);
+		GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
+
+		GameObject* player = CreateDummyGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f), sf::Color::Red);
 
 		//GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
-		GameObject* door = CreateProximityPromptGameObject("Door1", 10.0f, "Test");
 	}
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)
@@ -32,10 +33,10 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
+	GameObject* CreateDummyGameObject(const std::string& _name, const Maths::Vector2f _position, const sf::Color _color)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-		game_object->SetPosition(Maths::Vector2f(_position, _position));
+		game_object->SetPosition(_position);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Walk.png");
@@ -52,12 +53,14 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateProximityPromptGameObject(const std::string& _name, const float _position, const std::string _text)
+	GameObject* CreateProximityPromptGameObject(const std::string& _name, const Maths::Vector2f _position, const float _max_activation_distance,const std::string _text)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-		game_object->SetPosition(Maths::Vector2f(_position, _position));
+		game_object->SetPosition(_position);
 
 		ProximityPrompt* proximity_prompt = game_object->CreateComponent<ProximityPrompt>();
+		proximity_prompt->SetMaxActivationDistance(_max_activation_distance);
+		proximity_prompt->SetActionText(_text);
 
 		return game_object;
 	}

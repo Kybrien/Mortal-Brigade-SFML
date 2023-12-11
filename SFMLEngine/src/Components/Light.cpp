@@ -35,7 +35,7 @@ Light::Light()
 	light = ls->createLightPointEmission();
 	light->setOrigin(sf::Vector2f(pointLightTexture->getSize().x * 0.5f, pointLightTexture->getSize().y * 0.5f));
 	light->setTexture(*pointLightTexture);
-	light->setScale(1.5f, 1.5f);
+	light->setScale(2.f, 2.f);
 	light->setColor(sf::Color::White);
 }
 
@@ -70,7 +70,7 @@ void Light::Render(sf::RenderWindow* _window)
 	Component::Render(_window);
 
 	//light->setPosition(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window), _window->getView()));
-	light->setPosition(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y);
+	light->setPosition(GetOwner()->GetPosition().x + GetOwner()->GetComponent<SquareCollider>()->GetWidth() / 2, GetOwner()->GetPosition().y + GetOwner()->GetComponent<SquareCollider>()->GetHeight() / 2);
 	//std::cout << "X: " << light->getPosition().x << " Y:" << light->getPosition().y << std::endl;
 
 	for (std::size_t i = 0; i < shapes.size(); i++)

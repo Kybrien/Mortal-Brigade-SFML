@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <Lighting/LightSystem.hpp>
 
-#include "ARendererComponent.h"
+#include "Component.h"
 #include "Components/SquareCollider.h"
 
 class Light : public Component
