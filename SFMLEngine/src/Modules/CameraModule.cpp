@@ -13,6 +13,7 @@ void CameraModule::Start()
 
 	window = moduleManager->GetModule<WindowModule>()->GetWindow();
 	camera = new sf::View;
+	scene_module = moduleManager->GetModule<SceneModule>();
 
 	window->setView(*camera);
 }
@@ -21,14 +22,18 @@ void CameraModule::Update()
 {
 	Module::Update();
 
-	if (moduleManager->GetModule<SceneModule>()->GetMainScene()->GetName() == "DefaultScene") {
-		GameObject* player = moduleManager->GetModule<SceneModule>()->GetMainScene()->FindGameObject("Player");
-		GameObject* map = moduleManager->GetModule<SceneModule>()->GetMainScene()->FindGameObject("Map");
+	Scene* scene = scene_module->GetMainScene();
+
+	if (scene->GetName() == "DefaultScene") {
+		GameObject* player = scene->FindGameObject("Player");
+		GameObject* map = scene->FindGameObject("Map");
 
 		if (player && map) {
+			SquareCollider* player_collider = player->GetComponent<SquareCollider>();
+
 			camera->setSize(window->getSize().x / 5.f, window->getSize().y / 5.f);
 
-			sf::Vector2f playerPosition = sf::Vector2f(player->GetPosition().x + player->GetComponent<SquareCollider>()->GetWidth() / 2, player->GetPosition().y + player->GetComponent<SquareCollider>()->GetHeight() / 2);
+			sf::Vector2f playerPosition = sf::Vector2f(player->GetPosition().x + player_collider->GetWidth() / 2, player->GetPosition().y + player_collider->GetHeight() / 2);
 
 			sf::Vector2u windowSize(window->getSize().x, window->getSize().y);
 
@@ -57,6 +62,15 @@ void CameraModule::Update()
 		camera->setSize(window->getSize().x, window->getSize().y);
 		camera->setCenter(0, 0);
 	}
+
+	window->setView(*camera);
+}
+
+void CameraModule::PostRender() {
+	Module::PostRender();
+
+	camera->setSize(window->getSize().x, window->getSize().y);
+	camera->setCenter(0, 0);
 
 	window->setView(*camera);
 }

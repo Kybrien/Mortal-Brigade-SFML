@@ -16,7 +16,7 @@ public:
 
 		GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
 
-		GameObject* player = CreateDummyGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f), sf::Color::Red);
+		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f), sf::Color::Red);
 
 		//GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
@@ -33,7 +33,7 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateDummyGameObject(const std::string& _name, const Maths::Vector2f _position, const sf::Color _color)
+	GameObject* CreatePlayerGameObject(const std::string& _name, const Maths::Vector2f _position, const sf::Color _color)
 	{
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(_position);
@@ -41,7 +41,8 @@ public:
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Walk.png");
 		sprite_renderer->SetScale(0.15f);
-		sprite_renderer->SetAnimSpeed(35);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetOffset(Maths::Vector2i(70, 70));
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 		square_collider->SetWidth(32.f);

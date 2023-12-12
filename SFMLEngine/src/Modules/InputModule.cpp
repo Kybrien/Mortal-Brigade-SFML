@@ -3,8 +3,6 @@
 
 #include "ModuleManager.h"
 #include "Modules/WindowModule.h"
-#include "Modules/SceneModule.h"
-#include "Modules/TimeModule.h"
 
 #include "Components/SpriteRenderer.h"
 
@@ -13,19 +11,21 @@ void InputModule::Start()
 	Module::Start();
 
 	window = moduleManager->GetModule<WindowModule>()->GetWindow();
+	clock = moduleManager->GetModule<TimeModule>();
+	scene_module = moduleManager->GetModule<SceneModule>();
 }
 
 void InputModule::Update()
 {
 	Module::Update();
 
-	Scene* scene = moduleManager->GetModule<SceneModule>()->GetMainScene();
-	TimeModule* clock = moduleManager->GetModule<TimeModule>();
+	Scene* scene = scene_module->GetMainScene();
 
 	// IN-GAME INPUTS
 	if (scene->GetName() == "DefaultScene") {
-		GameObject* player = moduleManager->GetModule<SceneModule>()->GetMainScene()->FindGameObject("Player");
+		GameObject* player = scene->FindGameObject("Player");
 		if (player) {
+			bool moving = false;
 			SpriteRenderer* playerSprite = player->GetComponent<SpriteRenderer>();
 			SquareCollider* playerCollider = player->GetComponent<SquareCollider>();
 			playerCollider->SetOldPosition(player->GetPosition());
@@ -37,7 +37,7 @@ void InputModule::Update()
 				playerSprite->SetDirection("UP");
 				playerSprite->SetBegin(sf::Vector2i(4,3));
 				playerSprite->SetEnd(sf::Vector2i(1, 5));
-				playerSprite->IncrementCount();
+				moving = true;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(-1, 0) * clock->GetDeltaTime() * 50;
@@ -46,7 +46,7 @@ void InputModule::Update()
 				playerSprite->SetDirection("LEFT");
 				playerSprite->SetBegin(sf::Vector2i(6, 1));
 				playerSprite->SetEnd(sf::Vector2i(3, 3));
-				playerSprite->IncrementCount();
+				moving = true;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, 1) * clock->GetDeltaTime() * 50;
@@ -55,7 +55,7 @@ void InputModule::Update()
 				playerSprite->SetDirection("DOWN");
 				playerSprite->SetBegin(sf::Vector2i(0, 0));
 				playerSprite->SetEnd(sf::Vector2i(5, 1));
-				playerSprite->IncrementCount();
+				moving = true;
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 				Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(1, 0) * clock->GetDeltaTime() * 50;
@@ -64,8 +64,11 @@ void InputModule::Update()
 				playerSprite->SetDirection("RIGHT");
 				playerSprite->SetBegin(sf::Vector2i(2, 5));
 				playerSprite->SetEnd(sf::Vector2i(7, 6));
-				playerSprite->IncrementCount();
+				moving = true;
 			}
+
+			if (moving)
+				playerSprite->IncrementCount(clock->GetDeltaTime());
 
 			for (int i = 0; i < scene->GetColliders().size(); i++) {
 				if (SquareCollider::IsColliding(*playerCollider, *scene->GetColliders()[i])) {
