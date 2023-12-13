@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Component.h"
+#include "Scene.h"
 #include "Maths/Vector2.h"
 #include "SFML/Graphics/Sprite.hpp"
 #include "SFML/Graphics/Texture.hpp"
@@ -18,10 +19,13 @@ public:
 
 	bool CanBePrompted();
 
+	void SetCurrentScene(Scene* _current_scene) { current_scene = _current_scene; }
+
 	void Update(float _delta_time) override;
 	void Render(sf::RenderWindow* _window) override;
 
 protected:
+	Scene* current_scene = nullptr;
 	std::string action_text;
 	float max_activation_distance;
 	bool pressed = false;

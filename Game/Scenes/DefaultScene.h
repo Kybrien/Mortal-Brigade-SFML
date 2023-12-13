@@ -2,6 +2,7 @@
 #include "RectangleShapeRenderer.h"
 #include "Scene.h"
 #include "TileMap.h"
+#include "Player.h"
 #include "SquareCollider.h"
 #include "SpriteRenderer.h"
 #include "Light.h"
@@ -38,6 +39,9 @@ public:
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(_position);
 
+		Player* player_component = game_object->CreateComponent<Player>();
+		player_component->SetCurrentScene(this);
+
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Walk.png");
 		sprite_renderer->SetScale(0.15f);
@@ -60,6 +64,7 @@ public:
 		game_object->SetPosition(_position);
 
 		ProximityPrompt* proximity_prompt = game_object->CreateComponent<ProximityPrompt>();
+		proximity_prompt->SetCurrentScene(this);
 		proximity_prompt->SetMaxActivationDistance(_max_activation_distance);
 		proximity_prompt->SetActionText(_text);
 
