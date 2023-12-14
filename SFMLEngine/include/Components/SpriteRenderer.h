@@ -33,6 +33,9 @@ public:
 	void Update(float _delta_time) override;
 	void Render(sf::RenderWindow* _window) override;
 
+	void SetLoop(bool _loop) { loop = _loop; }
+
+
 private:
 	sf::Sprite* sprite = nullptr;
 	sf::Texture* texture = nullptr;
@@ -48,4 +51,5 @@ private:
 	int offset_x = 0;
 	int offset_y = 0;
 	bool autoIncrement = false;
+	bool loop = true;
 };
