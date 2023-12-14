@@ -13,10 +13,10 @@ public:
         GameObject* background = CreateBackgroundGameObject("Background", "../Assets/Images/menu_background.png");
 
         // Création des boutons du menu
-        GameObject* playButton = CreateButtonGameObject("PlayButton", 100.f, 100.f, "Play");
-        GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 200.f, 200.f, "Options");
-        GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 300.f, 300.f, "Credits");
-        GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 400.f, 400.f, "Leave");
+        GameObject* playButton = CreateButtonGameObject("PlayButton", 792.f, 300.f, "Play");
+        GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options");
+        GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 792.f, 403.f, "Credits");
+        GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 930.f, 403.f, "Leave");
     }
     
     GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texturePath) {
@@ -25,7 +25,7 @@ public:
 
         // Supposons que vous ayez une classe BackgroundRenderer pour rendre l'arrière-plan
         BackgroundRenderer* background_renderer = game_object->CreateComponent<BackgroundRenderer>();
-        background_renderer->LoadTexture(_texturePath); // Charger la texture de l'arrière-plan     
+        background_renderer->LoadTexture(_texturePath); // Charger la texture de l'arrière-plan  
 
         return game_object;
     }
