@@ -22,6 +22,7 @@ void SpriteRenderer::LoadSprite(std::string _name) {
 	}
 
 	sprite->setTexture(*texture);
+	//sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x + offset_x, animation.y * texture_size_y + offset_y, texture_size_x, texture_size_y));
 }
 
 void SpriteRenderer::SetOffset(const Maths::Vector2i _offset) {

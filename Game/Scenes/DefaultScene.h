@@ -93,13 +93,9 @@ public:
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Mine.png");
-		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
-		sprite_renderer->SetScale(0.5f);
-		//sprite_renderer->SetAnimSpeed(0.5f);
-		sprite_renderer->SetAutoIncrement(true);
-		//sprite_renderer->SetBegin(sf::Vector2i(0, 0));
-		//sprite_renderer->SetEnd(sf::Vector2i(0, 0));
-		//sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
+		sprite_renderer->SetTextureSize(Maths::Vector2u(360,360));
+		sprite_renderer->SetScale(0.05f);
+		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
 
 		return game_object;
 	}

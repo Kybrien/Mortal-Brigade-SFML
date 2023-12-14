@@ -36,7 +36,7 @@ public:
 private:
 	sf::Sprite* sprite = nullptr;
 	sf::Texture* texture = nullptr;
-	sf::Vector2i animation;
+	sf::Vector2i animation= sf::Vector2i(0, 0);
 	float count = 0;
 	float anim_speed = 1;
 	unsigned int texture_size_x = 32;
