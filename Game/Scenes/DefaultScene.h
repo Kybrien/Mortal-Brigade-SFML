@@ -5,8 +5,10 @@
 #include "Player.h"
 #include "SquareCollider.h"
 #include "SpriteRenderer.h"
+#include "Inventory.h"
 #include "Light.h"
 #include "ProximityPrompt.h"
+#include "Collectable.h"
 
 class DefaultScene final : public Scene
 {
@@ -17,9 +19,10 @@ public:
 
 		GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
 
-		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f), sf::Color::Red);
+		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 25.f, 32 * 25.f));
 
-		//GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
+		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
+
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
 	}
@@ -34,7 +37,7 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreatePlayerGameObject(const std::string& _name, const Maths::Vector2f _position, const sf::Color _color)
+	GameObject* CreatePlayerGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(_position);
@@ -44,6 +47,7 @@ public:
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Walk.png");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
 		sprite_renderer->SetScale(0.15f);
 		sprite_renderer->SetAnimSpeed(0.5f);
 		sprite_renderer->SetOffset(Maths::Vector2i(70, 70));
@@ -52,8 +56,28 @@ public:
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
 
+		Inventory* inventory = game_object->CreateComponent<Inventory>();
+
 		Light* flashlight = game_object->CreateComponent<Light>();
 		flashlight->SetShapes(GetLightColliders());
+
+		return game_object;
+	}
+
+	GameObject* CreateREDMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("RED.png");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(48, 48));
+		sprite_renderer->SetScale(0.8f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
+		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
+		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
 
 		return game_object;
 	}
@@ -63,7 +87,7 @@ public:
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(_position);
 
-		ProximityPrompt* proximity_prompt = game_object->CreateComponent<ProximityPrompt>();
+		Collectable* proximity_prompt = game_object->CreateComponent<Collectable>();
 		proximity_prompt->SetCurrentScene(this);
 		proximity_prompt->SetMaxActivationDistance(_max_activation_distance);
 		proximity_prompt->SetActionText(_text);

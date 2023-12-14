@@ -21,8 +21,10 @@ public:
 
 	void SetCurrentScene(Scene* _current_scene) { current_scene = _current_scene; }
 
-	void Update(float _delta_time) override;
+	virtual void Prompt() {};
+
 	void Render(sf::RenderWindow* _window) override;
+	void Update(float _delta_time) override;
 
 protected:
 	Scene* current_scene = nullptr;

@@ -18,15 +18,6 @@ Light::Light()
 	ls = new ltbl::LightSystem(normal_texture, specular_texture_, false);
 	ls->create({ -1000.f, -1000.f, 2000.f, 2000.f }, window->getSize());
 
-	//unshadowShader = new sf::Shader();
-	//lightOverShapeShader = new sf::Shader();
-	//unshadowShader->loadFromFile("../Assets/Shaders/unshadowShader.vert", "../Assets/Shaders/unshadowShader.frag");
-	//lightOverShapeShader->loadFromFile("../Assets/Shaders/lightOverShapeShader.vert", "../Assets/Shaders/lightOverShapeShader.frag");
-
-	//penumbraTexture = new sf::Texture();
-	//penumbraTexture->loadFromFile("../Assets/Shaders/penumbraTexture.png");
-	//penumbraTexture->setSmooth(true);
-
 	pointLightTexture = new sf::Texture();
 	pointLightTexture->loadFromFile("../Assets/Shaders/pointLightTexture.png");
 	pointLightTexture->setSmooth(true);
@@ -41,14 +32,8 @@ Light::Light()
 
 Light::~Light()
 {
-	delete unshadowShader;
-	delete lightOverShapeShader;
-	delete penumbraTexture;
 	delete pointLightTexture;
 	delete ls;
-	unshadowShader = nullptr;
-	lightOverShapeShader = nullptr;
-	penumbraTexture = nullptr;
 	pointLightTexture = nullptr;
 	ls = nullptr;
 }

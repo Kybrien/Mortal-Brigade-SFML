@@ -32,6 +32,7 @@ void ProximityPrompt::Update(float _delta_time) {
 		if (pressed == false) {
 			pressed = true;
 			std::cout << "Pressed !";
+			Prompt();
 		}
 	}
 	else {

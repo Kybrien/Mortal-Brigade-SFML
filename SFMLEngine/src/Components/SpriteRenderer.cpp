@@ -31,9 +31,12 @@ void SpriteRenderer::SetOffset(const Maths::Vector2i _offset) {
 }
 
 void SpriteRenderer::Update(float _delta_time) {
+	if (autoIncrement)
+		IncrementCount(_delta_time);
+
 	if (direction != lastDirection) {
 		animation = beginTexture;
-		std::cout << "new Direction" << std::endl;
+		//std::cout << "new Direction" << std::endl;
 	}
 	if (count > anim_speed) {
 		animation.x++;
@@ -50,8 +53,6 @@ void SpriteRenderer::Update(float _delta_time) {
 		count = 0;
 	}
 	lastDirection = direction;
-
-
 }
 
 void SpriteRenderer::Render(sf::RenderWindow* _window)

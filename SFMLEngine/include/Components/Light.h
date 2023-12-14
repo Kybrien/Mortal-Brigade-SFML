@@ -17,9 +17,6 @@ public:
 	void Render(sf::RenderWindow* _window) override;
 
 private:
-	sf::Shader* unshadowShader = nullptr;
-	sf::Shader* lightOverShapeShader = nullptr;
-	sf::Texture* penumbraTexture = nullptr;
 	sf::Texture* pointLightTexture = nullptr;
 	ltbl::LightSystem* ls = nullptr;
 	ltbl::LightPointEmission* light = nullptr;
