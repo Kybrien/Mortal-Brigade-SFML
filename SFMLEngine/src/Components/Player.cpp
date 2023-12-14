@@ -11,7 +11,6 @@ void Player::Update(float _delta_time)
 	bool moving = false;
 	SpriteRenderer* playerSprite = player->GetComponent<SpriteRenderer>();
 	SquareCollider* playerCollider = player->GetComponent<SquareCollider>();
-	playerCollider->SetOldPosition(player->GetPosition());
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
 		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, -1) * _delta_time * 50;

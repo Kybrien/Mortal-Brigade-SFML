@@ -87,10 +87,10 @@ public:
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(_position);
 
-		Collectable* proximity_prompt = game_object->CreateComponent<Collectable>();
-		proximity_prompt->SetCurrentScene(this);
-		proximity_prompt->SetMaxActivationDistance(_max_activation_distance);
-		proximity_prompt->SetActionText(_text);
+		Collectable* collectable = game_object->CreateComponent<Collectable>();
+		collectable->SetCurrentScene(this);
+		collectable->SetMaxActivationDistance(_max_activation_distance);
+		collectable->SetActionText(_text);
 
 		return game_object;
 	}

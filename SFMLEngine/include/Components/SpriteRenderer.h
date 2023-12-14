@@ -37,13 +37,13 @@ private:
 	sf::Sprite* sprite = nullptr;
 	sf::Texture* texture = nullptr;
 	sf::Vector2i animation;
-	float count = 0;
-	float anim_speed = 1;
+	float count = 0.f;
+	float anim_speed = 1.f;
 	unsigned int texture_size_x = 32;
 	unsigned int texture_size_y = 32;
 	sf::String direction = "";
 	sf::String lastDirection = "";
-	sf::Vector2i beginTexture = sf::Vector2i(0,0);
+	sf::Vector2i beginTexture = sf::Vector2i(0, 0);
 	sf::Vector2i endTexture = sf::Vector2i(0, 0);
 	int offset_x = 0;
 	int offset_y = 0;
