@@ -2,10 +2,13 @@
 #include "RectangleShapeRenderer.h"
 #include "Scene.h"
 #include "TileMap.h"
+#include "Player.h"
 #include "SquareCollider.h"
 #include "SpriteRenderer.h"
+#include "Inventory.h"
 #include "Light.h"
 #include "ProximityPrompt.h"
+#include "Collectable.h"
 
 class DefaultScene final : public Scene
 {
@@ -14,12 +17,14 @@ public:
 	{
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
 
-		GameObject* player = CreateDummyGameObject("Player", 32*25.f, sf::Color::Red);
+		GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
 
-		//GameObject* enemy = CreateDummyGameObject("Enemy", 400.f, sf::Color::Blue);
+		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 25.f, 32 * 25.f));
+
+		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
+
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
-		GameObject* door = CreateProximityPromptGameObject("Door1", 10.0f, "Test");
 	}
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)
@@ -32,19 +37,26 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateDummyGameObject(const std::string& _name, const float _position, const sf::Color _color)
+	GameObject* CreatePlayerGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-		game_object->SetPosition(Maths::Vector2f(_position, _position));
+		game_object->SetPosition(_position);
+
+		Player* player_component = game_object->CreateComponent<Player>();
+		player_component->SetCurrentScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Walk.png");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
 		sprite_renderer->SetScale(0.15f);
-		sprite_renderer->SetAnimSpeed(35);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetOffset(Maths::Vector2i(70, 70));
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
+
+		Inventory* inventory = game_object->CreateComponent<Inventory>();
 
 		Light* flashlight = game_object->CreateComponent<Light>();
 		flashlight->SetShapes(GetLightColliders());
@@ -52,12 +64,33 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateProximityPromptGameObject(const std::string& _name, const float _position, const std::string _text)
+	GameObject* CreateREDMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-		game_object->SetPosition(Maths::Vector2f(_position, _position));
+		game_object->SetPosition(_position);
 
-		ProximityPrompt* proximity_prompt = game_object->CreateComponent<ProximityPrompt>();
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("RED.png");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(48, 48));
+		sprite_renderer->SetScale(0.8f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
+		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
+		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
+
+		return game_object;
+	}
+
+	GameObject* CreateProximityPromptGameObject(const std::string& _name, const Maths::Vector2f _position, const float _max_activation_distance,const std::string _text)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		Collectable* collectable = game_object->CreateComponent<Collectable>();
+		collectable->SetCurrentScene(this);
+		collectable->SetMaxActivationDistance(_max_activation_distance);
+		collectable->SetActionText(_text);
 
 		return game_object;
 	}

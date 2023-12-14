@@ -18,15 +18,6 @@ Light::Light()
 	ls = new ltbl::LightSystem(normal_texture, specular_texture_, false);
 	ls->create({ -1000.f, -1000.f, 2000.f, 2000.f }, window->getSize());
 
-	//unshadowShader = new sf::Shader();
-	//lightOverShapeShader = new sf::Shader();
-	//unshadowShader->loadFromFile("../Assets/Shaders/unshadowShader.vert", "../Assets/Shaders/unshadowShader.frag");
-	//lightOverShapeShader->loadFromFile("../Assets/Shaders/lightOverShapeShader.vert", "../Assets/Shaders/lightOverShapeShader.frag");
-
-	//penumbraTexture = new sf::Texture();
-	//penumbraTexture->loadFromFile("../Assets/Shaders/penumbraTexture.png");
-	//penumbraTexture->setSmooth(true);
-
 	pointLightTexture = new sf::Texture();
 	pointLightTexture->loadFromFile("../Assets/Shaders/pointLightTexture.png");
 	pointLightTexture->setSmooth(true);
@@ -35,20 +26,14 @@ Light::Light()
 	light = ls->createLightPointEmission();
 	light->setOrigin(sf::Vector2f(pointLightTexture->getSize().x * 0.5f, pointLightTexture->getSize().y * 0.5f));
 	light->setTexture(*pointLightTexture);
-	light->setScale(1.5f, 1.5f);
+	light->setScale(2.f, 2.f);
 	light->setColor(sf::Color::White);
 }
 
 Light::~Light()
 {
-	delete unshadowShader;
-	delete lightOverShapeShader;
-	delete penumbraTexture;
 	delete pointLightTexture;
 	delete ls;
-	unshadowShader = nullptr;
-	lightOverShapeShader = nullptr;
-	penumbraTexture = nullptr;
 	pointLightTexture = nullptr;
 	ls = nullptr;
 }
@@ -70,7 +55,7 @@ void Light::Render(sf::RenderWindow* _window)
 	Component::Render(_window);
 
 	//light->setPosition(_window->mapPixelToCoords(sf::Mouse::getPosition(*_window), _window->getView()));
-	light->setPosition(GetOwner()->GetPosition().x, GetOwner()->GetPosition().y);
+	light->setPosition(GetOwner()->GetPosition().x + GetOwner()->GetComponent<SquareCollider>()->GetWidth() / 2, GetOwner()->GetPosition().y + GetOwner()->GetComponent<SquareCollider>()->GetHeight() / 2);
 	//std::cout << "X: " << light->getPosition().x << " Y:" << light->getPosition().y << std::endl;
 
 	for (std::size_t i = 0; i < shapes.size(); i++)

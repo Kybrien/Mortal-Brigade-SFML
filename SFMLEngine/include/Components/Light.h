@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <Lighting/LightSystem.hpp>
 
-#include "ARendererComponent.h"
+#include "Component.h"
 #include "Components/SquareCollider.h"
 
 class Light : public Component
@@ -17,9 +17,6 @@ public:
 	void Render(sf::RenderWindow* _window) override;
 
 private:
-	sf::Shader* unshadowShader = nullptr;
-	sf::Shader* lightOverShapeShader = nullptr;
-	sf::Texture* penumbraTexture = nullptr;
 	sf::Texture* pointLightTexture = nullptr;
 	ltbl::LightSystem* ls = nullptr;
 	ltbl::LightPointEmission* light = nullptr;

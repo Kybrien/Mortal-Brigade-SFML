@@ -5,7 +5,7 @@
 SpriteRenderer::SpriteRenderer() {
 	sprite = new sf::Sprite();
 	texture = new sf::Texture();
-	sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x, animation.y * texture_size_y, texture_size_x, texture_size_y));
+	sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x + offset_x, animation.y * texture_size_y + offset_y, texture_size_x, texture_size_y));
 	//sprite->setOrigin(sprite->getLocalBounds().width / 2.f, sprite->getLocalBounds().height / 2.f);
 }
 
@@ -24,10 +24,19 @@ void SpriteRenderer::LoadSprite(std::string _name) {
 	sprite->setTexture(*texture);
 }
 
+void SpriteRenderer::SetOffset(const Maths::Vector2i _offset) {
+	offset_x = _offset.x;
+	offset_y = _offset.y;
+	sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x + offset_x, animation.y * texture_size_y + offset_y, texture_size_x, texture_size_y));
+}
+
 void SpriteRenderer::Update(float _delta_time) {
+	if (autoIncrement)
+		IncrementCount(_delta_time);
+
 	if (direction != lastDirection) {
 		animation = beginTexture;
-		std::cout << "new Direction" << std::endl;
+		//std::cout << "new Direction" << std::endl;
 	}
 	if (count > anim_speed) {
 		animation.x++;
@@ -40,12 +49,10 @@ void SpriteRenderer::Update(float _delta_time) {
 			
 			animation = beginTexture;
 		}
-		sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x, animation.y * texture_size_y, texture_size_x, texture_size_y));
+		sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x + offset_x, animation.y * texture_size_y + offset_y, texture_size_x, texture_size_y));
 		count = 0;
 	}
 	lastDirection = direction;
-
-
 }
 
 void SpriteRenderer::Render(sf::RenderWindow* _window)

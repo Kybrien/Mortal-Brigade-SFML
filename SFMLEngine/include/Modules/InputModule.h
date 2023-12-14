@@ -4,6 +4,8 @@
 #include <SFML/Window/Event.hpp>
 
 #include "Module.h"
+#include "Modules/SceneModule.h"
+#include "Modules/TimeModule.h"
 
 class InputModule final : public Module
 {
@@ -17,4 +19,6 @@ public:
 
 private:
 	sf::RenderWindow* window = nullptr;
+	TimeModule* clock = nullptr;
+	SceneModule* scene_module = nullptr;
 };

@@ -14,7 +14,7 @@ public:
 
 	void Render(sf::RenderWindow* _window) override;
 
-private:
+protected:
 	sf::Color color = sf::Color::White;
 
 	sf::RectangleShape* shape = nullptr;
