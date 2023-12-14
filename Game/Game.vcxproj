@@ -168,7 +168,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Scenes\ChooseMap.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
+    <ClInclude Include="Scenes\MenuScene.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
