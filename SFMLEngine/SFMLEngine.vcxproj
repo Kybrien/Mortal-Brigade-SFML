@@ -20,8 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\Collectable.cpp" />
+    <ClCompile Include="src\Components\Health.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Light.cpp" />
+    <ClCompile Include="src\Components\Mine.cpp" />
     <ClCompile Include="src\Components\PathFinding.cpp" />
     <ClCompile Include="src\Components\Player.cpp" />
     <ClCompile Include="src\Components\ProximityPrompt.cpp" />
@@ -48,6 +50,7 @@
     <ClInclude Include="include\Components\Inventory.h" />
     <ClInclude Include="include\Components\Collectable.h" />
     <ClInclude Include="include\Components\Light.h" />
+    <ClInclude Include="include\Components\Mine.h" />
     <ClInclude Include="include\Components\PathFinding.h" />
     <ClInclude Include="include\Components\Player.h" />
     <ClInclude Include="include\Components\ProximityPrompt.h" />
