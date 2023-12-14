@@ -15,6 +15,11 @@ public:
 
 	std::vector<std::map<std::string, int>> GetInventory() { return inventory; }
 
+	float GetTotalMoney() const { return totalMoney; }
+	void AddMoney(float amount) { totalMoney += amount; }
+
 private:
 	std::vector<std::map<std::string, int>> inventory;
+	float totalMoney = 0.0f;
+
 };

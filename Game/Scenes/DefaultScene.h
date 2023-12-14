@@ -25,6 +25,12 @@ public:
 
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
 
+		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
+		GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
+		GameObject* amethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 27.f, 32 * 26.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
+		GameObject* azurite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 28.f, 32 * 26.f), "Azurite.png", 25.f, "Azurite", 40.f);
+
+
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
 	}
@@ -103,10 +109,34 @@ public:
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(_position);
 
+		ProximityPrompt* proximity_prompt = game_object->CreateComponent<ProximityPrompt>();
+		proximity_prompt->SetCurrentScene(this);
+		proximity_prompt->SetMaxActivationDistance(_max_activation_distance);
+		proximity_prompt->SetActionText(_text);
+
+		return game_object;
+	}
+
+	GameObject* CreateCollectableGameObject(const std::string& _name, const Maths::Vector2f _position, std::string _texture, const float _max_activation_distance, const std::string _text, float _price)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite(_texture);
+		sprite_renderer->SetTextureSize(Maths::Vector2u(32, 32));
+		sprite_renderer->SetScale(1.f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		//sprite_renderer->SetAutoIncrement(true);
+		//sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		//sprite_renderer->SetEnd(sf::Vector2i(0, 0));
+		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
 		Collectable* collectable = game_object->CreateComponent<Collectable>();
 		collectable->SetCurrentScene(this);
 		collectable->SetMaxActivationDistance(_max_activation_distance);
 		collectable->SetActionText(_text);
+		collectable->SetPrice(_price);
 
 		return game_object;
 	}
