@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Components\Collectable.cpp" />
+    <ClCompile Include="src\Components\Health.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Light.cpp" />
     <ClCompile Include="src\Components\PathFinding.cpp" />
