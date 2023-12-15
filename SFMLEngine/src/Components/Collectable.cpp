@@ -12,5 +12,7 @@ void Collectable::Prompt() {
 		inventory->Add(GetOwner()->GetName(), 1);
 
 		inventory->DisplayInventory();
+
+		delete GetOwner();
 	}
 }

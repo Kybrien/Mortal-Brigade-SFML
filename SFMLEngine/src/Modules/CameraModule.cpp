@@ -60,7 +60,7 @@ void CameraModule::Update()
 	}
 	else {
 		camera->setSize(window->getSize().x, window->getSize().y);
-		camera->setCenter(0, 0);
+		camera->setCenter(window->getSize().x / 2, window->getSize().y / 2);
 	}
 
 	window->setView(*camera);
@@ -70,7 +70,7 @@ void CameraModule::PostRender() {
 	Module::PostRender();
 
 	camera->setSize(window->getSize().x, window->getSize().y);
-	camera->setCenter(0, 0);
+	camera->setCenter(window->getSize().x / 2, window->getSize().y / 2);
 
 	window->setView(*camera);
 }

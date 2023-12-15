@@ -14,8 +14,8 @@ public:
 	sf::Vector2i GetAnimation() { return animation; }
 	void SetAnimation(int y) { animation.y = y; }
 
-	void SetBegin(sf::Vector2i begin) { beginTexture = begin; }
-	void SetEnd(sf::Vector2i end) { endTexture = end; }
+	void SetBegin(sf::Vector2i _begin) { beginTexture = _begin; }
+	void SetEnd(sf::Vector2i _end) { endTexture = _end; }
 	void SetDirection(sf::String _direction) { direction = _direction; }
 
 	void IncrementCount(float _delta_time) { count += 10 * _delta_time; }
@@ -39,7 +39,7 @@ public:
 private:
 	sf::Sprite* sprite = nullptr;
 	sf::Texture* texture = nullptr;
-	sf::Vector2i animation;
+	sf::Vector2i animation = sf::Vector2i(0, 0);
 	float count = 0.f;
 	float anim_speed = 1.f;
 	unsigned int texture_size_x = 32;
