@@ -46,8 +46,12 @@ void SpriteRenderer::Update(float _delta_time) {
 			
 		}
 		if (animation.x == endTexture.x && animation.y == endTexture.y) {
-			
-			animation = beginTexture;
+			if (loop) {
+				animation = beginTexture;
+			}
+			else {
+				
+			}
 		}
 		sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x + offset_x, animation.y * texture_size_y + offset_y, texture_size_x, texture_size_y));
 		count = 0;

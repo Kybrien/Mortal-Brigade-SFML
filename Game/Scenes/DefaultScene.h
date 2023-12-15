@@ -9,6 +9,8 @@
 #include "Light.h"
 #include "ProximityPrompt.h"
 #include "Collectable.h"
+#include "Mine.h"
+#include "Health.h"
 #include "PathFinding.h"
 
 class DefaultScene final : public Scene
@@ -51,6 +53,8 @@ public:
 
 		Player* player_component = game_object->CreateComponent<Player>();
 		player_component->SetCurrentScene(this);
+
+		Health* player_health = game_object->CreateComponent<Health>();
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Walk.png");
@@ -96,6 +100,8 @@ public:
 	{
 		GameObject* game_object = CreateGameObject(_name);
 		game_object->SetPosition(_position);
+		Mine* mine = game_object->CreateComponent<Mine>();
+		mine->SetScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Mine.png");
