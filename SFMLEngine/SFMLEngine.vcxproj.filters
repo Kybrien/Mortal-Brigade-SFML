@@ -1,250 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
+    <ClCompile Include="src\Components\Button.cpp" />
+    <ClCompile Include="src\Components\Collectable.cpp" />
+    <ClCompile Include="src\Components\Health.cpp" />
+    <ClCompile Include="src\Components\Inventory.cpp" />
+    <ClCompile Include="src\Components\Light.cpp" />
+    <ClCompile Include="src\Components\Mine.cpp" />
+    <ClCompile Include="src\Components\PathFinding.cpp" />
+    <ClCompile Include="src\Components\Player.cpp" />
+    <ClCompile Include="src\Components\ProximityPrompt.cpp" />
+    <ClCompile Include="src\Components\TileMap.cpp" />
+    <ClCompile Include="src\Lighting\LightDirectionEmission.cpp" />
+    <ClCompile Include="src\Lighting\LightPointEmission.cpp" />
+    <ClCompile Include="src\Lighting\LightShape.cpp" />
+    <ClCompile Include="src\Lighting\LightSprite.cpp" />
+    <ClCompile Include="src\Lighting\LightSystem.cpp" />
+    <ClCompile Include="src\Modules\CameraModule.cpp" />
+    <ClCompile Include="src\Modules\ImGuiModule.cpp" />
+    <ClCompile Include="ImGui\imgui-SFML.cpp" />
+    <ClCompile Include="ImGui\imgui.cpp" />
+    <ClCompile Include="ImGui\imgui_demo.cpp" />
+    <ClCompile Include="ImGui\imgui_draw.cpp" />
+    <ClCompile Include="ImGui\imgui_tables.cpp" />
+    <ClCompile Include="ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Engine.cpp" />
+    <ClCompile Include="src\Modules\InputModule.cpp" />
+    <ClCompile Include="src\Modules\SceneModule.cpp" />
+    <ClCompile Include="src\Modules\TimeModule.cpp" />
+    <ClCompile Include="src\Modules\WindowModule.cpp" />
+    <ClCompile Include="src\ModuleManager.cpp" />
+    <ClCompile Include="src\Module.cpp" />
+    <ClCompile Include="src\Components\SpriteRenderer.cpp" />
+    <ClCompile Include="src\Components\ARendererComponent.cpp" />
+    <ClCompile Include="src\Components\RectangleShapeRenderer.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
+    <ClCompile Include="src\Component.cpp" />
+    <ClCompile Include="src\Components\SquareCollider.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\Maths\Vector2.cpp" />
+    <ClCompile Include="src\Components\Teleporter.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Maths\Vector2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\SquareCollider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\RectangleShapeRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\ARendererComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\SpriteRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Module.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ModuleManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Modules\TimeModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Modules\SceneModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Modules\WindowModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Modules\InputModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Engine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Modules\ImGuiModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\TileMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Modules\CameraModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\Light.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\ProximityPrompt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Maths\Utils.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Lighting\LightDirectionEmission.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Lighting\LightPointEmission.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Lighting\LightResources.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Lighting\LightShape.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Lighting\LightSprite.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Lighting\LightSystem.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\Inventory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\Collectable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\PathFinding.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\Health.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\BackgroundRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Components\Button.h">
-    <ClInclude Include="include\Components\Mine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="include\Components\BackgroundRenderer.h" />
+    <ClInclude Include="include\Components\Button.h" />
+    <ClInclude Include="include\Components\Health.h" />
+    <ClInclude Include="include\Components\Inventory.h" />
+    <ClInclude Include="include\Components\Collectable.h" />
+    <ClInclude Include="include\Components\Light.h" />
+    <ClInclude Include="include\Components\Mine.h" />
+    <ClInclude Include="include\Components\PathFinding.h" />
+    <ClInclude Include="include\Components\Player.h" />
+    <ClInclude Include="include\Components\ProximityPrompt.h" />
+    <ClInclude Include="include\json.hpp" />
+    <ClInclude Include="include\Components\TileMap.h" />
+    <ClInclude Include="include\Lighting\LightDirectionEmission.hpp" />
+    <ClInclude Include="include\Lighting\LightPointEmission.hpp" />
+    <ClInclude Include="include\Lighting\LightResources.hpp" />
+    <ClInclude Include="include\Lighting\LightShape.hpp" />
+    <ClInclude Include="include\Lighting\LightSprite.hpp" />
+    <ClInclude Include="include\Lighting\LightSystem.hpp" />
+    <ClInclude Include="include\Maths\Utils.hpp" />
+    <ClInclude Include="include\Modules\CameraModule.h" />
+    <ClInclude Include="include\Modules\ImGuiModule.h" />
+    <ClInclude Include="include\Engine.h" />
+    <ClInclude Include="include\Components\ARendererComponent.h" />
+    <ClInclude Include="include\Components\RectangleShapeRenderer.h" />
+    <ClInclude Include="include\Components\SquareCollider.h" />
+    <ClInclude Include="include\Component.h" />
+    <ClInclude Include="include\GameObject.h" />
+    <ClInclude Include="include\Scene.h" />
+    <ClInclude Include="include\Maths\Vector2.h" />
+    <ClInclude Include="include\Components\SpriteRenderer.h" />
+    <ClInclude Include="include\Module.h" />
+    <ClInclude Include="include\ModuleManager.h" />
+    <ClInclude Include="include\Modules\TimeModule.h" />
+    <ClInclude Include="include\Modules\SceneModule.h" />
+    <ClInclude Include="include\Modules\WindowModule.h" />
+    <ClInclude Include="include\Modules\InputModule.h" />
+    <ClInclude Include="include\Components\Teleporter.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Maths\Vector2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\SquareCollider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\RectangleShapeRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\ARendererComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\SpriteRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Module.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ModuleManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Modules\TimeModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Modules\SceneModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Modules\WindowModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Modules\InputModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_demo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_draw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_tables.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui_widgets.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImGui\imgui-SFML.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Modules\ImGuiModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\TileMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Modules\CameraModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\ProximityPrompt.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Lighting\LightDirectionEmission.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Lighting\LightPointEmission.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Lighting\LightShape.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Lighting\LightSprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Lighting\LightSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Inventory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Collectable.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\PathFinding.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Health.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\BackgroundRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Button.cpp">
-    <ClCompile Include="src\Components\Mine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Components\Health.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="include\Maths\Vector2.inl">
-      <Filter>Header Files</Filter>
-    </None>
+    <None Include="include\Maths\Vector2.inl" />
   </ItemGroup>
 </Project>

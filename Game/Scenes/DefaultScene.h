@@ -12,6 +12,8 @@
 #include "Mine.h"
 #include "Health.h"
 #include "PathFinding.h"
+#include "Teleporter.h"
+#include "ChooseMap.h"
 
 class DefaultScene final : public Scene
 {
@@ -32,9 +34,39 @@ public:
 
 		GameObject* coral2 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 26.f, 32 * 25.f), "Coral.png", 25.f, "Coral");
 
+		// LE VRAI : GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 56.f, 32 * 44.f));
+		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
+
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
 	}
+
+	void MapSelection() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+	}
+
+	GameObject* CreateTeleporterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+		square_collider->SetWidth(32.f);
+		square_collider->SetHeight(32.f);
+
+		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
+		shape_renderer->SetSize(Maths::Vector2f(32.f, 32.f));
+		shape_renderer->SetColor(sf::Color::Magenta);
+
+		std::function<void()> map_select_func = [this]() { MapSelection(); };
+
+		Teleporter* teleporter = game_object->CreateComponent<Teleporter>();
+		teleporter->SetScene(this);
+		teleporter->SetFunction(map_select_func);
+
+		return game_object;
+	}
+
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)
 	{
