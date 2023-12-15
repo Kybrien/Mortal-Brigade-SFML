@@ -10,6 +10,7 @@
 #include "ProximityPrompt.h"
 #include "Collectable.h"
 #include "Mine.h"
+#include "MineElec.h"
 #include "Health.h"
 #include "PathFinding.h"
 
@@ -25,6 +26,7 @@ public:
 		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 25.f, 32 * 25.f));
 
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 26.f, 32 * 26.f));
+		GameObject* mineligthning = CreateMineElecGameObject("Mine Electrique", Maths::Vector2f(32 * 27.f, 32 * 26.f));
 
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
 
@@ -105,6 +107,22 @@ public:
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Mine.png");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
+		sprite_renderer->SetScale(0.05f);
+		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
+		return game_object;
+	}
+
+	GameObject* CreateMineElecGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+		MineElec* mineelec = game_object->CreateComponent<MineElec>();
+		mineelec->SetScene(this);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("MineElec.png");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
 		sprite_renderer->SetScale(0.05f);
 		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
