@@ -19,12 +19,13 @@ public:
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
 
         GameObject* playButton = CreateButtonGameObject("PlayButton", 792.f, 300.f, "Play", play_func);
-        GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", empty_func);
-        GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 792.f, 403.f, "Credits", empty_func);
-        GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 930.f, 403.f, "Leave", empty_func);
+        //GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", play_func);
+        //GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 792.f, 403.f, "Credits", play_func);
+        //GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 930.f, 403.f, "Leave", play_func);
     }
 
     void Play() {
+        std::cout << "test" << std::endl;
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
     }
 
@@ -50,8 +51,8 @@ public:
         // Création d'un bouton avec du texte
         Button* button = game_object->CreateComponent<Button>();
         button->SetText(_text);
-        button->SetColor(sf::Color::Red);
         button->SetSize(Maths::Vector2f(100.f, 100.f));
+        button->SetColor(sf::Color(0, 0, 0, 0));
         button->OnClick(func);
 
         return game_object;

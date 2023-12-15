@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include <iostream>
 #include <SFML/Graphics/Text.hpp>
 #include "RectangleShapeRenderer.h"
 

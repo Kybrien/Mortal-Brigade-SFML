@@ -6,13 +6,8 @@ void Button::Render(sf::RenderWindow* _window) {
     RectangleShapeRenderer::Render(_window);
     if (IsMouseOver(_window) && InputModule::IsMouseButtonPressed(sf::Mouse::Left) && (!clicked)) {
         clicked = true;
+        on_click();
         std::cout << "Clicked" << std::endl;
-    }
-    if (IsMouseOver(_window)) {
-        shape->setFillColor(hoverColor);
-    }
-    else {
-        shape->setFillColor(idleColor);
     }
     _window->draw(*shape);
 
@@ -30,9 +25,7 @@ bool Button::IsMouseOver(sf::RenderWindow* _window) {
 }
 
 void Button::Update(float _delta_time) {
-    if (clicked) {
-        on_click();
-    }
+    
 }
 
 void Button::SetText(const std::string& _text) {
