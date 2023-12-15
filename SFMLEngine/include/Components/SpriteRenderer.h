@@ -24,6 +24,7 @@ public:
 	void SetSprite(sf::Sprite* _sprite) { sprite = _sprite; }
 
 	void SetScale(float _scale) { sprite->setScale(_scale, _scale); }
+	sf::Vector2f GetScale() const { return sprite->getScale(); }
 	void SetTextureSize(Maths::Vector2u _texture_size) { texture_size_x = _texture_size.x; texture_size_y = _texture_size.y; }
 
 	void SetAnimSpeed(float _anim_speed) { anim_speed = _anim_speed; }

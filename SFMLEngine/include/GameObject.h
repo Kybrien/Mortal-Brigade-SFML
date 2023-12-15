@@ -22,6 +22,8 @@ public:
 	void SetPosition(const Maths::Vector2<float>& _position) { position = _position; }
 	void SetRotation(const float _rotation) { rotation = _rotation; }
 	void SetScale(const Maths::Vector2<float>& _scale) { scale = _scale; }
+	void SetActive(const bool _state) { active = _state; }
+	bool IsActive() const { return active; }
 
 	template<typename T>
 	T* CreateComponent();
@@ -37,6 +39,8 @@ public:
 
 private:
 	std::string name = "GameObject";
+
+	bool active = true;
 
 	Maths::Vector2<float> position = Maths::Vector2f::Zero;
 	float rotation = 0.0f;

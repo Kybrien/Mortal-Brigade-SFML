@@ -24,8 +24,8 @@ void CameraModule::Update()
 
 	Scene* scene = scene_module->GetMainScene();
 
-	if (scene->GetName() == "DefaultScene") {
-		GameObject* player = scene->FindGameObject("Player");
+	if (scene->IsUsingPlayerCamera() == true) {
+		GameObject* player = scene->GetPlayer();
 		GameObject* map = scene->FindGameObject("Map");
 
 		if (player && map) {

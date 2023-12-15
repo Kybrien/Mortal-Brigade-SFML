@@ -20,7 +20,7 @@ void ModuleManager::CreateDefaultModules()
 	CreateModule<WindowModule>();
 	CreateModule<SceneModule>();
 	CreateModule<CameraModule>();
-	CreateModule<ImGuiModule>();
+	//CreateModule<ImGuiModule>();
 }
 
 void ModuleManager::Init() const

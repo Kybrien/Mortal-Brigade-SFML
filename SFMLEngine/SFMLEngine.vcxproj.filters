@@ -41,6 +41,7 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\Maths\Vector2.cpp" />
     <ClCompile Include="src\Components\Teleporter.cpp" />
+    <ClCompile Include="src\Components\MineElec.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\BackgroundRenderer.h" />
@@ -80,6 +81,7 @@
     <ClInclude Include="include\Modules\WindowModule.h" />
     <ClInclude Include="include\Modules\InputModule.h" />
     <ClInclude Include="include\Components\Teleporter.h" />
+    <ClInclude Include="include\Components\MineElec.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Maths\Vector2.inl" />

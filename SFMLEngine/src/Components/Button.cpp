@@ -1,13 +1,32 @@
-#include "Components/Button.h"
 #include "Modules/InputModule.h"
+#include "Components/Button.h"
+#include "Components/SpriteRenderer.h"
 #include<iostream>
 
 void Button::Render(sf::RenderWindow* _window) {
     RectangleShapeRenderer::Render(_window);
-    if (IsMouseOver(_window) && InputModule::IsMouseButtonPressed(sf::Mouse::Left) && (!clicked)) {
-        clicked = true;
-        on_click();
-        std::cout << "Clicked" << std::endl;
+
+    if (count > anim_speed) {
+        count = 0.f;
+        SpriteRenderer* button_sprite = GetOwner()->GetComponent<SpriteRenderer>();
+        if (button_sprite) {
+            if (IsMouseOver(_window)) {
+                if (button_sprite->GetScale().x < hover_size) {
+                    button_sprite->SetScale(button_sprite->GetScale().x + 0.05f);
+                }
+            }
+            else if (button_sprite->GetScale().x > base_size) {
+                button_sprite->SetScale(button_sprite->GetScale().x - 0.05f);
+            }
+        }
+    }
+
+    if (IsMouseOver(_window)) {
+        if (InputModule::IsMouseButtonPressed(sf::Mouse::Left) && (!clicked)) {
+            clicked = true;
+            on_click();
+            std::cout << "Clicked" << std::endl;
+        }
     }
     _window->draw(*shape);
 
@@ -25,7 +44,8 @@ bool Button::IsMouseOver(sf::RenderWindow* _window) {
 }
 
 void Button::Update(float _delta_time) {
-    
+    if (animate)
+        count += 1 * _delta_time;
 }
 
 void Button::SetText(const std::string& _text) {

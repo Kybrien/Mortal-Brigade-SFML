@@ -6,7 +6,7 @@
 
 void Mine::Update(float _delta_time) {
     Component::Update(_delta_time);
-    GameObject* player = scene->FindGameObject("Player");
+    GameObject* player = scene->GetPlayer();
     if ((player->GetPosition() - GetOwner()->GetPosition()).Magnitude() < 20) {
         Explode();
     }

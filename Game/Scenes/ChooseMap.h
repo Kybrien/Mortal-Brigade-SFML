@@ -40,6 +40,9 @@ public:
         button->SetSize(Maths::Vector2f(300.f, 300.f));
         button->SetColor(sf::Color(0, 0, 0, 0));
         button->OnClick(func);
+        button->SetBaseSize(3.f);
+        button->SetHoverSize(3.5f);
+        button->Animate(true);
         SpriteRenderer* sprite = game_object->CreateComponent<SpriteRenderer>();
         sprite->LoadSprite(_texture_path);
         sprite->SetTextureSize(Maths::Vector2u(100, 100));

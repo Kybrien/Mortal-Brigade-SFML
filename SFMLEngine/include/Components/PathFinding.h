@@ -4,78 +4,58 @@
 #include <queue>
 #include <cmath>
 
+#include "Maths/Vector2.h"
 #include "Component.h"
 #include "Components/SquareCollider.h"
 
-namespace {
-    struct Node {
-        Maths::Vector2f position;
-        float gScore;
-        float hScore;
-        Node* parent;
+struct Node {
+	float x, y;
+	int G, H;
+	Node* parent;
 
-        Node(const Maths::Vector2f& _position, float _gScore, float _hScore, Node* _parent)
-            : position(_position), gScore(_gScore), hScore(_hScore), parent(_parent) {}
+	Node(float x, float y, Node* parent = nullptr) : x(x), y(y), G(0), H(0), parent(parent) {}
+	Node(Maths::Vector2f pos, Node* parent = nullptr) : x(pos.x), y(pos.y), G(0), H(0), parent(parent) {}
 
-        float getFScore() const {
-            return gScore + hScore;
-        }
+	int F() const { return G + H; }
 
-        bool operator==(const Node& other) const {
-            return position.x == other.position.x && position.y == other.position.y;
-        }
-
-        struct Hash {
-            size_t operator()(const Node* node) const {
-                return std::hash<float>()(node->position.x) ^ std::hash<float>()(node->position.y);
-            }
-        };
-    };
-
-    struct NodeComparator {
-        bool operator()(const Node* lhs, const Node* rhs) const {
-            return lhs->getFScore() > rhs->getFScore();
-        }
-    };
-
-    bool isValidPosition(const Maths::Vector2f& position, const std::vector<SquareCollider*>& colliders) {
-        // Vérifier si la position est à l'intérieur des limites et ne rentre en collision avec aucun SquareCollider
-        GameObject temp_obj;
-        temp_obj.SetPosition(position);
-        SquareCollider* s_pos = temp_obj.CreateComponent<SquareCollider>();
-        for (const SquareCollider* collider : colliders) {
-            if (position.x < collider->GetOwner()->GetPosition().x + collider->GetWidth() &&
-                position.x + 32 > collider->GetOwner()->GetPosition().x &&
-                position.y < collider->GetOwner()->GetPosition().y + collider->GetHeight() &&
-                position.y + 32 > collider->GetOwner()->GetPosition().y) {
-                return false;  // Collision détectée
-            }
-        }
-        return true;
-    }
-
-    std::deque<Maths::Vector2f> reconstructPath(Node* goalNode) {
-        std::deque<Maths::Vector2f> path;
-        Node* current = goalNode;
-
-        while (current != nullptr) {
-            path.push_front(current->position);
-            current = current->parent;
-        }
-
-        return path;
-    }
-}
+	bool operator == (const Node& other) const {
+		return x == other.x && y == other.y;
+	}
+};
 
 class PathFinding : public Component
 {
 public:
-    std::deque<Maths::Vector2f> FindPath(const Maths::Vector2f& start, const Maths::Vector2f& goal, const std::vector<SquareCollider*>& colliders);
+    std::vector<Node> FindPath(std::vector<SquareCollider*> obstacles, Maths::Vector2f start, Maths::Vector2f end);
 
     void Update(float _delta_time) override;
 
 private:
     const std::vector<SquareCollider*> collisions;
-    Maths::Vector2f target;
-    std::deque<Maths::Vector2f> path;
+    //Maths::Vector2f target;
+    std::vector<Node> path;
+
+	int heuristic(Node a, Node b) {
+		// Euclidean distance (for diagonal movements)
+		return std::sqrt(std::pow(a.x - b.x, 2) + std::pow(a.y - b.y, 2));
+	}
+
+	bool isColliding(const std::vector<SquareCollider*>& obstacles, float x, float y) {
+		GameObject* temp_obj = new GameObject;
+		temp_obj->SetPosition(Maths::Vector2f(x, y));
+		SquareCollider* tempCollider = temp_obj->CreateComponent<SquareCollider>();
+		tempCollider->SetOwner(temp_obj); // Creating a temporary GameObject for the collider
+		tempCollider->SetWidth(2.f);
+		tempCollider->SetHeight(2.f);
+
+		for (const auto& collider : obstacles) {
+			if (SquareCollider::IsColliding(*tempCollider, *collider)) {
+				delete temp_obj; // Important to clean up the temporary GameObject
+				return true;
+			}
+		}
+
+		delete temp_obj; // Clean up the temporary GameObject
+		return false;
+	}
 };
