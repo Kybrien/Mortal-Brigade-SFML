@@ -106,6 +106,9 @@ public:
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
 		sprite_renderer->LoadSprite("Walk.png");
+		//if (ChooseCharacter::GetChosenColor() == "Pink") {
+		//	std::cout << "Pink Player" << std::endl;
+		//}
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
 		sprite_renderer->SetScale(0.15f);
 		sprite_renderer->SetAnimSpeed(0.5f);
