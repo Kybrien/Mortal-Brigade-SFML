@@ -6,6 +6,9 @@
 #include "Modules/InputModule.h"
 #include "SpriteRenderer.h"
 #include <iostream>
+#include <functional>
+#include "Engine.h"
+#include "Map1.h"
 
 class ChooseMap : public Scene {
 public:
@@ -13,9 +16,12 @@ public:
         // Création de l'arrière-plan pour la sélection de la carte
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "../Assets/Images/map_selection_bg.png");
 
-        GameObject* mapButton1 = CreateMapButton("Map1Button", 250.f, 300.f, "Lv1.png");
-        GameObject* mapButton2 = CreateMapButton("Map2Button", 850.f, 300.f, "Lv2.png");
-        GameObject* mapButton3 = CreateMapButton("Map3Button", 1450.f, 300.f, "Lv3.png");
+        std::function<void()> goToMap1_func = [this]() { GoToMap1(); };
+        std::function<void()> empty_func = [this]() { EmptyFunc(); };
+
+        GameObject* mapButton1 = CreateMapButton("Map1Button", 250.f, 300.f, "Lv1.png" , goToMap1_func);
+        GameObject* mapButton2 = CreateMapButton("Map2Button", 850.f, 300.f, "Lv2.png" , empty_func);
+        GameObject* mapButton3 = CreateMapButton("Map3Button", 1450.f, 300.f, "Lv3.png", empty_func);
     }
 
     GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texture_path) {
@@ -25,12 +31,15 @@ public:
         return game_object;
     }
 
-    GameObject* CreateMapButton(const std::string& _name, float _x, float _y, const std::string& _texture_path) {
+    GameObject* CreateMapButton(const std::string& _name, float _x, float _y, const std::string& _texture_path, std::function<void()> func) {
         GameObject* game_object = CreateGameObject(_name);
         game_object->SetPosition(Maths::Vector2f(_x, _y));
 
         // Création d'un bouton pour choisir une carte
         Button* button = game_object->CreateComponent<Button>();
+        button->SetSize(Maths::Vector2f(300.f, 300.f));
+        button->SetColor(sf::Color(0, 0, 0, 0));
+        button->OnClick(func);
         SpriteRenderer* sprite = game_object->CreateComponent<SpriteRenderer>();
         sprite->LoadSprite(_texture_path);
         sprite->SetTextureSize(Maths::Vector2u(100, 100));
@@ -38,9 +47,18 @@ public:
         sprite->SetScale(3.f);
         sprite->SetBegin(sf::Vector2i(0, 0));
         sprite->SetEnd(sf::Vector2i(49, 0));
+        
 
         return game_object;
     }
 
+    void GoToMap1() {
+        std::cout << "test" << std::endl;
+        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map1>();
+    }
+
+    void EmptyFunc() {
+
+    }
 
 };

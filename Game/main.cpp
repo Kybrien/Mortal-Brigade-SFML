@@ -3,6 +3,7 @@
 #include "Scenes/DefaultScene.h"
 #include "Scenes/MenuScene.h"
 #include "Scenes/ChooseMap.h"
+#include "Scenes/Map1.h"
 
 int main()
 {

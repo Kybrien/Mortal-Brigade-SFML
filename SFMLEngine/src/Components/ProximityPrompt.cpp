@@ -56,6 +56,7 @@ void ProximityPrompt::Render(sf::RenderWindow* _window)
 			const Maths::Vector2<float> position = owner->GetPosition();
 			sprite->setPosition(position.x, position.y);
 			sprite->setRotation(owner->GetRotation());
+			sprite->setScale(sf::Vector2f(0.02f, 0.02f));
 
 			_window->draw(*sprite);
 		}
