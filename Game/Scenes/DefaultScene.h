@@ -34,8 +34,8 @@ public:
 
 		GameObject* coral2 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 26.f, 32 * 25.f), "Coral.png", 25.f, "Coral");
 
-		// LE VRAI : GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 56.f, 32 * 44.f));
-		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
+		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 56.f, 32 * 44.f));
+		/*GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));*/
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
