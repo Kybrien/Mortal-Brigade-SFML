@@ -2,7 +2,6 @@
 #include "SceneModule.h"
 #include "Scenes/DefaultScene.h"
 #include "Scenes/MenuScene.h"
-#include "Scenes/ChooseMap.h"
 
 int main()
 {
@@ -11,7 +10,7 @@ int main()
 	engine->Init();
 
 	SceneModule* scene_module = engine->GetModuleManager()->GetModule<SceneModule>();
-	scene_module->SetScene<MenuScene>();
+	scene_module->SetScene<DefaultScene>();
 
 	engine->Run();
 

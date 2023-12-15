@@ -28,6 +28,7 @@
     <ClCompile Include="src\Components\PathFinding.cpp" />
     <ClCompile Include="src\Components\Player.cpp" />
     <ClCompile Include="src\Components\ProximityPrompt.cpp" />
+    <ClCompile Include="src\Components\Teleporter.cpp" />
     <ClCompile Include="src\Components\TileMap.cpp" />
     <ClCompile Include="src\Lighting\LightDirectionEmission.cpp" />
     <ClCompile Include="src\Lighting\LightPointEmission.cpp" />
@@ -56,6 +57,7 @@
     <ClInclude Include="include\Components\PathFinding.h" />
     <ClInclude Include="include\Components\Player.h" />
     <ClInclude Include="include\Components\ProximityPrompt.h" />
+    <ClInclude Include="include\Components\Teleporter.h" />
     <ClInclude Include="include\json.hpp" />
     <ClInclude Include="include\Components\TileMap.h" />
     <ClInclude Include="include\Lighting\LightDirectionEmission.hpp" />

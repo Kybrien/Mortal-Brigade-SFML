@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.h"
-#include "Button.h" 
+#include "Button.h"
 #include "BackgroundRenderer.h"
 #include "RectangleShapeRenderer.h"
 #include "Modules/InputModule.h"
@@ -13,9 +13,9 @@ public:
         // Création de l'arrière-plan pour la sélection de la carte
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "../Assets/Images/map_selection_bg.png");
 
-        GameObject* mapButton1 = CreateMapButton("Map1Button", 250.f, 300.f, "Nv1.png");
-        GameObject* mapButton2 = CreateMapButton("Map2Button", 850.f, 300.f, "Nv2.png");
-        GameObject* mapButton3 = CreateMapButton("Map3Button", 1450.f, 300.f, "Nv3.png");
+        GameObject* mapButton1 = CreateMapButton("Map1Button", 250.f, 300.f, "Lv1.png");
+        GameObject* mapButton2 = CreateMapButton("Map2Button", 850.f, 300.f, "Lv2.png");
+        GameObject* mapButton3 = CreateMapButton("Map3Button", 1450.f, 300.f, "Lv3.png");
     }
 
     GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texture_path) {

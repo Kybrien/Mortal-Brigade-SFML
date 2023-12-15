@@ -43,11 +43,10 @@ namespace {
         GameObject temp_obj;
         temp_obj.SetPosition(position);
         SquareCollider* s_pos = temp_obj.CreateComponent<SquareCollider>();
+        s_pos->SetWidth(0.f);
+        s_pos->SetHeight(0.f);
         for (const SquareCollider* collider : colliders) {
-            if (position.x < collider->GetOwner()->GetPosition().x + collider->GetWidth() &&
-                position.x + 32 > collider->GetOwner()->GetPosition().x &&
-                position.y < collider->GetOwner()->GetPosition().y + collider->GetHeight() &&
-                position.y + 32 > collider->GetOwner()->GetPosition().y) {
+            if (SquareCollider::IsColliding(*s_pos, *collider)) {
                 return false;  // Collision détectée
             }
         }
