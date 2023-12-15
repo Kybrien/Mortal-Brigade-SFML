@@ -22,9 +22,9 @@ void Mine::Explode() {
         //Generation du sprite
         SpriteRenderer  *sprite_renderer = GetOwner()->GetComponent<SpriteRenderer>();
         sprite_renderer->LoadSprite("Explosion.png");
-        GetOwner()->SetPosition(GetOwner()->GetPosition() - Maths::Vector2f(42, 42));
+        GetOwner()->SetPosition(GetOwner()->GetPosition() - Maths::Vector2f(64, 64));
         sprite_renderer->SetTextureSize(Maths::Vector2u(64, 64));
-        sprite_renderer->SetScale(1.5f);
+        sprite_renderer->SetScale(2.0f);
         sprite_renderer->SetAnimSpeed(1.0f);
         sprite_renderer->SetAutoIncrement(true);
         sprite_renderer->SetBegin(sf::Vector2i(0, 0));
