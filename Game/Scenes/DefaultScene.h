@@ -22,6 +22,8 @@ public:
 
 		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 25.f, 32 * 25.f));
 
+		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 26.f, 32 * 26.f));
+
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
 
 		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral");
@@ -86,6 +88,20 @@ public:
 
 		//PathFinding* ai = game_object->CreateComponent<PathFinding>();
 		//ai->FindPath(_position, Maths::Vector2f(32 * 25.f, 32 * 34.f), GetColliders());
+
+		return game_object;
+	}
+
+	GameObject* CreateMineGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("Mine.png");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
+		sprite_renderer->SetScale(0.05f);
+		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
 
 		return game_object;
 	}

@@ -118,6 +118,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\Components\Button.h">
+    <ClInclude Include="include\Components\Mine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -234,6 +235,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Components\Button.cpp">
+    <ClCompile Include="src\Components\Mine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Components\Health.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
