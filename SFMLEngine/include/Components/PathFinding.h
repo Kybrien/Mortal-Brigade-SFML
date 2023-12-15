@@ -39,18 +39,40 @@ namespace {
     };
 
     bool isValidPosition(const Maths::Vector2f& position, const std::vector<SquareCollider*>& colliders) {
-        // ... Vérification des collisions ...
+        // Vérifier si la position est à l'intérieur des limites et ne rentre en collision avec aucun SquareCollider
+        GameObject temp_obj;
+        temp_obj.SetPosition(position);
+        SquareCollider* s_pos = temp_obj.CreateComponent<SquareCollider>();
+        for (const SquareCollider* collider : colliders) {
+            if (position.x < collider->GetOwner()->GetPosition().x + collider->GetWidth() &&
+                position.x + 32 > collider->GetOwner()->GetPosition().x &&
+                position.y < collider->GetOwner()->GetPosition().y + collider->GetHeight() &&
+                position.y + 32 > collider->GetOwner()->GetPosition().y) {
+                return false;  // Collision détectée
+            }
+        }
+        return true;
     }
 
     std::deque<Maths::Vector2f> reconstructPath(Node* goalNode) {
-        // ... Reconstruction du chemin ...
+        std::deque<Maths::Vector2f> path;
+        Node* current = goalNode;
+
+        while (current != nullptr) {
+            path.push_front(current->position);
+            current = current->parent;
+        }
+
+        return path;
     }
 }
 
 class PathFinding : public Component
 {
 public:
-    
+    std::deque<Maths::Vector2f> FindPath(const Maths::Vector2f& start, const Maths::Vector2f& goal, const std::vector<SquareCollider*>& colliders);
+
+    void Update(float _delta_time) override;
 
 private:
     const std::vector<SquareCollider*> collisions;

@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
+    <ClCompile Include="src\Components\Button.cpp" />
     <ClCompile Include="src\Components\Collectable.cpp" />
     <ClCompile Include="src\Components\Health.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
@@ -45,6 +47,8 @@
     <ClCompile Include="src\Modules\SceneModule.cpp" />
     <ClCompile Include="src\Modules\TimeModule.cpp" />
     <ClCompile Include="src\Modules\WindowModule.cpp" />
+    <ClInclude Include="include\Components\BackgroundRenderer.h" />
+    <ClInclude Include="include\Components\Button.h" />
     <ClInclude Include="include\Components\Health.h" />
     <ClInclude Include="include\Components\Inventory.h" />
     <ClInclude Include="include\Components\Collectable.h" />

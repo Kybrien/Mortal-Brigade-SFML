@@ -9,6 +9,7 @@
 #include "Light.h"
 #include "ProximityPrompt.h"
 #include "Collectable.h"
+#include "PathFinding.h"
 
 class DefaultScene final : public Scene
 {
@@ -24,6 +25,8 @@ public:
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
 
 		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral");
+
+		GameObject* coral2 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 26.f, 32 * 25.f), "Coral.png", 25.f, "Coral");
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
@@ -80,6 +83,9 @@ public:
 		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
 		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
+
+		//PathFinding* ai = game_object->CreateComponent<PathFinding>();
+		//ai->FindPath(_position, Maths::Vector2f(32 * 25.f, 32 * 34.f), GetColliders());
 
 		return game_object;
 	}
