@@ -32,8 +32,12 @@
     <ClInclude Include="Scenes\Map1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Scenes\Map1_ext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
+    <None Include="openal32.dll" />
   </ItemGroup>
 </Project>

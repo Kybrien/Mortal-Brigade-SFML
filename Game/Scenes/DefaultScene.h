@@ -139,7 +139,7 @@ public:
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
 
 		PathFinding* ai = game_object->CreateComponent<PathFinding>();
-		ai->FindPath(GetColliders(), _position, Maths::Vector2f(32 * 25.f, 32 * 34.f));
+		ai->FindPath(GetColliders(), _position, Maths::Vector2f(32 * 34.f, 32 * 31.f));
 
 		return game_object;
 	}
