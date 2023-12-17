@@ -28,6 +28,8 @@ class PathFinding : public Component
 public:
     std::vector<Node> FindPath(std::vector<SquareCollider*> obstacles, Maths::Vector2f start, Maths::Vector2f end);
 
+	void MovePointAlongPath(Maths::Vector2f point, float speed, float _delta_time);
+
     void Update(float _delta_time) override;
 
 private:

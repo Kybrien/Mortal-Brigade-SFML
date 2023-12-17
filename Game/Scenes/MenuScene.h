@@ -1,8 +1,12 @@
 #pragma once
 #include <iostream>
 #include <functional>
+
 #include "Engine.h"
+
 #include "Modules/InputModule.h"
+#include "Modules/AssetModule.h"
+
 #include "Scene.h"
 #include "Button.h" 
 #include "BackgroundRenderer.h"
@@ -14,19 +18,28 @@ public:
         // Création de l'arrière-plan du menu (supposons que vous avez une classe Background)
         GameObject* background = CreateBackgroundGameObject("Background", "../Assets/Images/menu_background.png");
 
+        AssetModule::Play("menu");
+        AssetModule::Loop(true);
+
         // Création des boutons du menu
         std::function<void()> play_func = [this]() { Play(); };
+        std::function<void()> quit_func = [this]() { Quit(); };
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
 
         GameObject* playButton = CreateButtonGameObject("PlayButton", 792.f, 300.f, "Play", play_func);
         //GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", play_func);
-        //GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 792.f, 403.f, "Credits", play_func);
-        //GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 930.f, 403.f, "Leave", play_func);
+        //GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 930.f, 403.f, "Credits", play_func);
+        GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 792.f, 403.f, "Leave", quit_func);
     }
 
     void Play() {
         std::cout << "test" << std::endl;
+        AssetModule::Stop();
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
+    }
+
+    void Quit() {
+        Engine::GetInstance()->Quit();
     }
 
     void EmptyFunc() {

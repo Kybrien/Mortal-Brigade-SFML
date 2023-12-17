@@ -39,6 +39,7 @@
     <ClCompile Include="src\Lighting\LightShape.cpp" />
     <ClCompile Include="src\Lighting\LightSprite.cpp" />
     <ClCompile Include="src\Lighting\LightSystem.cpp" />
+    <ClCompile Include="src\Modules\AssetModule.cpp" />
     <ClCompile Include="src\Modules\CameraModule.cpp" />
     <ClCompile Include="src\Modules\ImGuiModule.cpp" />
     <ClCompile Include="ImGui\imgui-SFML.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="include\Lighting\LightSprite.hpp" />
     <ClInclude Include="include\Lighting\LightSystem.hpp" />
     <ClInclude Include="include\Maths\Utils.hpp" />
+    <ClInclude Include="include\Modules\AssetModule.h" />
     <ClInclude Include="include\Modules\CameraModule.h" />
     <ClInclude Include="include\Modules\ImGuiModule.h" />
     <ClInclude Include="include\Engine.h" />

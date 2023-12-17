@@ -1,13 +1,16 @@
 #pragma once
+#include <iostream>
+#include <functional>
+
+#include "Engine.h"
+#include "Modules/InputModule.h"
+#include "Modules/AssetModule.h"
+
 #include "Scene.h"
 #include "Button.h" 
 #include "BackgroundRenderer.h"
 #include "RectangleShapeRenderer.h"
-#include "Modules/InputModule.h"
 #include "SpriteRenderer.h"
-#include <iostream>
-#include <functional>
-#include "Engine.h"
 #include "Map1.h"
 
 class ChooseMap : public Scene {
@@ -15,6 +18,9 @@ public:
     ChooseMap() : Scene("ChooseMapScene") {
         // Création de l'arrière-plan pour la sélection de la carte
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "../Assets/Images/map_selection_bg.png");
+
+        AssetModule::Play("moon_selection");
+        AssetModule::Loop(true);
 
         std::function<void()> goToMap1_func = [this]() { GoToMap1(); };
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
@@ -58,6 +64,7 @@ public:
     void GoToMap1() {
         std::cout << "test" << std::endl;
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map1>();
+        AssetModule::Stop();
     }
 
     void EmptyFunc() {
