@@ -171,6 +171,7 @@
     <ClInclude Include="Scenes\ChooseMap.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\Map1.h" />
+    <ClInclude Include="Scenes\Map2.h" />
     <ClInclude Include="Scenes\MenuScene.h" />
   </ItemGroup>
   <ItemGroup>

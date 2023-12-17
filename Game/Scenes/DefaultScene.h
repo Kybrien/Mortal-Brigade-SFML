@@ -33,18 +33,6 @@ public:
 
 		GameObject* mineligthning = CreateMineElecGameObject("Mine Electrique", Maths::Vector2f(32 * 27.f, 32 * 26.f));
 
-		//GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
-		//GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
-		//GameObject* amethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 27.f, 32 * 26.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
-		//GameObject* azurite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 28.f, 32 * 26.f), "Azurite.png", 25.f, "Azurite", 40.f);
-		//GameObject* cor5al = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
-		//GameObject* o2re = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
-		//GameObject* am2ethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 27.f, 32 * 26.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
-		//GameObject* az2urite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 28.f, 32 * 26.f), "Azurite.png", 25.f, "Azurite", 40.f);
-		//GameObject* cor2al = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
-		//GameObject* or2e = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
-		//GameObject* amet3hyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 27.f, 32 * 26.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
-		//GameObject* azu3rite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 28.f, 32 * 26.f), "Azurite.png", 25.f, "Azurite", 40.f);
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 56.f, 32 * 44.f));
 
