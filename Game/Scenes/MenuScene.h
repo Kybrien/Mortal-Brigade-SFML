@@ -18,8 +18,8 @@ public:
         // Création de l'arrière-plan du menu (supposons que vous avez une classe Background)
         GameObject* background = CreateBackgroundGameObject("Background", "../Assets/Images/menu_background.png");
 
-        AssetModule::Play("menu");
-        AssetModule::Loop(true);
+  /*      AssetModule::Play("menu");
+        AssetModule::Loop(true);*/
 
         // Création des boutons du menu
         std::function<void()> play_func = [this]() { Play(); };
@@ -34,7 +34,7 @@ public:
 
     void Play() {
         std::cout << "test" << std::endl;
-        AssetModule::Stop();
+    /*    AssetModule::Stop();*/
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
     }
 

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\MineElec.h" />
+    <ClInclude Include="include\Components\PauseComponent.h" />
     <ClInclude Include="include\Components\Teleporter.h" />
     <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
     <ClCompile Include="src\Components\Button.cpp" />
@@ -30,6 +31,7 @@
     <ClCompile Include="src\Components\Mine.cpp" />
     <ClCompile Include="src\Components\MineElec.cpp" />
     <ClCompile Include="src\Components\PathFinding.cpp" />
+    <ClCompile Include="src\Components\PauseComponent.cpp" />
     <ClCompile Include="src\Components\Player.cpp" />
     <ClCompile Include="src\Components\ProximityPrompt.cpp" />
     <ClCompile Include="src\Components\Teleporter.cpp" />

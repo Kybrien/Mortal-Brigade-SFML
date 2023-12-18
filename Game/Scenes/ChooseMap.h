@@ -19,8 +19,8 @@ public:
         // Création de l'arrière-plan pour la sélection de la carte
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "../Assets/Images/map_selection_bg.png");
 
-        AssetModule::Play("moon_selection");
-        AssetModule::Loop(true);
+ /*       AssetModule::Play("moon_selection");
+        AssetModule::Loop(true);*/
 
         std::function<void()> goToMap1_func = [this]() { GoToMap1(); };
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
@@ -64,7 +64,7 @@ public:
     void GoToMap1() {
         std::cout << "test" << std::endl;
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map1>();
-        AssetModule::Stop();
+        /*AssetModule::Stop();*/
     }
 
     void EmptyFunc() {

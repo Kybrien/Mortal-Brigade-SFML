@@ -48,3 +48,26 @@ Scene* SceneModule::GetScene(const std::string& _scene_name) const
 	}
 	return nullptr;
 }
+
+bool SceneModule::SetMainScene(const std::string& _scene_name) {
+	Scene* new_main_scene = GetScene(_scene_name);
+	if (new_main_scene != nullptr) {
+		mainScene = new_main_scene;
+		return true;
+	}
+	return false;
+}
+
+bool SceneModule::RemoveScene(const std::string& _scene_name)
+{
+	for (auto it = scenes.begin(); it != scenes.end(); ++it)
+	{
+		if ((*it)->GetName() == _scene_name)
+		{
+			scenes.erase(it);
+			//delete* it;
+			return true;
+		}
+	}
+	return false;
+}

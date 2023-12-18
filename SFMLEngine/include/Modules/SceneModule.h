@@ -21,13 +21,15 @@ public:
 
 	Scene* GetMainScene() const { return mainScene; }
 	Scene* GetScene(const std::string& _scene_name) const;
+	bool SetMainScene(const std::string& _scene_name);
+	bool RemoveScene(const std::string& _scene_name);
 
 private:
 	std::vector<Scene*> scenes;
 	Scene* mainScene = nullptr;
-
 	WindowModule* windowModule = nullptr;
 	TimeModule* timeModule = nullptr;
+
 };
 
 template<typename T>
@@ -41,7 +43,9 @@ Scene* SceneModule::SetScene(const bool _replace_scenes)
 	//	}
 	//	
 	//}
-	scenes.clear();
+	if (_replace_scenes)
+		scenes.clear();
+
 	Scene* scene = static_cast<Scene*>(new T());
 	scenes.push_back(scene);
 

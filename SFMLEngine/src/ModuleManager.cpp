@@ -21,7 +21,7 @@ void ModuleManager::CreateDefaultModules()
 	CreateModule<WindowModule>();
 	CreateModule<SceneModule>();
 	CreateModule<CameraModule>();
-	CreateModule<AssetModule>();
+	//CreateModule<AssetModule>();
 	//CreateModule<ImGuiModule>();
 }
 

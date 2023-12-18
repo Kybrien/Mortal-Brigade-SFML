@@ -15,6 +15,8 @@
 #include "PathFinding.h"
 #include "Teleporter.h"
 #include "ChooseMap.h"
+#include "MenuPause.h"
+#include "PauseComponent.h"
 
 class DefaultScene final : public Scene
 {
@@ -33,8 +35,10 @@ public:
 
 		GameObject* mineligthning = CreateMineElecGameObject("Mine Electrique", Maths::Vector2f(32 * 27.f, 32 * 26.f));
 
-
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 56.f, 32 * 44.f));
+
+		std::function<void()> pause_func = [this]() { Pause(); };
+		GameObject* pause = CreatePauseMenu(pause_func);
 
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
 
@@ -43,6 +47,11 @@ public:
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
+	}
+
+	void Pause() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<MenuPause>(false);
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("MenuPause");
 	}
 
 	void MapSelection() {
@@ -197,6 +206,15 @@ public:
 		collectable->SetCurrentScene(this);
 		collectable->SetMaxActivationDistance(_max_activation_distance);
 		collectable->SetActionText(_text);
+
+		return game_object;
+	}
+
+	GameObject* CreatePauseMenu(std::function<void()> _func) {
+		GameObject* game_object = CreateGameObject("Pause");
+
+		PauseComponent* resume = game_object->CreateComponent<PauseComponent>();
+		resume->Execute(_func);
 
 		return game_object;
 	}
