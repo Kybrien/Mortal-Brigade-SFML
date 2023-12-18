@@ -15,6 +15,7 @@
 #include "PathFinding.h"
 #include "Teleporter.h"
 #include "ChooseMap.h"
+#include "FireSpot.h"
 
 class DefaultScene final : public Scene
 {
@@ -32,6 +33,8 @@ public:
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 26.f, 32 * 26.f));
 
 		GameObject* mineligthning = CreateMineElecGameObject("Mine Electrique", Maths::Vector2f(32 * 27.f, 32 * 26.f));
+
+		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 28.f, 32 * 26.f));
 
 		//GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
 		//GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
@@ -176,6 +179,25 @@ public:
 		return game_object;
 	}
 
+	GameObject* CreateFireGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+		FireSpot* firespot = game_object->CreateComponent<FireSpot>();
+		firespot->SetScene(this);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("Fire.png");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(24, 32));
+		sprite_renderer->SetScale(1.0f);
+		sprite_renderer->SetAnimSpeed(1.0f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		sprite_renderer->SetEnd(sf::Vector2i(7, 0));
+		//sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
+		return game_object;
+	}
 
 	GameObject* CreateProximityPromptGameObject(const std::string& _name, const Maths::Vector2f _position, const float _max_activation_distance,const std::string _text)
 	{

@@ -43,6 +43,7 @@
     <ClCompile Include="src\Components\Teleporter.cpp" />
     <ClCompile Include="src\Components\MineElec.cpp" />
     <ClCompile Include="src\Modules\AssetModule.cpp" />
+    <ClCompile Include="src\Components\FireSpot.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\BackgroundRenderer.h" />
@@ -84,6 +85,7 @@
     <ClInclude Include="include\Components\Teleporter.h" />
     <ClInclude Include="include\Components\MineElec.h" />
     <ClInclude Include="include\Modules\AssetModule.h" />
+    <ClInclude Include="include\Components\FireSpot.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Maths\Vector2.inl" />

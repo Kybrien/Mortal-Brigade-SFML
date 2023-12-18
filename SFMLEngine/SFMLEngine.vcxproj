@@ -19,11 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Components\FireSpot.h" />
     <ClInclude Include="include\Components\MineElec.h" />
     <ClInclude Include="include\Components\Teleporter.h" />
     <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
     <ClCompile Include="src\Components\Button.cpp" />
     <ClCompile Include="src\Components\Collectable.cpp" />
+    <ClCompile Include="src\Components\FireSpot.cpp" />
     <ClCompile Include="src\Components\Health.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Light.cpp" />
