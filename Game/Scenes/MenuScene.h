@@ -34,6 +34,7 @@ public:
 
     void Play() {
         std::cout << "test" << std::endl;
+        AssetModule::AddAsset("player", "../Assets/Sprites/player_blue.png");
         AssetModule::Stop();
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
     }

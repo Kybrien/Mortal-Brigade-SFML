@@ -70,9 +70,9 @@ void AssetModule::AddAsset(std::string _key, std::string _fileName)
 	sf::Texture* texture = new sf::Texture();
 	if (AssetModule::assets.find(_key) == AssetModule::assets.end()) {
 		AssetModule::assets.insert(std::make_pair(_key, texture));
-		if (AssetModule::assets.find(_key) != AssetModule::assets.end()) {
-			AssetModule::assets.at(_key)->loadFromFile(_fileName);
-		}
+	}
+	if (AssetModule::assets.find(_key) != AssetModule::assets.end()) {
+		AssetModule::assets.at(_key)->loadFromFile(_fileName);
 	}
 }
 
