@@ -18,14 +18,14 @@ public:
 
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 8.f, 32 * 25.f));
 
-		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 6.f, 32 * 6.f), "Coral.png", 25.f, "Coral", 10.f);
-		GameObject* coral2 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 54.f, 32 * 29.f), "Coral.png", 25.f, "Coral", 10.f);
-		GameObject* coral3 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 50.f, 32 * 6.f), "Coral.png", 25.f, "Coral", 40.f);
+		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 6.f, 32 * 6.f), "coral", 25.f, "Coral", 10.f);
+		GameObject* coral2 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 54.f, 32 * 29.f), "coral", 25.f, "Coral", 10.f);
+		GameObject* coral3 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 50.f, 32 * 6.f), "coral", 25.f, "Coral", 40.f);
 
-		GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 20.f, 32 * 12.f), "Ore.png", 40.f, "Ore", 10.f);
-		GameObject* ore2 = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
+		GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 20.f, 32 * 12.f), "ore", 40.f, "Ore", 10.f);
+		GameObject* ore2 = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "ore", 25.f, "Ore", 20.f);
 
-		GameObject* amethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 39.f, 32 * 14.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
+		GameObject* amethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 39.f, 32 * 14.f), "amethyst", 25.f, "Amethyst", 30.f);
 
 
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 9.f, 32 * 29.f));
@@ -54,7 +54,7 @@ public:
 		Health* player_health = game_object->CreateComponent<Health>();
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Walk.png");
+		sprite_renderer->LoadSprite("player");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
 		sprite_renderer->SetScale(0.15f);
 		sprite_renderer->SetAnimSpeed(0.5f);
@@ -80,7 +80,7 @@ public:
 		mine->SetScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Mine.png");
+		sprite_renderer->LoadSprite("mine");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
 		sprite_renderer->SetScale(0.05f);
 		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));

@@ -1,9 +1,8 @@
+#include "Modules/AssetModule.h"
 #include "Components/BackgroundRenderer.h"
 
-void BackgroundRenderer::LoadTexture(const std::string& _texturePath) {
-    if (!texture.loadFromFile(_texturePath)) {
-        // Gérer le cas où le chargement de la texture échoue
-    }
+void BackgroundRenderer::LoadTexture(const std::string _texture) {
+    texture = *AssetModule::GetAsset(_texture);
     background.setTexture(texture);
 }
 

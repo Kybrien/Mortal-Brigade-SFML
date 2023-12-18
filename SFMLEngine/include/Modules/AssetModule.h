@@ -41,12 +41,15 @@ public:
 	static void AddSound(std::string _key, std::string _fileName);
 	static void AddMusic(std::string _key, std::string _fileName);
 
+	static void AddAsset(std::string _key, std::string _fileName);
+	static sf::Texture* GetAsset(std::string _key) { return assets.at(_key); }
+
 private:
 	static float volume;
 	static float maxVolume;
 	static sf::Music* sound;
 	static sf::Music* music;
-	static std::map<std::string, sf::Texture*> images;
+	static std::map<std::string, sf::Texture*> assets;
 	static std::map<std::string, sf::Music*> sounds;
 	static std::map<std::string, sf::Music*> musics;
 };

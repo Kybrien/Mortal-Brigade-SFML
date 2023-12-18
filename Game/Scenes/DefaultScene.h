@@ -27,16 +27,12 @@ public:
 
 		//GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
 
-		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 25.f, 32 * 25.f));
-
-		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 26.f, 32 * 26.f));
-
-		GameObject* mineligthning = CreateMineElecGameObject("Mine Electrique", Maths::Vector2f(32 * 27.f, 32 * 26.f));
+		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 5.f)); 
 
 
-		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 56.f, 32 * 44.f));
+		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
 
-		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
+		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));
 
 		SetPlayer(player);
 		//GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
@@ -93,7 +89,7 @@ public:
 		Health* player_health = game_object->CreateComponent<Health>();
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Walk.png");
+		sprite_renderer->LoadSprite("player");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
 		sprite_renderer->SetScale(0.15f);
 		sprite_renderer->SetAnimSpeed(0.5f);
@@ -117,7 +113,7 @@ public:
 		game_object->SetPosition(_position);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("RED.png");
+		sprite_renderer->LoadSprite("red");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(48, 48));
 		sprite_renderer->SetScale(0.8f);
 		sprite_renderer->SetAnimSpeed(0.5f);
@@ -127,7 +123,7 @@ public:
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
 
 		PathFinding* ai = game_object->CreateComponent<PathFinding>();
-		ai->FindPath(GetColliders(), _position, Maths::Vector2f(32 * 25.f, 32 * 34.f));
+		ai->FindPath(GetColliders(), _position, Maths::Vector2f(32 * 15.f, 32 * 10.f));
 
 		return game_object;
 	}
@@ -140,7 +136,7 @@ public:
 		mine->SetScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Mine.png");
+		sprite_renderer->LoadSprite("mine");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
 		sprite_renderer->SetScale(0.05f);
 		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
@@ -156,7 +152,7 @@ public:
 		mine_elec->SetScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("MineElec.png");
+		sprite_renderer->LoadSprite("mine_elec");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
 		sprite_renderer->SetScale(0.05f);
 		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));

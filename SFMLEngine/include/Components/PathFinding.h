@@ -47,8 +47,8 @@ private:
 		temp_obj->SetPosition(Maths::Vector2f(x, y));
 		SquareCollider* tempCollider = temp_obj->CreateComponent<SquareCollider>();
 		tempCollider->SetOwner(temp_obj); // Creating a temporary GameObject for the collider
-		tempCollider->SetWidth(2.f);
-		tempCollider->SetHeight(2.f);
+		tempCollider->SetWidth(1.f);
+		tempCollider->SetHeight(1.f);
 
 		for (const auto& collider : obstacles) {
 			if (SquareCollider::IsColliding(*tempCollider, *collider)) {

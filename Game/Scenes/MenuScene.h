@@ -16,7 +16,7 @@ class MenuScene final : public Scene {
 public:
     MenuScene() : Scene("MenuScene") {
         // Création de l'arrière-plan du menu (supposons que vous avez une classe Background)
-        GameObject* background = CreateBackgroundGameObject("Background", "../Assets/Images/menu_background.png");
+        GameObject* background = CreateBackgroundGameObject("Background", "menu_background");
 
         AssetModule::Play("menu");
         AssetModule::Loop(true);
@@ -46,13 +46,13 @@ public:
 
     }
 
-    GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texturePath) {
+    GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texture) {
         GameObject* game_object = CreateGameObject(_name);
         // Code pour charger et définir la texture pour l'arrière-plan
 
         // Supposons que vous ayez une classe BackgroundRenderer pour rendre l'arrière-plan
         BackgroundRenderer* background_renderer = game_object->CreateComponent<BackgroundRenderer>();
-        background_renderer->LoadTexture(_texturePath); // Charger la texture de l'arrière-plan  
+        background_renderer->LoadTexture(_texture); // Charger la texture de l'arrière-plan  
 
         return game_object;
     }

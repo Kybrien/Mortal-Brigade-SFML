@@ -21,7 +21,7 @@ void MineElec::Explode() {
 
         //Generation du sprite
         SpriteRenderer* sprite_renderer = GetOwner()->GetComponent<SpriteRenderer>();
-        sprite_renderer->LoadSprite("Thunderstrike.png");
+        sprite_renderer->LoadSprite("thunderstrike");
         GetOwner()->SetPosition(GetOwner()->GetPosition() - Maths::Vector2f(40, 75));
         sprite_renderer->SetTextureSize(Maths::Vector2u(64, 64));
         sprite_renderer->SetScale(1.5f);
