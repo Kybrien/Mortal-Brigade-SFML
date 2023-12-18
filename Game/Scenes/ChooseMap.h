@@ -12,6 +12,8 @@
 #include "RectangleShapeRenderer.h"
 #include "SpriteRenderer.h"
 #include "Map1.h"
+#include "Map2.h"
+
 
 class ChooseMap : public Scene {
 public:
@@ -23,10 +25,12 @@ public:
         AssetModule::Loop(true);
 
         std::function<void()> goToMap1_func = [this]() { GoToMap1(); };
+        std::function<void()> goToMap2_func = [this]() { GoToMap2(); };
+
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
 
         GameObject* mapButton1 = CreateMapButton("Map1Button", 250.f, 300.f, "moon_1" , goToMap1_func);
-        GameObject* mapButton2 = CreateMapButton("Map2Button", 850.f, 300.f, "moon_2" , empty_func);
+        GameObject* mapButton2 = CreateMapButton("Map2Button", 850.f, 300.f, "moon_2" , goToMap2_func);
         GameObject* mapButton3 = CreateMapButton("Map3Button", 1450.f, 300.f, "moon_3", empty_func);
     }
 
@@ -66,7 +70,11 @@ public:
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map1>();
         AssetModule::Stop();
     }
-
+    void GoToMap2() {
+        std::cout << "test" << std::endl;
+        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map2>();
+        AssetModule::Stop();
+    }
     void EmptyFunc() {
 
     }
