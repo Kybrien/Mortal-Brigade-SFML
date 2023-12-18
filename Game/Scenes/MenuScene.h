@@ -11,6 +11,7 @@
 #include "Button.h" 
 #include "BackgroundRenderer.h"
 #include "RectangleShapeRenderer.h"
+#include "SelectCharacter.h"
 
 class MenuScene final : public Scene {
 public:
@@ -23,20 +24,25 @@ public:
 
         // Création des boutons du menu
         std::function<void()> play_func = [this]() { Play(); };
+        std::function<void()> option_func = [this]() { Option(); };
         std::function<void()> quit_func = [this]() { Quit(); };
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
 
         GameObject* playButton = CreateButtonGameObject("PlayButton", 792.f, 300.f, "Play", play_func);
-        //GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", play_func);
+        GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", option_func);
         //GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 930.f, 403.f, "Credits", play_func);
         GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 792.f, 403.f, "Leave", quit_func);
     }
 
     void Play() {
         std::cout << "test" << std::endl;
-        AssetModule::AddAsset("player", "../Assets/Sprites/player_blue.png");
         AssetModule::Stop();
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
+    }
+
+    void Option() {
+        AssetModule::Stop();
+        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseCharacter>();
     }
 
     void Quit() {

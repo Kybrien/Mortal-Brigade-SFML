@@ -22,7 +22,12 @@ void AssetModule::Init()
 	AddAsset("map_selection_background", "../Assets/Images/map_selection_background.png");
 
 	// Sprites
-	AddAsset("player", "../Assets/Sprites/player_pink.png");
+	AddAsset("player", "../Assets/Sprites/CharacterSpriteSheetPink.png");
+	AddAsset("playerButtonPink", "../Assets/Sprites/CharacterSpriteSheetPink.png");
+	AddAsset("playerButtonBlue", "../Assets/Sprites/CharacterSpriteSheetBlue.png");
+	AddAsset("playerButtonGreen", "../Assets/Sprites/CharacterSpriteSheetGreen.png");
+	AddAsset("playerButtonYellow", "../Assets/Sprites/CharacterSpriteSheetYellow.png");
+	AddAsset("playerButtonRed", "../Assets/Sprites/CharacterSpriteSheetRed.png");
 	AddAsset("red", "../Assets/Sprites/red.png");
 	AddAsset("mine", "../Assets/Sprites/mine.png");
 	AddAsset("mine_elec", "../Assets/Sprites/mine_elec.png");

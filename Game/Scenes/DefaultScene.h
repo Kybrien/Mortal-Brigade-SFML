@@ -56,7 +56,7 @@ public:
 
 		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		shape_renderer->SetSize(Maths::Vector2f(32.f, 32.f));
-		shape_renderer->SetColor(sf::Color::Magenta);
+		shape_renderer->SetColor(sf::Color(0,0,0,0));
 
 		std::function<void()> map_select_func = [this]() { MapSelection(); };
 
