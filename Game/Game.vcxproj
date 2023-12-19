@@ -171,12 +171,14 @@
     <ClInclude Include="Scenes\ChooseMap.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\Map1.h" />
+    <ClInclude Include="Scenes\Map1_ext.h" />
     <ClInclude Include="Scenes\Map2.h" />
     <ClInclude Include="Scenes\MenuScene.h" />
     <ClInclude Include="Scenes\SelectCharacter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
+    <None Include="openal32.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
