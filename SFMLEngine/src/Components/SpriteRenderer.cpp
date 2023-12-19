@@ -1,6 +1,7 @@
-#include "Components/SpriteRenderer.h"
-#include "SFML/Graphics/Texture.hpp"
 #include <iostream>
+#include "SFML/Graphics/Texture.hpp"
+#include "Modules/AssetModule.h"
+#include "Components/SpriteRenderer.h"
 
 SpriteRenderer::SpriteRenderer() {
 	sprite = new sf::Sprite();
@@ -17,11 +18,11 @@ SpriteRenderer::~SpriteRenderer() {
 }
 
 void SpriteRenderer::LoadSprite(std::string _name) {
-	texture = new sf::Texture;
-		if (!texture->loadFromFile("../Assets/Sprites/" + _name)) {	
+	if (AssetModule::GetAsset(_name)) {
+		texture = new sf::Texture();
+		texture = AssetModule::GetAsset(_name);
+		sprite->setTexture(*texture);
 	}
-
-	sprite->setTexture(*texture);
 }
 
 void SpriteRenderer::SetOffset(const Maths::Vector2i _offset) {

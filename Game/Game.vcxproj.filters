@@ -33,6 +33,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\Map1_ext.h">
+    <ClInclude Include="Scenes\Map2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\SelectCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

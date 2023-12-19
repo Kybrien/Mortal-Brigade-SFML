@@ -11,23 +11,25 @@
 #include "Button.h" 
 #include "BackgroundRenderer.h"
 #include "RectangleShapeRenderer.h"
+#include "SelectCharacter.h"
 
 class MenuScene final : public Scene {
 public:
     MenuScene() : Scene("MenuScene") {
         // Création de l'arrière-plan du menu (supposons que vous avez une classe Background)
-        GameObject* background = CreateBackgroundGameObject("Background", "../Assets/Images/menu_background.png");
+        GameObject* background = CreateBackgroundGameObject("Background", "menu_background");
 
         AssetModule::Play("menu");
         AssetModule::Loop(true);
 
         // Création des boutons du menu
         std::function<void()> play_func = [this]() { Play(); };
+        std::function<void()> option_func = [this]() { Option(); };
         std::function<void()> quit_func = [this]() { Quit(); };
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
 
         GameObject* playButton = CreateButtonGameObject("PlayButton", 792.f, 300.f, "Play", play_func);
-        //GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", play_func);
+        GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", option_func);
         //GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 930.f, 403.f, "Credits", play_func);
         GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 792.f, 403.f, "Leave", quit_func);
     }
@@ -38,6 +40,11 @@ public:
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
     }
 
+    void Option() {
+        AssetModule::Stop();
+        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseCharacter>();
+    }
+
     void Quit() {
         Engine::GetInstance()->Quit();
     }
@@ -46,13 +53,13 @@ public:
 
     }
 
-    GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texturePath) {
+    GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texture) {
         GameObject* game_object = CreateGameObject(_name);
         // Code pour charger et définir la texture pour l'arrière-plan
 
         // Supposons que vous ayez une classe BackgroundRenderer pour rendre l'arrière-plan
         BackgroundRenderer* background_renderer = game_object->CreateComponent<BackgroundRenderer>();
-        background_renderer->LoadTexture(_texturePath); // Charger la texture de l'arrière-plan  
+        background_renderer->LoadTexture(_texture); // Charger la texture de l'arrière-plan  
 
         return game_object;
     }

@@ -6,7 +6,7 @@ class BackgroundRenderer : public Component {
 public:
     BackgroundRenderer() : Component() {}
 
-    void LoadTexture(const std::string& _texturePath);
+    void LoadTexture(const std::string _texture);
     void Render(sf::RenderWindow* _window) override;
 
 

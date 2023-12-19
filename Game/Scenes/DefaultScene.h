@@ -28,30 +28,14 @@ public:
 
 		//GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
 
-		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 25.f, 32 * 25.f));
+		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 5.f)); 
 
-		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 26.f, 32 * 26.f));
 
-		GameObject* mineligthning = CreateMineElecGameObject("Mine Electrique", Maths::Vector2f(32 * 27.f, 32 * 26.f));
+		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
 
 		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 28.f, 32 * 26.f));
-
-		//GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
-		//GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
-		//GameObject* amethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 27.f, 32 * 26.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
-		//GameObject* azurite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 28.f, 32 * 26.f), "Azurite.png", 25.f, "Azurite", 40.f);
-		//GameObject* cor5al = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
-		//GameObject* o2re = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
-		//GameObject* am2ethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 27.f, 32 * 26.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
-		//GameObject* az2urite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 28.f, 32 * 26.f), "Azurite.png", 25.f, "Azurite", 40.f);
-		//GameObject* cor2al = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 25.f, 32 * 25.f), "Coral.png", 25.f, "Coral", 10.f);
-		//GameObject* or2e = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 26.f, 32 * 26.f), "Ore.png", 25.f, "Ore", 20.f);
-		//GameObject* amet3hyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 27.f, 32 * 26.f), "Amethyst.png", 25.f, "Amethyst", 30.f);
-		//GameObject* azu3rite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 28.f, 32 * 26.f), "Azurite.png", 25.f, "Azurite", 40.f);
-
-		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 56.f, 32 * 44.f));
-
-		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*25.f, 32*25.f));
+    
+		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));
 
 		SetPlayer(player);
 		//GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
@@ -75,7 +59,7 @@ public:
 
 		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
 		shape_renderer->SetSize(Maths::Vector2f(32.f, 32.f));
-		shape_renderer->SetColor(sf::Color::Magenta);
+		shape_renderer->SetColor(sf::Color(0,0,0,0));
 
 		std::function<void()> map_select_func = [this]() { MapSelection(); };
 
@@ -108,7 +92,7 @@ public:
 		Health* player_health = game_object->CreateComponent<Health>();
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Walk.png");
+		sprite_renderer->LoadSprite("player");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
 		sprite_renderer->SetScale(0.15f);
 		sprite_renderer->SetAnimSpeed(0.5f);
@@ -132,7 +116,7 @@ public:
 		game_object->SetPosition(_position);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("RED.png");
+		sprite_renderer->LoadSprite("red");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(48, 48));
 		sprite_renderer->SetScale(0.8f);
 		sprite_renderer->SetAnimSpeed(0.5f);
@@ -142,7 +126,8 @@ public:
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
 
 		PathFinding* ai = game_object->CreateComponent<PathFinding>();
-		ai->FindPath(GetColliders(), _position, Maths::Vector2f(32 * 34.f, 32 * 31.f));
+		ai->FindPath(GetColliders(), _position, Maths::Vector2f(32 * 15.f, 32 * 10.f));
+
 
 		return game_object;
 	}
@@ -155,7 +140,7 @@ public:
 		mine->SetScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Mine.png");
+		sprite_renderer->LoadSprite("mine");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
 		sprite_renderer->SetScale(0.05f);
 		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
@@ -171,7 +156,7 @@ public:
 		mine_elec->SetScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("MineElec.png");
+		sprite_renderer->LoadSprite("mine_elec");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 360));
 		sprite_renderer->SetScale(0.05f);
 		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));

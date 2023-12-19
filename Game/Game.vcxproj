@@ -172,7 +172,9 @@
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\Map1.h" />
     <ClInclude Include="Scenes\Map1_ext.h" />
+    <ClInclude Include="Scenes\Map2.h" />
     <ClInclude Include="Scenes\MenuScene.h" />
+    <ClInclude Include="Scenes\SelectCharacter.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
