@@ -33,7 +33,7 @@ public:
 		GameObject* mine13 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 9.f, 32 * 19.f));
 		GameObject* mine14 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 15.f, 32 * 14.f));
 		GameObject* mine15 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 3.f, 32 * 8.f));
-		GameObject* mine16 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 23.f, 32 * 6.f));
+		GameObject* mine16 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 23.f, 32 * 6.1f));
 
 		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 49.f, 32 * 44.f), "coral", 25.f, "Coral", 10.f);
 		GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 51.f, 32 * 26.f), "ore", 40.f, "Ore", 30.f);
