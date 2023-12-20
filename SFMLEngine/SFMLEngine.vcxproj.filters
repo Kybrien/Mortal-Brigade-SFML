@@ -4,7 +4,6 @@
     <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
     <ClCompile Include="src\Components\Button.cpp" />
     <ClCompile Include="src\Components\Collectable.cpp" />
-    <ClCompile Include="src\Components\Health.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Light.cpp" />
     <ClCompile Include="src\Components\Mine.cpp" />
@@ -44,11 +43,12 @@
     <ClCompile Include="src\Components\MineElec.cpp" />
     <ClCompile Include="src\Modules\AssetModule.cpp" />
     <ClCompile Include="src\Components\FireSpot.cpp" />
+    <ClCompile Include="src\Components\Enemy.cpp" />
+    <ClCompile Include="src\Components\Character.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\BackgroundRenderer.h" />
     <ClInclude Include="include\Components\Button.h" />
-    <ClInclude Include="include\Components\Health.h" />
     <ClInclude Include="include\Components\Inventory.h" />
     <ClInclude Include="include\Components\Collectable.h" />
     <ClInclude Include="include\Components\Light.h" />
@@ -86,6 +86,8 @@
     <ClInclude Include="include\Components\MineElec.h" />
     <ClInclude Include="include\Modules\AssetModule.h" />
     <ClInclude Include="include\Components\FireSpot.h" />
+    <ClInclude Include="include\Components\Enemy.h" />
+    <ClInclude Include="include\Components\Character.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Maths\Vector2.inl" />

@@ -1,6 +1,6 @@
 #include "Components/FireSpot.h"
 #include "Components/SpriteRenderer.h"
-#include "Components/Health.h"
+#include "Components/Character.h"
 
 
 
@@ -16,8 +16,7 @@ void FireSpot::Update(float _delta_time) {
 void FireSpot::Burning() {
     if (count >= 1.f) {
         count = 0.f;
-        GameObject* player = scene->FindGameObject("Player");
-        player->GetComponent<Health>()->TakeDamage(10);
+        Character::SetHealth(-10);
         std::cout << "Player is burning" << std::endl;
     }
 

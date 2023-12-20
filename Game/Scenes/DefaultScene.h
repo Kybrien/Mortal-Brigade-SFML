@@ -11,11 +11,12 @@
 #include "Collectable.h"
 #include "Mine.h"
 #include "MineElec.h"
-#include "Health.h"
 #include "PathFinding.h"
 #include "Teleporter.h"
 #include "ChooseMap.h"
 #include "FireSpot.h"
+#include "Enemy.h"
+#include "Character.h"
 
 class DefaultScene final : public Scene
 {
@@ -92,9 +93,14 @@ public:
 		Player* player_component = game_object->CreateComponent<Player>();
 		player_component->SetCurrentScene(this);
 
-		Health* player_health = game_object->CreateComponent<Health>();
+		Character::SetSpriteRenderer(new SpriteRenderer);
+		Character::SetInventory(new Inventory);
+		Character::SetMaxHealth(100);
 
-		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+
+
+		SpriteRenderer* sprite_renderer = Character::GetSpriteRenderer();
+		game_object->AddComponent(sprite_renderer);
 		sprite_renderer->LoadSprite("player");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
 		sprite_renderer->SetScale(0.15f);
@@ -105,10 +111,9 @@ public:
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
 
-		Inventory* inventory = game_object->CreateComponent<Inventory>();
 
-		Light* flashlight = game_object->CreateComponent<Light>();
-		flashlight->SetShapes(GetLightColliders());
+		Inventory* inventory = Character::GetInventory();
+		game_object->AddComponent(inventory);
 
 		return game_object;
 	}
@@ -127,6 +132,15 @@ public:
 		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
 		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
+
+		Enemy* red_enemy_class = game_object->CreateComponent<Enemy>();
+		red_enemy_class->SetName("RED");
+		red_enemy_class->SetSpeed(40.f);
+		red_enemy_class->SetMaxHealth(30);
+		red_enemy_class->SetAttackSpeed(2.f);
+		red_enemy_class->SetDamage(10);
+		red_enemy_class->SetDetectionRange(50.f);
+
 
 		return game_object;
 	}

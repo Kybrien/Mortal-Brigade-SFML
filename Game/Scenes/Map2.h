@@ -5,6 +5,7 @@
 #include "mine.h"
 #include "Collectable.h"
 #include "Inventory.h"
+#include "Character.h"
 
 class Map2 final : public Scene
 {
@@ -78,20 +79,15 @@ public:
 		Player* player_component = game_object->CreateComponent<Player>();
 		player_component->SetCurrentScene(this);
 
-		Health* player_health = game_object->CreateComponent<Health>();
-
-		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("player");
-		sprite_renderer->SetTextureSize(Maths::Vector2u(360, 300));
-		sprite_renderer->SetScale(0.15f);
-		sprite_renderer->SetAnimSpeed(0.5f);
-		sprite_renderer->SetOffset(Maths::Vector2i(70, 70));
+		SpriteRenderer* sprite_renderer = Character::GetSpriteRenderer();
+		game_object->AddComponent(sprite_renderer);
 
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
 
-		Inventory* inventory = game_object->CreateComponent<Inventory>();
+		Inventory* inventory = Character::GetInventory();
+		game_object->AddComponent(inventory);
 
 		Light* flashlight = game_object->CreateComponent<Light>();
 		flashlight->SetShapes(GetLightColliders());

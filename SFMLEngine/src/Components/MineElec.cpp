@@ -1,6 +1,6 @@
 #include "Components/MineElec.h"
 #include "Components/SpriteRenderer.h"
-#include "Components/Health.h"
+#include "Components/Character.h"
 
 
 
@@ -16,7 +16,7 @@ void MineElec::Explode() {
     if (!isExploded) {
         isExploded = true;
         GameObject* player = scene->FindGameObject("Player");
-        player->GetComponent<Health>()->TakeDamage(100);
+        Character::SetHealth(-100);
         std::cout << "BZZZZ - Electrocution le joueur est mort" << std::endl;
 
         //Generation du sprite

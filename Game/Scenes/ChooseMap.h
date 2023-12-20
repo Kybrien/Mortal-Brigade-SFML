@@ -13,6 +13,7 @@
 #include "SpriteRenderer.h"
 #include "Map1.h"
 #include "Map2.h"
+#include "Map3.h"
 
 
 class ChooseMap : public Scene {
@@ -26,12 +27,11 @@ public:
 
         std::function<void()> goToMap1_func = [this]() { GoToMap1(); };
         std::function<void()> goToMap2_func = [this]() { GoToMap2(); };
-
-        std::function<void()> empty_func = [this]() { EmptyFunc(); };
+        std::function<void()> goToMap3_func = [this]() { GoToMap3(); };
 
         GameObject* mapButton1 = CreateMapButton("Map1Button", 250.f, 300.f, "moon_1" , goToMap1_func);
         GameObject* mapButton2 = CreateMapButton("Map2Button", 850.f, 300.f, "moon_2" , goToMap2_func);
-        GameObject* mapButton3 = CreateMapButton("Map3Button", 1450.f, 300.f, "moon_3", empty_func);
+        GameObject* mapButton3 = CreateMapButton("Map3Button", 1450.f, 300.f, "moon_3", goToMap3_func);
     }
 
     GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texture_path) {
@@ -75,8 +75,10 @@ public:
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map2>();
         AssetModule::Stop();
     }
-    void EmptyFunc() {
-
+    void GoToMap3() {
+        std::cout << "test" << std::endl;
+        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map3>();
+        AssetModule::Stop();
     }
 
 };

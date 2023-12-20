@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <unordered_set>
 #include "Components/PathFinding.h"
+#include "Components/Enemy.h"
 
 std::vector<Node> PathFinding::FindPath(std::vector<SquareCollider*> obstacles, Maths::Vector2f start, GameObject* _player) {
     Node* startNode = new Node(start);
@@ -130,7 +131,7 @@ void PathFinding::Update(float _delta_time) {
 		// Position de la prochaine étape sur le chemin
 		Maths::Vector2f nextPosition(nextNode.x, nextNode.y);
 		// Interpolation linéaire pour un mouvement fluide
-		float speed = 50.f;
+		float speed = GetOwner()->GetComponent<Enemy>()->GetSpeed();
         MovePointAlongPath(nextPosition, speed, _delta_time);
 
 		// Vérifier si l'entité a atteint la position suivante
@@ -140,10 +141,22 @@ void PathFinding::Update(float _delta_time) {
 		}
 	}
     else {
-        if (player->GetPosition() != playerLastPos && GetOwner()->GetPosition().Distance(player->GetPosition()) < 50.f) {
+        if (player->GetPosition() != playerLastPos && GetOwner()->GetPosition().Distance(player->GetPosition()) < GetOwner()->GetComponent<Enemy>()->GetDetectionRange()) {
             path.push_back(Node(player->GetPosition()));
 
             //PathFinding::FindPath(collisions, GetOwner()->GetPosition(), player);
+        }
+    }
+    if (GetOwner()->GetPosition().Distance(player->GetPosition()) < 20.f) {
+        if (GetOwner()->GetComponent<Enemy>()->GetCooldown() == 0.f) {
+            GetOwner()->GetComponent<Enemy>()->Attack(player);
+            GetOwner()->GetComponent<Enemy>()->SetCooldown(_delta_time);
+        }
+        else {
+            GetOwner()->GetComponent<Enemy>()->SetCooldown(_delta_time);
+            if (GetOwner()->GetComponent<Enemy>()->GetCooldown() >= GetOwner()->GetComponent<Enemy>()->GetAttackSpeed()) {
+                GetOwner()->GetComponent<Enemy>()->SetCooldown(-GetOwner()->GetComponent<Enemy>()->GetCooldown());
+            }
         }
     }
 }
