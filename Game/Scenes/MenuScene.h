@@ -41,7 +41,6 @@ public:
     }
 
     void Option() {
-        AssetModule::Stop();
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseCharacter>();
     }
 

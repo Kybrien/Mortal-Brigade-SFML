@@ -3,12 +3,15 @@
 #include <unordered_set>
 #include "Components/PathFinding.h"
 
-std::vector<Node> PathFinding::FindPath(std::vector<SquareCollider*> obstacles, Maths::Vector2f start, Maths::Vector2f end) {
+std::vector<Node> PathFinding::FindPath(std::vector<SquareCollider*> obstacles, Maths::Vector2f start, GameObject* _player) {
     Node* startNode = new Node(start);
-    Node* endNode = new Node(end);
+    Node* endNode = new Node(_player->GetPosition());
     
     std::list<Node*> openList;
     std::list<Node*> closedList;
+    player = _player;
+    playerLastPos = player->GetPosition();
+    collisions = obstacles;
 
     openList.push_back(startNode);
 
@@ -136,4 +139,11 @@ void PathFinding::Update(float _delta_time) {
 			path.erase(path.begin()); // Retirer le Node actuel du chemin
 		}
 	}
+    else {
+        if (player->GetPosition() != playerLastPos && GetOwner()->GetPosition().Distance(player->GetPosition()) < 50.f) {
+            path.push_back(Node(player->GetPosition()));
+
+            //PathFinding::FindPath(collisions, GetOwner()->GetPosition(), player);
+        }
+    }
 }

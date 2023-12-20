@@ -33,11 +33,14 @@ public:
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
 
-		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 28.f, 32 * 26.f));
+		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 25.f, 32 * 26.f));
     
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));
 
 		SetPlayer(player);
+
+		PathFinding* ai = enemy->CreateComponent<PathFinding>();
+		ai->FindPath(GetColliders(), enemy->GetPosition(), GetPlayer());
 		//GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
@@ -125,10 +128,6 @@ public:
 		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
 
-		PathFinding* ai = game_object->CreateComponent<PathFinding>();
-		ai->FindPath(GetColliders(), _position, Maths::Vector2f(32 * 15.f, 32 * 10.f));
-
-
 		return game_object;
 	}
 
@@ -172,7 +171,7 @@ public:
 		firespot->SetScene(this);
 
 		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite("Fire.png");
+		sprite_renderer->LoadSprite("fire");
 		sprite_renderer->SetTextureSize(Maths::Vector2u(24, 32));
 		sprite_renderer->SetScale(1.0f);
 		sprite_renderer->SetAnimSpeed(1.0f);

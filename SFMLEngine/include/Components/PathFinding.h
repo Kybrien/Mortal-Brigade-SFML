@@ -26,16 +26,18 @@ struct Node {
 class PathFinding : public Component
 {
 public:
-    std::vector<Node> FindPath(std::vector<SquareCollider*> obstacles, Maths::Vector2f start, Maths::Vector2f end);
+    std::vector<Node> FindPath(std::vector<SquareCollider*> obstacles, Maths::Vector2f start, GameObject* _player);
 
 	void MovePointAlongPath(Maths::Vector2f point, float speed, float _delta_time);
 
     void Update(float _delta_time) override;
 
 private:
-    const std::vector<SquareCollider*> collisions;
+	std::vector<SquareCollider*> collisions;
     //Maths::Vector2f target;
     std::vector<Node> path;
+	GameObject* player;
+	Maths::Vector2<float> playerLastPos;
 
 	int heuristic(Node a, Node b) {
 		// Euclidean distance (for diagonal movements)
