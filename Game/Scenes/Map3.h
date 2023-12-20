@@ -16,10 +16,36 @@ public:
 
 		GameObject* map = CreateMapGameObject("Map", "map_3");
 
-
-		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 9.f, 32 * 29.f));
+		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 39.f, 32 * 1.f));
+		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 39.f, 32 * 2.f));
 
 		SetPlayer(player);
+	}
+
+	GameObject* CreateTeleporterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+		square_collider->SetWidth(32.f);
+		square_collider->SetHeight(32.f);
+
+		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
+		shape_renderer->SetSize(Maths::Vector2f(32.f, 32.f));
+		shape_renderer->SetColor(sf::Color(0, 0, 0, 0));
+
+		std::function<void()> map_select_func = [this]() { MapSelection(); };
+
+		Teleporter* teleporter = game_object->CreateComponent<Teleporter>();
+		teleporter->SetScene(this);
+		teleporter->SetFunction(map_select_func);
+
+		return game_object;
+	}
+
+	void MapSelection() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
 	}
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)

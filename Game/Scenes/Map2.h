@@ -35,8 +35,6 @@ public:
 		GameObject* mine15 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 3.f, 32 * 8.f));
 		GameObject* mine16 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 23.f, 32 * 6.f));
 
-
-
 		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 49.f, 32 * 44.f), "coral", 25.f, "Coral", 10.f);
 		GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 51.f, 32 * 26.f), "ore", 40.f, "Ore", 30.f);
 		GameObject* coral2 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 40.f, 32 * 8.f), "coral", 25.f, "Coral", 10.f);
@@ -49,13 +47,7 @@ public:
 		GameObject* azurite2 = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 11.f, 32 * 3.f), "azurite", 25.f, "Azurite", 40.f);
 		GameObject* amethyst3 = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 5.f, 32 * 3.f), "amethyst", 25.f, "Amethyst", 20.f);
 
-		
-		
-		
-
-
-
-
+		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 35.f, 32 * 54.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 35.f, 32 * 53.f));
 
 		SetPlayer(player);
@@ -134,4 +126,31 @@ public:
 
 		return game_object;
 	}
+
+	GameObject* CreateTeleporterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
+		square_collider->SetWidth(32.f);
+		square_collider->SetHeight(32.f);
+
+		RectangleShapeRenderer* shape_renderer = game_object->CreateComponent<RectangleShapeRenderer>();
+		shape_renderer->SetSize(Maths::Vector2f(32.f, 32.f));
+		shape_renderer->SetColor(sf::Color(0, 0, 0, 0));
+
+		std::function<void()> map_select_func = [this]() { MapSelection(); };
+
+		Teleporter* teleporter = game_object->CreateComponent<Teleporter>();
+		teleporter->SetScene(this);
+		teleporter->SetFunction(map_select_func);
+
+		return game_object;
+	}
+
+	void MapSelection() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+	}
 };
+
