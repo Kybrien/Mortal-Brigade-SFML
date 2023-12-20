@@ -33,14 +33,14 @@ private:
 template<typename T>
 Scene* SceneModule::SetScene(const bool _replace_scenes)
 {
-	//if (_replace_scenes)
-	//{
-	//	for (const Scene* scene : scenes)
-	//	{
-	//		delete scene;
-	//	}
-	//	
-	//}
+	/*if (_replace_scenes)
+	{
+		for (const Scene* scene : scenes)
+		{
+			delete scene;
+		}
+		
+	}*/
 	scenes.clear();
 	Scene* scene = static_cast<Scene*>(new T());
 	scenes.push_back(scene);
