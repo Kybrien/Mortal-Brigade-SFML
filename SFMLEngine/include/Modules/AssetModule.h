@@ -16,25 +16,25 @@ public:
 
 	static float GetVolume() { return volume; }
 	static float GetMaxVolume() { return maxVolume; }
-	static void SetVolume(float _volume) {
+	static void SetVolume(std::string _name ,float _volume) {
 		volume = _volume;
-		if (sound) {
+		if(sf::Music* sound = GetSound(_name)){
 			sound->setVolume(_volume);
 		}
-		if (music) {
+		if (sf::Music* music = GetMusic(_name)) {
 			music->setVolume(_volume);
 		}
 
 	}
 
-	static void Loop(bool _state) { music->setLoop(_state); }
-	static void LoopSound(bool _state) { sound->setLoop(_state); }
+	static void Loop(std::string _name, bool _state) { GetMusic(_name)->setLoop(_state); }
+	static void LoopSound(std::string _name, bool _state) { GetSound(_name)->setLoop(_state); }
 
-	static void Pause() { music->pause(); }
-	static void Stop() { music->stop(); }
+	static void Pause(std::string _name) { GetMusic(_name)->pause(); }
+	static void Stop(std::string _name) { GetMusic(_name)->stop(); }
 
-	static void PauseSound() { sound->pause(); }
-	static void StopSound() { sound->stop(); }
+	static void PauseSound(std::string _name) { GetSound(_name)->pause(); }
+	static void StopSound(std::string _name) { GetSound(_name)->stop(); }
 
 	static void Play(std::string _key);
 	static void PlaySound(std::string _key);
@@ -48,11 +48,14 @@ public:
 	static void AddFont(std::string _key, std::string _fileName);
 	static sf::Font* GetFont(std::string _key) { return fonts.at(_key); }
 
+	static sf::Music* GetSound(std::string _name);
+	static sf::Music* GetMusic(std::string _name);
+
+	static void StopAll();
+
 private:
 	static float volume;
 	static float maxVolume;
-	static sf::Music* sound;
-	static sf::Music* music;
 	static std::map<std::string, sf::Texture*> assets;
 	static std::map<std::string, sf::Music*> sounds;
 	static std::map<std::string, sf::Music*> musics;

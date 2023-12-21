@@ -22,7 +22,7 @@ public:
 		UsePlayerCamera(true);
 
 		AssetModule::Play("ambient");
-		AssetModule::Loop(true);
+		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_1");
 
@@ -64,7 +64,7 @@ public:
 	}
 
 	void MapSelection() {
-		AssetModule::Stop();
+		AssetModule::Stop("ambient");
 		if (Character::GetMoonVisited()->size() == 3) {
 			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<QuotasNotReached>();
 		}

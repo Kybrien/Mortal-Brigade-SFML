@@ -3,6 +3,7 @@
 #include "Inventory.h"
 #include "SpriteRenderer.h"
 #include "TextRenderer.h"
+#include <functional>
 
 class Character : public Component {
 public:
@@ -22,7 +23,9 @@ public:
 	static TextRenderer* GetQuotaUI() { return quotaUI; }
 	static std::vector<int>* GetMoonVisited() { return moonVisited; }
 
+
 	static void Reset() { health = maxHealth, inventory = nullptr, spriteRenderer = nullptr, quotaUI = nullptr, moonVisited->clear(); }
+	static void SetFunc(std::function<void()>* _func) { func = _func; }
 
 private:
 	static int maxHealth;
@@ -31,4 +34,5 @@ private:
 	static SpriteRenderer* spriteRenderer;
 	static TextRenderer* quotaUI;
 	static std::vector<int>* moonVisited;
+	static std::function<void()>* func;
 };

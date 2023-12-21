@@ -20,7 +20,7 @@ public:
         GameObject* background = CreateBackgroundGameObject("Background", "menu_background");
 
         AssetModule::Play("menu");
-        AssetModule::Loop(true);
+        AssetModule::Loop("menu" ,true);
 
         // Création des boutons du menu
         std::function<void()> play_func = [this]() { Play(); };
@@ -35,7 +35,7 @@ public:
 
     void Play() {
         std::cout << "test" << std::endl;
-        AssetModule::Stop();
+        AssetModule::Stop("menu");
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
     }
 

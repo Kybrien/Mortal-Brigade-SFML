@@ -24,7 +24,7 @@ public:
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "map_selection_background");
 
         AssetModule::Play("moon_selection");
-        AssetModule::Loop(true);
+        AssetModule::Loop("moon_selection", true);
 
         GameObject* select_text = CreateSelectTextGameObject("SelectionText", Maths::Vector2f(0.5f, 0.07f));
 
@@ -91,17 +91,17 @@ public:
         return game_object;
     }
     void GoToMap1() {
-        AssetModule::Stop();
+        AssetModule::Stop("moon_selection");
         Character::AddVisistedMoon(1);
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map1>();
     }
     void GoToMap2() {
-        AssetModule::Stop();
+        AssetModule::Stop("moon_selection");
         Character::AddVisistedMoon(2);
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map2>();
     }
     void GoToMap3() {
-        AssetModule::Stop();
+        AssetModule::Stop("moon_selection");
         Character::AddVisistedMoon(3);
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<Map3>();
     }

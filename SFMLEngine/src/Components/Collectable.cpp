@@ -5,6 +5,7 @@
 #include "Modules/SceneModule.h"
 #include "Components/Character.h"
 #include "Components/TextRenderer.h"
+#include "Modules/AssetModule.h"
 
 void Collectable::Prompt() {
     std::cout << "Collecting !!";

@@ -20,6 +20,7 @@
 #include "MenuPause.h"
 #include "PauseComponent.h"
 #include "TextRenderer.h"
+#include "Death.h"
 
 class DefaultScene final : public Scene
 {
@@ -66,6 +67,8 @@ public:
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
+		std::function<void()>* death = new std::function<void()>([this]() { Death(); });
+		Character::SetFunc(death);
 	}
 
 	void Pause() {
@@ -313,6 +316,10 @@ public:
 	void Locker() {
 		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseCharacter>(false);
 		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("ChooseCharacterScene");
+	}
+
+	void Death() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<GameOver>();
 	}
 
 };

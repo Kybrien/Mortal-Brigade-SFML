@@ -12,6 +12,8 @@ class QuotasNotReached : public Scene {
 public:
     QuotasNotReached() : Scene("QuotasReached") {
 
+        GameObject* bg = CreateBackgroundGameObject("bg" , "ejected");
+
         GameObject* select_text = CreateSelectTextGameObject("SelectionText", Maths::Vector2f(0.5f, 0.5f));
 
         std::function<void()> changeScene = [this]() { QuotasOK(); };
@@ -50,6 +52,10 @@ public:
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<MenuScene>();
     }
 
-private:
-    float cooldown = 0;
+    GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texture_path) {
+        GameObject* game_object = CreateGameObject(_name);
+        BackgroundRenderer* background_renderer = game_object->CreateComponent<BackgroundRenderer>();
+        background_renderer->LoadTexture(_texture_path);
+        return game_object;
+    }
 };
