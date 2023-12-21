@@ -3,13 +3,14 @@
 #include "Components/Collectable.h"
 #include "Components/Inventory.h"
 #include "Modules/SceneModule.h"
+#include "Components/Character.h"
 
 void Collectable::Prompt() {
     std::cout << "Collecting !!";
-    Inventory* inventory = current_scene->GetPlayer()->GetComponent<Inventory>();
+    Inventory* inventory = Character::GetInventory();
 
     if (inventory) {
-        inventory->Add(GetOwner()->GetName(), 1);
+        inventory->Add(name, 1);
         inventory->AddMoney(GetPrice());
 
         inventory->DisplayInventory();

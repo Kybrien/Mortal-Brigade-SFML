@@ -35,17 +35,17 @@ public:
 		GameObject* mine15 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 3.f, 32 * 8.f));
 		GameObject* mine16 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 23.f, 32 * 6.1f));
 
-		GameObject* coral = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 49.f, 32 * 44.f), "coral", 25.f, "Coral", 10.f);
-		GameObject* ore = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 51.f, 32 * 26.f), "ore", 40.f, "Ore", 30.f);
-		GameObject* coral2 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 40.f, 32 * 8.f), "coral", 25.f, "Coral", 10.f);
-		GameObject* amethyst = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 57.f, 32 * 2.f), "amethyst", 25.f, "Amethyst", 20.f);
-		GameObject* azurite = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 33.f, 32 * 4.f), "azurite", 25.f, "Azurite", 40.f);
-		GameObject* coral3 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 41.f, 32 * 30.f), "coral", 25.f, "Coral", 10.f);
-		GameObject* amethyst2 = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 25.f, 32 * 10.f), "amethyst", 25.f, "Amethyst", 20.f);
-		GameObject* coral4 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 8.f, 32 * 38.f), "coral", 25.f, "Coral", 10.f);
-		GameObject* ore2 = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 20.f, 32 * 28.f), "ore", 40.f, "Ore", 30.f);
-		GameObject* azurite2 = CreateCollectableGameObject("Azurite", Maths::Vector2f(32 * 11.f, 32 * 3.f), "azurite", 25.f, "Azurite", 40.f);
-		GameObject* amethyst3 = CreateCollectableGameObject("Amethyst", Maths::Vector2f(32 * 5.f, 32 * 3.f), "amethyst", 25.f, "Amethyst", 20.f);
+		GameObject* collectable1 = CreateCollectableGameObject(Maths::Vector2f(32 * 49.f, 32 * 44.f));
+		GameObject* collectable2 = CreateCollectableGameObject(Maths::Vector2f(32 * 51.f, 32 * 26.f));
+		GameObject* collectable3 = CreateCollectableGameObject(Maths::Vector2f(32 * 40.f, 32 * 8.f));
+		GameObject* collectable4 = CreateCollectableGameObject(Maths::Vector2f(32 * 57.f, 32 * 2.f));
+		GameObject* collectable5 = CreateCollectableGameObject(Maths::Vector2f(32 * 33.f, 32 * 4.f));
+		GameObject* collectable6 = CreateCollectableGameObject(Maths::Vector2f(32 * 41.f, 32 * 30.f));
+		GameObject* collectable7 = CreateCollectableGameObject(Maths::Vector2f(32 * 25.f, 32 * 10.f));
+		GameObject* collectable8 = CreateCollectableGameObject(Maths::Vector2f(32 * 8.f, 32 * 38.f));
+		GameObject* collectable9 = CreateCollectableGameObject(Maths::Vector2f(32 * 20.f, 32 * 28.f));
+		GameObject* collectable10 = CreateCollectableGameObject(Maths::Vector2f(32 * 11.f, 32 * 3.f));
+		GameObject* collectable11 = CreateCollectableGameObject(Maths::Vector2f(32 * 5.f, 32 * 3.f));
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 35.f, 32 * 54.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 35.f, 32 * 53.f));
@@ -103,27 +103,52 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateCollectableGameObject(const std::string& _name, const Maths::Vector2f _position, std::string _texture, const float _max_activation_distance, const std::string _text, float _price)
+	GameObject* CreateCollectableGameObject(const Maths::Vector2f _position)
 	{
-		GameObject* game_object = CreateGameObject(_name);
+		GameObject* game_object = CreateGameObject("Collectable");
 		game_object->SetPosition(_position);
 
-		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite(_texture);
-		sprite_renderer->SetTextureSize(Maths::Vector2u(32, 32));
-		sprite_renderer->SetScale(1.f);
-		sprite_renderer->SetAnimSpeed(0.5f);
-		//sprite_renderer->SetAutoIncrement(true);
-		//sprite_renderer->SetBegin(sf::Vector2i(0, 0));
-		//sprite_renderer->SetEnd(sf::Vector2i(0, 0));
-		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+		int randomCollectable = rand() % 4;
+		std::string name;
+		float price;
+		switch (randomCollectable)
+		{
+		case 0:
+			break;
+		case 1:
+			name = "coral";
+			price = 10.f;
+			break;
+		case 2:
+			name = "amethyst";
+			price = 20.f;
+			break;
+		case 3:
+			name = "ore";
+			price = 30.f;
+			break;
+		default:
+			break;
+		}
 
-		Collectable* collectable = game_object->CreateComponent<Collectable>();
-		collectable->SetCurrentScene(this);
-		collectable->SetMaxActivationDistance(_max_activation_distance);
-		collectable->SetActionText(_text);
-		collectable->SetPrice(_price);
+		if (randomCollectable > 0) {
+			SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+			sprite_renderer->LoadSprite(name);
+			sprite_renderer->SetTextureSize(Maths::Vector2u(32, 32));
+			sprite_renderer->SetScale(1.f);
+			sprite_renderer->SetAnimSpeed(0.5f);
+			//sprite_renderer->SetAutoIncrement(true);
+			//sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+			//sprite_renderer->SetEnd(sf::Vector2i(0, 0));
+			sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
 
+			Collectable* collectable = game_object->CreateComponent<Collectable>();
+			collectable->SetName(name);
+			collectable->SetCurrentScene(this);
+			collectable->SetMaxActivationDistance(25.f);
+			collectable->SetActionText(name);
+			collectable->SetPrice(price);
+		}
 		return game_object;
 	}
 
