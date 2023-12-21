@@ -6,6 +6,10 @@
 #include "Inventory.h"
 #include "Character.h"
 #include "Light.h"
+#include "DefaultScene.h"
+#include "QuotasReached.h"
+
+class DefaultScene;
 
 class Map3 final : public Scene
 {
@@ -15,7 +19,7 @@ public:
 		UsePlayerCamera(true);
 
 		AssetModule::Play("ambient");
-		AssetModule::Loop(true);
+		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_3");
 
@@ -51,8 +55,16 @@ public:
 	}
 
 	void MapSelection() {
-		AssetModule::Stop();
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+		AssetModule::Stop("ambient");
+		if (Character::GetMoonVisited()->size() == 3) {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<QuotasNotReached>();
+		}
+		else if (Character::GetInventory()->GetTotalMoney() < Character::GetInventory()->GetQuotas()) {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+		}
+		else {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<QuotasReached>();
+		}
 	}
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)

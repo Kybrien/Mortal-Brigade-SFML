@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scenes\ChooseMap.h" />
+    <ClInclude Include="Scenes\Death.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
     <ClInclude Include="Scenes\Map1.h" />
     <ClInclude Include="Scenes\Map1_ext.h" />
@@ -176,6 +177,8 @@
     <ClInclude Include="Scenes\Map3.h" />
     <ClInclude Include="Scenes\MenuPause.h" />
     <ClInclude Include="Scenes\MenuScene.h" />
+    <ClInclude Include="Scenes\QuotasNotReached.h" />
+    <ClInclude Include="Scenes\QuotasReached.h" />
     <ClInclude Include="Scenes\SelectCharacter.h" />
   </ItemGroup>
   <ItemGroup>
