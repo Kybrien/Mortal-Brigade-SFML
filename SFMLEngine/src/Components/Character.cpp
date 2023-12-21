@@ -16,3 +16,4 @@ int Character::health = 0;
 Inventory* Character::inventory = nullptr;
 SpriteRenderer* Character::spriteRenderer = nullptr;
 TextRenderer* Character::quotaUI = nullptr;
+std::vector<int>* Character::moonVisited = new std::vector<int>;

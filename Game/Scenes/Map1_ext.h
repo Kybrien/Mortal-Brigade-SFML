@@ -8,6 +8,7 @@
 #include "Light.h"
 #include "Tilemap.h"
 #include "Character.h"
+#include "DefaultScene.h"
 
 class Map1 final : public Scene
 {

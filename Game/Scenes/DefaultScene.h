@@ -109,8 +109,11 @@ public:
 		Player* player_component = game_object->CreateComponent<Player>();
 		player_component->SetCurrentScene(this);
 
-		Character::SetSpriteRenderer(new SpriteRenderer);
-		Character::SetInventory(new Inventory);
+		if (Character::GetSpriteRenderer() == nullptr) {
+			Character::SetSpriteRenderer(new SpriteRenderer);
+			Character::SetInventory(new Inventory);
+			
+		}
 		Character::SetMaxHealth(100);
 
 		SpriteRenderer* sprite_renderer = Character::GetSpriteRenderer();
@@ -271,11 +274,15 @@ public:
 	GameObject* CreateQuotaGameObject(const std::string& _name)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-		Character::SetQuotaUI(new TextRenderer);
+		
+		if (Character::GetQuotaUI() == nullptr) {
+			Character::SetQuotaUI(new TextRenderer);	
+		}
+
 		TextRenderer* quota = Character::GetQuotaUI();
 		game_object->AddComponent(quota);
 		quota->SetPosition(Maths::Vector2f(0.03f, 0.03f));
-		quota->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + " / " + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
+		quota->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + "/" + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
 
 		return game_object;
 	}

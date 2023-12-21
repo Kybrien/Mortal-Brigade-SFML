@@ -48,6 +48,7 @@
     <ClCompile Include="src\Components\PauseComponent.cpp" />
     <ClCompile Include="src\Components\HealthBar.cpp" />
     <ClCompile Include="src\Components\TextRenderer.cpp" />
+    <ClCompile Include="src\Components\CoolDownComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\BackgroundRenderer.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="include\Components\PauseComponent.h" />
     <ClInclude Include="include\Components\HealthBar.h" />
     <ClInclude Include="include\Components\TextRenderer.h" />
+    <ClInclude Include="include\Components\CoolDownComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Maths\Vector2.inl" />

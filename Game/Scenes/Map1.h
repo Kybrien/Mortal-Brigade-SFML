@@ -8,8 +8,11 @@
 #include "Character.h"
 #include "ChooseMap.h"
 #include "HealthBar.h"
+#include "QuotasReached.h"
+#include "QuotasNotReached.h"
 
 class ChooseMap;
+class DefaultScene;
 
 class Map1 final : public Scene 
 {
@@ -62,8 +65,17 @@ public:
 
 	void MapSelection() {
 		AssetModule::Stop();
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+		if (Character::GetMoonVisited()->size() == 3) {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<QuotasNotReached>();
+		}
+		else if (Character::GetInventory()->GetTotalMoney() < Character::GetInventory()->GetQuotas()) {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+		}
+		else {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<QuotasReached>();
+		}
 	}
+
 
 	GameObject* CreateTeleporterGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{

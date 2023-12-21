@@ -80,6 +80,7 @@ void AssetModule::Init()
 	AddAsset("moon_2", "../Assets/Sprites/moon_2.png");
 	AddAsset("moon_3", "../Assets/Sprites/moon_3.png");
 	AddAsset("fire", "../Assets/Sprites/Fire.png");
+	AddAsset("cross", "../Assets/Sprites/cross.png");
 
 	std::cout << "Image and sprites successfully added." << std::endl;
 

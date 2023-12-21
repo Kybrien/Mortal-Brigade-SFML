@@ -6,6 +6,10 @@
 #include "Collectable.h"
 #include "Inventory.h"
 #include "Character.h"
+#include "DefaultScene.h"
+#include "QuotasReached.h"
+
+class DefaultScene;
 
 class Map2 final : public Scene
 {
@@ -59,8 +63,17 @@ public:
 
 	void MapSelection() {
 		AssetModule::Stop();
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+		if (Character::GetMoonVisited()->size() == 3) {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<QuotasNotReached>();
+		}
+		else if (Character::GetInventory()->GetTotalMoney() < Character::GetInventory()->GetQuotas()) {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+		}
+		else {
+			Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<QuotasReached>();
+		}
 	}
+
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)
 	{

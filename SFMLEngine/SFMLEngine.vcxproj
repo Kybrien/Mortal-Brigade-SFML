@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\Character.h" />
+    <ClInclude Include="include\Components\CoolDownComponent.h" />
     <ClInclude Include="include\Components\Enemy.h" />
     <ClInclude Include="include\Components\FireSpot.h" />
     <ClInclude Include="include\Components\HealthBar.h" />
@@ -30,6 +31,7 @@
     <ClCompile Include="src\Components\Button.cpp" />
     <ClCompile Include="src\Components\Character.cpp" />
     <ClCompile Include="src\Components\Collectable.cpp" />
+    <ClCompile Include="src\Components\CoolDownComponent.cpp" />
     <ClCompile Include="src\Components\Enemy.cpp" />
     <ClCompile Include="src\Components\FireSpot.cpp" />
     <ClCompile Include="src\Components\HealthBar.cpp" />
