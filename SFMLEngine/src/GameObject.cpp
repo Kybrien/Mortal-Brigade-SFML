@@ -1,3 +1,4 @@
+#include <iostream>
 #include "GameObject.h"
 
 GameObject::~GameObject()
@@ -34,3 +35,13 @@ void GameObject::Render(sf::RenderWindow* _window) const
 		component->Render(_window);
 	}
 }
+
+
+void GameObject::RenderGui(sf::RenderWindow* _window) const
+{
+	for (Component* const& component : components)
+	{
+		component->RenderGui(_window);
+	}
+}
+

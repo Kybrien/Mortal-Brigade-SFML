@@ -28,6 +28,7 @@ void Engine::Run() const
 		moduleManager->Update();
 		moduleManager->PreRender();
 		moduleManager->Render();
+		moduleManager->RenderGui();
 		moduleManager->PostRender();
 	}
 

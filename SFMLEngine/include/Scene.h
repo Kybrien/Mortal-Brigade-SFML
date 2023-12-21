@@ -14,6 +14,8 @@ public:
 
 	void Render(sf::RenderWindow* _window) const;
 
+	void RenderGui(sf::RenderWindow* _window) const;
+
 	std::string GetName() const;
 
 	GameObject* CreateGameObject(const std::string& _name);
@@ -21,14 +23,28 @@ public:
 	GameObject* FindGameObject(const std::string& _name) const;
 
 	void AddCollider(SquareCollider* _collider) { colliders.push_back(_collider); }
-	std::vector<SquareCollider*> GetColliders() { return colliders; }
+	std::vector<SquareCollider*> GetColliders() const { return colliders; }
 
 	void AddLightCollider(SquareCollider* _light_collider) { light_colliders.push_back(_light_collider); }
 	std::vector<SquareCollider*> GetLightColliders() { return light_colliders; }
+
+	void UsePlayerCamera(const bool _state) { player_camera = _state; }
+	bool IsUsingPlayerCamera() const { return player_camera; }
+
+	void SetPlayer(GameObject* _player) { player = _player; }
+	GameObject* GetPlayer() { return player; }
+
+	void MarkForDeletion() { marked_for_deletion = true; }
+
+	// Vérifie si la scène est marquée pour la suppression
+	bool IsMarkedForDeletion() const { return marked_for_deletion; }
 
 private:
 	std::string name;
 	std::vector<GameObject*> gameObjects;
 	std::vector<SquareCollider*> colliders;
 	std::vector<SquareCollider*> light_colliders;
+	GameObject* player = nullptr;
+	bool player_camera = false;
+	bool marked_for_deletion = false;
 };

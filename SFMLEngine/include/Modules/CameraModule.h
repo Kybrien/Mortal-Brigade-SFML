@@ -11,7 +11,7 @@ class CameraModule final : public Module
 public:
 	void Start() override;
 	void Update() override;
-	void PostRender() override;
+	void RenderGui() override;
 
 private:
 	sf::RenderWindow* window = nullptr;

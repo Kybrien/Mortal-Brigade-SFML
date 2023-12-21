@@ -19,7 +19,7 @@ ProximityPrompt::ProximityPrompt() {
 }
 
 bool ProximityPrompt::CanBePrompted() {
-	GameObject* player = current_scene->FindGameObject("Player");
+	GameObject* player = current_scene->GetPlayer();
 
 	if (player && (player->GetPosition() - GetOwner()->GetPosition()).Magnitude() < max_activation_distance) {
 		return true;
@@ -44,7 +44,7 @@ void ProximityPrompt::Render(sf::RenderWindow* _window)
 {
 	Component::Render(_window);
 
-	GameObject* player = current_scene->FindGameObject("Player");
+	GameObject* player = current_scene->GetPlayer();
 
 	if (player) {
 		//std::cout << "player found";
@@ -56,6 +56,7 @@ void ProximityPrompt::Render(sf::RenderWindow* _window)
 			const Maths::Vector2<float> position = owner->GetPosition();
 			sprite->setPosition(position.x, position.y);
 			sprite->setRotation(owner->GetRotation());
+			sprite->setScale(sf::Vector2f(0.02f, 0.02f));
 
 			_window->draw(*sprite);
 		}

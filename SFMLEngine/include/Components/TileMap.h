@@ -5,7 +5,6 @@
 #include "json.hpp"
 #include "Maths/Vector2.h"
 #include "Components/SquareCollider.h"
-//#include "Components/ShapeRenderer.h"
 
 using json = nlohmann::json;
 

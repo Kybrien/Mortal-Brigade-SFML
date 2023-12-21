@@ -15,6 +15,7 @@ public:
 	virtual void Update() {}
 	virtual void PreRender() {}
 	virtual void Render() {}
+	virtual void RenderGui() {}
 	virtual void PostRender() {}
 	virtual void Release() {}
 	virtual void Finalize() {}

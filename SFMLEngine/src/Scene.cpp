@@ -1,5 +1,5 @@
+#include <iostream>
 #include "Scene.h"
-
 #include <SFML/Graphics/RenderWindow.hpp>
 
 Scene::Scene(const std::string& _name)
@@ -11,7 +11,9 @@ void Scene::Update(const float _delta_time) const
 {
 	for (GameObject* const& game_object : gameObjects)
 	{
-		game_object->Update(_delta_time);
+		if (game_object->IsActive()) {
+			game_object->Update(_delta_time);
+		}
 	}
 }
 
@@ -19,7 +21,20 @@ void Scene::Render(sf::RenderWindow* _window) const
 {
 	for (GameObject* const& game_object : gameObjects)
 	{
-		game_object->Render(_window);
+		if (game_object->IsActive()) {
+			game_object->Render(_window);
+		}
+	}
+}
+
+
+void Scene::RenderGui(sf::RenderWindow* _window) const
+{
+	for (GameObject* const& game_object : gameObjects)
+	{
+		if (game_object->IsActive()) {
+			game_object->RenderGui(_window);
+		}
 	}
 }
 

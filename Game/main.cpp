@@ -3,7 +3,9 @@
 #include "Scenes/DefaultScene.h"
 #include "Scenes/MenuScene.h"
 #include "Scenes/ChooseMap.h"
-#include "Scenes/GameOverScene.h"
+#include "Scenes/Map1.h"
+#include "Scenes/Map2.h"
+#include "Scenes/SelectCharacter.h"
 
 int main()
 {
@@ -12,10 +14,9 @@ int main()
 	engine->Init();
 
 	SceneModule* scene_module = engine->GetModuleManager()->GetModule<SceneModule>();
-	scene_module->SetScene<GameOver>();
+	scene_module->SetScene<MenuScene>();
 
 	engine->Run();
 
 	return 0;
 }
-

@@ -16,6 +16,7 @@ public:
 	void Update() const;
 	void PreRender() const;
 	void Render() const;
+	void RenderGui() const;
 	void PostRender() const;
 	void Release() const;
 	void Finalize() const;
