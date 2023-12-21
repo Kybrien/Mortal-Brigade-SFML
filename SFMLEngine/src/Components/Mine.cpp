@@ -17,7 +17,7 @@ void Mine::Explode() {
     if (!isExploded) {
         isExploded = true;
         GameObject* player = scene->FindGameObject("Player");
-        Character::SetHealth(-100);
+        Character::SetHealth(-50);
         std::cout << "BOOM" << std::endl;
         AssetModule::PlaySound("mine_explo");
 
