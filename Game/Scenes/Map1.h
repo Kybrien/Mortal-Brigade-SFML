@@ -2,12 +2,13 @@
 #include "Scene.h"
 //#include "TileMap.h"
 #include "Player.h"
-#include "mine.h"
+#include "Mine.h"
 #include "Collectable.h"
 #include "Inventory.h"
 #include "Character.h"
 #include "ChooseMap.h"
 #include "HealthBar.h"
+#include "FireSpot.h"
 
 class ChooseMap;
 
@@ -23,6 +24,7 @@ public:
 
 		GameObject* map = CreateMapGameObject("Map", "map_1");
 
+		//Mines
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 8.f, 32 * 25.f));
 		GameObject* mine1 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 14.f, 32 * 16.f));
 		GameObject* mine2 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 42.f, 32 * 13.f));
@@ -38,7 +40,7 @@ public:
 		GameObject* mine12 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 14.f, 32 * 43.f));
 		GameObject* mine13 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 9.f, 32 * 46.f));
 
-
+		// Collectables
 		GameObject* collectable1 = CreateCollectableGameObject(Maths::Vector2f(32 * 6.f, 32 * 6.f));
 		GameObject* collectable2 = CreateCollectableGameObject(Maths::Vector2f(32 * 19.f, 32 * 10.f));
 		GameObject* collectable3 = CreateCollectableGameObject(Maths::Vector2f(32 * 38.f, 32 * 4.f));
@@ -50,6 +52,26 @@ public:
 		GameObject* collectable9 = CreateCollectableGameObject(Maths::Vector2f(32 * 23.f, 32 * 54.f));
 		GameObject* collectable10 = CreateCollectableGameObject(Maths::Vector2f(32 * 14.f, 32 * 37.f));
 		GameObject* collectable = CreateCollectableGameObject(Maths::Vector2f(32 * 14.f, 32 * 37.f));
+
+		// Fire
+		GameObject* fire = CreateFireGameObject("Fire", Maths::Vector2f(32 * 10.f, 32 * 19.f));
+		GameObject* fire1 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 18.f, 32 * 14.f));
+		GameObject* fire2 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 15.f, 32 * 26.f));
+		GameObject* fire3 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 24.f, 32 * 25.f));
+		GameObject* fire4 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 37.f, 32 * 4.f));
+		GameObject* fire5 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 38.f, 32 * 23.f));
+		GameObject* fire6 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 25.f, 32 * 37.f));
+		GameObject* fire7 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 47.f, 32 * 14.f));
+		GameObject* fire8 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 42.f, 32 * 31.f));
+		GameObject* fire9 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 49.f, 32 * 44.f));
+		GameObject* fire10 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 54.f, 32 * 53.f));
+		GameObject* fire11 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 22.f, 32 * 50.f));
+		GameObject* fire12 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 37.f, 32 * 51.f));
+		GameObject* fire13 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 49.f, 32 * 26.f));
+		GameObject* fire14 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 17.f, 32 * 48.f));
+		GameObject* fire15 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 11.f, 32 * 56.f));
+		GameObject* fire16 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 9.f, 32 * 44.f));
+		GameObject* fire17 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 3.f, 32 * 49.f));
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 9.f, 32 * 30.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 9.f, 32 * 29.f));
@@ -184,6 +206,28 @@ public:
 			collectable->SetActionText(name);
 			collectable->SetPrice(price);
 		}
+		return game_object;
+	}
+
+	GameObject* CreateFireGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+		FireSpot* firespot = game_object->CreateComponent<FireSpot>();
+		firespot->SetScene(this);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		/*SpriteRenderer* sprite_renderer = GetOwner()->GetComponent<SpriteRenderer>();*/
+		sprite_renderer->LoadSprite("fire");
+		/*GetOwner()->SetPosition(GetOwner()->GetPosition() - Maths::Vector2f(64, 64));*/
+		sprite_renderer->SetTextureSize(Maths::Vector2u(24, 32));
+		sprite_renderer->SetScale(1.0f);
+		sprite_renderer->SetAnimSpeed(1.0f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		sprite_renderer->SetEnd(sf::Vector2i(7, 0));
+		//sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
 		return game_object;
 	}
 

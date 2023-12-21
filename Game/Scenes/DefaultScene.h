@@ -34,12 +34,12 @@ public:
 
 		//GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
 
+		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 3.f, 32 * 5.f));
+
 		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 5.f)); 
 
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
-
-		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 25.f, 32 * 26.f));
 
 		std::function<void()> pause_func = [this]() { Pause(); };
 		GameObject* pause = CreatePauseMenu(pause_func);
@@ -174,6 +174,7 @@ public:
 		return game_object;
 	}
 
+	//pb de sprite renderer 
 	GameObject* CreateMineElecGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);

@@ -1,16 +1,18 @@
-#pragma once
 #include <iostream>
 #include "Components/Collectable.h"
 #include "Components/Inventory.h"
 #include "Modules/SceneModule.h"
 #include "Components/Character.h"
 #include "Components/TextRenderer.h"
+#include "Modules/AssetModule.h"
 
 void Collectable::Prompt() {
     std::cout << "Collecting !!";
     Inventory* inventory = Character::GetInventory();
+    
 
     if (inventory) {
+        AssetModule::PlaySound("item_pickup");
         inventory->Add(name, 1);
         inventory->AddMoney(GetPrice());
         TextRenderer* quotas = Character::GetQuotaUI();
