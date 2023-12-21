@@ -76,6 +76,7 @@ public:
 
     void SetColor(std::string _color) {
         AssetModule::AddAsset("player", "../Assets/Sprites/CharacterSpriteSheet" + _color + ".png");
-        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<MenuScene>();
+        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->RemoveScene("ChooseCharacterScene");
+        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("DefaultScene");
     }
 };

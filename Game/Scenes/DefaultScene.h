@@ -8,7 +8,7 @@
 #include "Inventory.h"
 #include "Light.h"
 #include "ProximityPrompt.h"
-#include "Collectable.h"
+#include "OpenLocker.h"
 #include "Mine.h"
 #include "MineElec.h"
 #include "PathFinding.h"
@@ -48,6 +48,15 @@ public:
 
 		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
 		GameObject* quota = CreateQuotaGameObject("QuotaText");
+
+		std::function<void()> openLocker = [this]() { Locker(); };
+
+		GameObject* locker1 = CreateLockerGameObject(Maths::Vector2f(32 * 14.f, 32 * 4.f), openLocker);
+		GameObject* locker2 = CreateLockerGameObject(Maths::Vector2f(32 * 15.f, 32 * 4.f), openLocker);
+		GameObject* locker3 = CreateLockerGameObject(Maths::Vector2f(32 * 16.f, 32 * 4.f), openLocker);
+		GameObject* locker4 = CreateLockerGameObject(Maths::Vector2f(32 * 18.f, 32 * 4.f), openLocker);
+		GameObject* locker5 = CreateLockerGameObject(Maths::Vector2f(32 * 19.f, 32 * 4.f), openLocker);
+		GameObject* locker6 = CreateLockerGameObject(Maths::Vector2f(32 * 20.f, 32 * 4.f), openLocker);
 
 		SetPlayer(player);
 
@@ -283,7 +292,27 @@ public:
 		game_object->AddComponent(quota);
 		quota->SetPosition(Maths::Vector2f(0.03f, 0.03f));
 		quota->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + "/" + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
+		quota->SetColor(sf::Color::White);
 
 		return game_object;
 	}
+
+	GameObject* CreateLockerGameObject(const Maths::Vector2f _position , std::function<void()> _func)
+	{
+		GameObject* game_object = CreateGameObject("Locker");
+		game_object->SetPosition(_position);
+
+		OpenLocker* locker = game_object->CreateComponent<OpenLocker>();
+		locker->SetFunc(_func);
+		locker->SetCurrentScene(this);
+		locker->SetMaxActivationDistance(25.f);
+
+		return game_object;
+	}
+
+	void Locker() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseCharacter>(false);
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("ChooseCharacterScene");
+	}
+
 };

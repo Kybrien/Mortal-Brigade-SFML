@@ -25,6 +25,7 @@
     <ClInclude Include="include\Components\FireSpot.h" />
     <ClInclude Include="include\Components\HealthBar.h" />
     <ClInclude Include="include\Components\MineElec.h" />
+    <ClInclude Include="include\Components\OpenLocker.h" />
     <ClInclude Include="include\Components\PauseComponent.h" />
     <ClInclude Include="include\Components\Teleporter.h" />
     <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
@@ -39,6 +40,7 @@
     <ClCompile Include="src\Components\Light.cpp" />
     <ClCompile Include="src\Components\Mine.cpp" />
     <ClCompile Include="src\Components\MineElec.cpp" />
+    <ClCompile Include="src\Components\OpenLocker.cpp" />
     <ClCompile Include="src\Components\PathFinding.cpp" />
     <ClCompile Include="src\Components\PauseComponent.cpp" />
     <ClCompile Include="src\Components\Player.cpp" />

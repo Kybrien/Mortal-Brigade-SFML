@@ -15,6 +15,12 @@ void Collectable::Prompt() {
         inventory->AddMoney(GetPrice());
         TextRenderer* quotas = Character::GetQuotaUI();
         quotas->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + "/" + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
+        if (Character::GetInventory()->GetTotalMoney() >= Character::GetInventory()->GetQuotas()) {
+            quotas->SetColor(sf::Color::Green);
+        }
+        else {
+            quotas->SetColor(sf::Color::White);
+        }
 
         inventory->DisplayInventory();
         std::cout << "Total Money: " << inventory->GetTotalMoney() << std::endl;
