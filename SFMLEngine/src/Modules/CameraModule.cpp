@@ -66,8 +66,8 @@ void CameraModule::Update()
 	window->setView(*camera);
 }
 
-void CameraModule::PostRender() {
-	Module::PostRender();
+void CameraModule::RenderGui() {
+	Module::RenderGui();
 
 	camera->setSize(window->getSize().x, window->getSize().y);
 	camera->setCenter(window->getSize().x / 2, window->getSize().y / 2);

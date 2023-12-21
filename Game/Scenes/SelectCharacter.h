@@ -14,23 +14,26 @@ public:
     ChooseCharacter() : Scene("ChooseCharacterScene") {
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "map_selection_background");
 
+        GameObject* select_text = CreateSelectTextGameObject("SelectionText", Maths::Vector2f(0.5f, 0.07f));
+
         std::function<void()> selectPink = [this]() { SetColor("Pink"); };
         std::function<void()> selectBlue = [this]() { SetColor("Blue"); };
         std::function<void()> selectGreen = [this]() { SetColor("Green"); };
         std::function<void()> selectYellow = [this]() { SetColor("Yellow"); };
         std::function<void()> selectRed = [this]() { SetColor("Red"); };
 
-        GameObject* CharacterButtonPink = CreateCharacterButton("CharacterButtonPink", 600.f, 75.f, "playerButtonPink", selectPink);
-        GameObject* CharacterButtonBlue = CreateCharacterButton("CharacterButtonBlue", 900.f, 75.f, "playerButtonBlue", selectBlue);
-        GameObject* CharacterButtonGreen = CreateCharacterButton("CharacterButtonGreen", 600.f, 400.f, "playerButtonGreen", selectGreen);
-        GameObject* CharacterButtonYellow = CreateCharacterButton("CharacterButtonYellow", 900.f, 400.f, "playerButtonYellow", selectYellow);
-        GameObject* CharacterButtonRed = CreateCharacterButton("CharacterButtonRed", 750.f, 700.f, "playerButtonRed", selectRed);
+        GameObject* CharacterButtonPink = CreateCharacterButton("CharacterButtonPink", 150.f * 1, 400.f, "playerButtonPink", selectPink);
+        GameObject* CharacterButtonBlue = CreateCharacterButton("CharacterButtonBlue", 150.f + 300.f * 1, 400.f, "playerButtonBlue", selectBlue);
+        GameObject* CharacterButtonGreen = CreateCharacterButton("CharacterButtonGreen", 150.f + 300.f * 2, 400.f, "playerButtonGreen", selectGreen);
+        GameObject* CharacterButtonYellow = CreateCharacterButton("CharacterButtonYellow", 150.f + 300.f * 3, 400.f, "playerButtonYellow", selectYellow);
+        GameObject* CharacterButtonRed = CreateCharacterButton("CharacterButtonRed", 150.f + 300.f * 4, 400.f, "playerButtonRed", selectRed);
     }
 
     GameObject* CreateBackgroundGameObject(const std::string& _name, const std::string& _texture_path) {
         GameObject* game_object = CreateGameObject(_name);
         BackgroundRenderer* background_renderer = game_object->CreateComponent<BackgroundRenderer>();
         background_renderer->LoadTexture(_texture_path);
+
         return game_object;
     }
 
@@ -55,12 +58,23 @@ public:
         sprite->SetEnd(sf::Vector2i(5, 1));
         sprite->SetAutoIncrement(true);
 
+        return game_object;
+    }
+
+    GameObject* CreateSelectTextGameObject(const std::string& _name, const Maths::Vector2f& _position) {
+        GameObject* game_object = CreateGameObject(_name);
+
+        TextRenderer* text = game_object->CreateComponent<TextRenderer>();
+        text->SetText("Select your character");
+        text->SetColor(sf::Color::White);
+        text->SetPosition(_position);
+        text->SetSize(48);
+        text->Center(true);
 
         return game_object;
     }
 
     void SetColor(std::string _color) {
-        std::cout << "Pink" << std::endl;
         AssetModule::AddAsset("player", "../Assets/Sprites/CharacterSpriteSheet" + _color + ".png");
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<MenuScene>();
     }

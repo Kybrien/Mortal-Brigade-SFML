@@ -72,3 +72,14 @@ void SpriteRenderer::Render(sf::RenderWindow* _window)
 
 	_window->draw(*sprite);
 }
+
+void SpriteRenderer::Center(const bool _state) {
+	sf::FloatRect bounds = sprite->getLocalBounds();
+	if (_state) {
+		sprite->setOrigin(bounds.left + bounds.width / 2.0f, bounds.top + bounds.height / 2.0f);
+	}
+	else
+	{
+		sprite->setOrigin(0.f, 0.f);
+	}
+}

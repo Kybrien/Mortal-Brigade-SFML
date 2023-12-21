@@ -14,9 +14,10 @@ public:
 	{
 		UsePlayerCamera(true);
 
+		AssetModule::Play("ambient");
+		AssetModule::Loop(true);
+
 		GameObject* map = CreateMapGameObject("Map", "map_2");
-
-
 
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 46.f, 32 * 39.f));
 		GameObject* mine2 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 55.f, 32 * 34.f));
@@ -50,7 +51,14 @@ public:
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 35.f, 32 * 54.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 35.f, 32 * 53.f));
 
+		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
+
 		SetPlayer(player);
+	}
+
+	void MapSelection() {
+		AssetModule::Stop();
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
 	}
 
 	GameObject* CreateMapGameObject(const std::string& _name, const std::string& map)
@@ -174,8 +182,16 @@ public:
 		return game_object;
 	}
 
-	void MapSelection() {
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+	GameObject* CreateHealthBarGameObject(const std::string& _name)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+
+		HealthBar* health_bar = game_object->CreateComponent<HealthBar>();
+		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
+		health->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		health->SetText("Health");
+
+		return game_object;
 	}
 };
 

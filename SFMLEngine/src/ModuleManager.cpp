@@ -19,9 +19,9 @@ void ModuleManager::CreateDefaultModules()
 	CreateModule<TimeModule>();
 	CreateModule<InputModule>();
 	CreateModule<WindowModule>();
-	CreateModule<SceneModule>();
-	CreateModule<CameraModule>();
 	CreateModule<AssetModule>();
+	CreateModule<CameraModule>();
+	CreateModule<SceneModule>();
 	//CreateModule<ImGuiModule>();
 }
 
@@ -62,6 +62,14 @@ void ModuleManager::Render() const
 	for (Module* module : modules)
 	{
 		module->Render();
+	}
+}
+
+void ModuleManager::RenderGui() const
+{
+	for (Module* module : modules)
+	{
+		module->RenderGui();
 	}
 }
 

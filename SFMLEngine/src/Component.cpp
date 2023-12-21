@@ -8,3 +8,5 @@ Component::Component(GameObject* _owner)
 void Component::Update(float _delta_time) {}
 
 void Component::Render(sf::RenderWindow* _window) {}
+
+void Component::RenderGui(sf::RenderWindow* _window) {}

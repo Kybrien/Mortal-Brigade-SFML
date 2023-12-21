@@ -24,6 +24,7 @@ void Button::Render(sf::RenderWindow* _window) {
     }
 
     if (IsMouseOver(_window)) {
+        InputModule::IsMouseButtonPressed(sf::Mouse::Left);
         if (InputModule::IsMouseButtonPressed(sf::Mouse::Left) && (!clicked)) {
             clicked = true;
             on_click();
@@ -62,4 +63,15 @@ void Button::SetText(const std::string& _text) {
 //    buttonText.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
 //    buttonText.setPosition(buttonShape.getPosition() + sf::Vector2f(buttonShape.getSize().x / 2.0f, buttonShape.getSize().y / 2.0f));
 //
+}
+
+void Button::Center(const bool _state) {
+    sf::FloatRect textBounds = buttonText.getLocalBounds();
+    if (_state) {
+        buttonText.setOrigin(textBounds.left + textBounds.width / 2.0f, textBounds.top + textBounds.height / 2.0f);
+    }
+    else
+    {
+        buttonText.setOrigin(0.f, 0.f);
+    }
 }

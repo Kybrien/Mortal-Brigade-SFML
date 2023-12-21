@@ -36,6 +36,7 @@ public:
 
 	void Update(float _delta_time) const;
 	void Render(sf::RenderWindow* _window) const;
+	void RenderGui(sf::RenderWindow* _window) const;
 
 private:
 	std::string name = "GameObject";

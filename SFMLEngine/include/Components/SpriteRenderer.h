@@ -31,6 +31,8 @@ public:
 	void SetOffset(const Maths::Vector2i _offset);
 	void SetAutoIncrement(bool _state) { autoIncrement = _state; }
 
+	void Center(const bool _state);
+
 	void Update(float _delta_time) override;
 	void Render(sf::RenderWindow* _window) override;
 

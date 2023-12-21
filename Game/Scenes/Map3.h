@@ -14,10 +14,15 @@ public:
 	{
 		UsePlayerCamera(true);
 
+		AssetModule::Play("ambient");
+		AssetModule::Loop(true);
+
 		GameObject* map = CreateMapGameObject("Map", "map_3");
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 39.f, 32 * 1.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 39.f, 32 * 2.f));
+
+		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
 
 		SetPlayer(player);
 	}
@@ -45,6 +50,7 @@ public:
 	}
 
 	void MapSelection() {
+		AssetModule::Stop();
 		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
 	}
 
@@ -145,6 +151,18 @@ public:
 			collectable->SetActionText(name);
 			collectable->SetPrice(price);
 		}
+		return game_object;
+	}
+
+	GameObject* CreateHealthBarGameObject(const std::string& _name)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+
+		HealthBar* health_bar = game_object->CreateComponent<HealthBar>();
+		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
+		health->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		health->SetText("Health");
+
 		return game_object;
 	}
 };

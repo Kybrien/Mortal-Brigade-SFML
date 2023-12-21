@@ -14,6 +14,7 @@ public:
 
 	void Start() override;
 	void Render() override;
+	void RenderGui() override;
 	void Update() override;
 
 	template<typename T>
@@ -21,6 +22,8 @@ public:
 
 	Scene* GetMainScene() const { return mainScene; }
 	Scene* GetScene(const std::string& _scene_name) const;
+	bool SetMainScene(const std::string& _scene_name);
+	bool RemoveScene(const std::string& _scene_name);
 
 private:
 	std::vector<Scene*> scenes;
@@ -33,15 +36,15 @@ private:
 template<typename T>
 Scene* SceneModule::SetScene(const bool _replace_scenes)
 {
-	/*if (_replace_scenes)
+	if (_replace_scenes)
 	{
-		for (const Scene* scene : scenes)
+		for (Scene* scene : scenes)
 		{
-			delete scene;
+			scene->MarkForDeletion();
 		}
 		
-	}*/
-	scenes.clear();
+	}
+	//scenes.clear();
 	Scene* scene = static_cast<Scene*>(new T());
 	scenes.push_back(scene);
 
