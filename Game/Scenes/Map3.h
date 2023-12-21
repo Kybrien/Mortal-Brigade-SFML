@@ -105,27 +105,52 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateCollectableGameObject(const std::string& _name, const Maths::Vector2f _position, std::string _texture, const float _max_activation_distance, const std::string _text, float _price)
+	GameObject* CreateCollectableGameObject(const Maths::Vector2f _position)
 	{
-		GameObject* game_object = CreateGameObject(_name);
+		GameObject* game_object = CreateGameObject("Collectable");
 		game_object->SetPosition(_position);
 
-		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
-		sprite_renderer->LoadSprite(_texture);
-		sprite_renderer->SetTextureSize(Maths::Vector2u(32, 32));
-		sprite_renderer->SetScale(1.f);
-		sprite_renderer->SetAnimSpeed(0.5f);
-		//sprite_renderer->SetAutoIncrement(true);
-		//sprite_renderer->SetBegin(sf::Vector2i(0, 0));
-		//sprite_renderer->SetEnd(sf::Vector2i(0, 0));
-		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+		int randomCollectable = rand() % 4;
+		std::string name;
+		float price;
+		switch (randomCollectable)
+		{
+		case 0:
+			break;
+		case 1:
+			name = "coral";
+			price = 10.f;
+			break;
+		case 2:
+			name = "amethyst";
+			price = 20.f;
+			break;
+		case 3:
+			name = "ore";
+			price = 30.f;
+			break;
+		default:
+			break;
+		}
 
-		Collectable* collectable = game_object->CreateComponent<Collectable>();
-		collectable->SetCurrentScene(this);
-		collectable->SetMaxActivationDistance(_max_activation_distance);
-		collectable->SetActionText(_text);
-		collectable->SetPrice(_price);
+		if (randomCollectable > 0) {
+			SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+			sprite_renderer->LoadSprite(name);
+			sprite_renderer->SetTextureSize(Maths::Vector2u(32, 32));
+			sprite_renderer->SetScale(1.f);
+			sprite_renderer->SetAnimSpeed(0.5f);
+			//sprite_renderer->SetAutoIncrement(true);
+			//sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+			//sprite_renderer->SetEnd(sf::Vector2i(0, 0));
+			sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
 
+			Collectable* collectable = game_object->CreateComponent<Collectable>();
+			collectable->SetName(name);
+			collectable->SetCurrentScene(this);
+			collectable->SetMaxActivationDistance(25.f);
+			collectable->SetActionText(name);
+			collectable->SetPrice(price);
+		}
 		return game_object;
 	}
 
