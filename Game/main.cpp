@@ -7,6 +7,7 @@
 #include "Scenes/Map2.h"
 #include "Scenes/SelectCharacter.h"
 #include "Scenes/QuotasReached.h"
+#include "Scenes/GameOver.h"
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
 	engine->Init();
 
 	SceneModule* scene_module = engine->GetModuleManager()->GetModule<SceneModule>();
-	scene_module->SetScene<MenuScene>();
+	scene_module->SetScene<GameOver>();
 
 	engine->Run();
 

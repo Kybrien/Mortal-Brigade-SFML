@@ -55,6 +55,7 @@ void AssetModule::Init()
 	AddAsset("menu_background", "../Assets/Images/menu_background.png");
 	AddAsset("pause_background", "../Assets/Images/pause_background.png");
 	AddAsset("map_selection_background", "../Assets/Images/map_selection_background.png");
+	AddAsset("GameOverBackground", "../Assets/Images/gameover_bg.jpg");
 
 	// Sprites
 	AddAsset("player", "../Assets/Sprites/CharacterSpriteSheetPink.png");

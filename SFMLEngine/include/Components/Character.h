@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 #include "Component.h"
 #include "Inventory.h"
 #include "SpriteRenderer.h"
@@ -23,6 +24,7 @@ public:
 	static std::vector<int>* GetMoonVisited() { return moonVisited; }
 
 	static void Reset() { health = maxHealth, inventory = nullptr, spriteRenderer = nullptr, quotaUI = nullptr, moonVisited->clear(); }
+	static void SetFunc(std::function<void()>* _func) { func = _func; }
 
 private:
 	static int maxHealth;
@@ -31,4 +33,5 @@ private:
 	static SpriteRenderer* spriteRenderer;
 	static TextRenderer* quotaUI;
 	static std::vector<int>* moonVisited;
+	static std::function<void()>* func;
 };

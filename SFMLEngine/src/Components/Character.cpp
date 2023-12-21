@@ -3,11 +3,16 @@
 Character::Character(){}
 
 void Character::SetHealth(int _health) {
+
 	if ((health + _health) > maxHealth) {
 		health = maxHealth;
 	}
 	else {
 		health += _health;
+	}
+	if (health <= 0) {
+		std::function<void()> funcNoPtr = *func;
+		funcNoPtr();
 	}
 }
 
@@ -17,3 +22,4 @@ Inventory* Character::inventory = nullptr;
 SpriteRenderer* Character::spriteRenderer = nullptr;
 TextRenderer* Character::quotaUI = nullptr;
 std::vector<int>* Character::moonVisited = new std::vector<int>;
+std::function<void()>* func = new std::function<void()>;

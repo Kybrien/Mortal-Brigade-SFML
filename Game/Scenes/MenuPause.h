@@ -3,7 +3,7 @@
 #include <functional>
 
 #include "Engine.h"
-#include "Modules/InputModule.h" // Inclure le gestionnaire d'entrée
+#include "Modules/InputModule.h" 
 
 #include "Scene.h"
 #include "Button.h" 

@@ -20,6 +20,7 @@
 #include "MenuPause.h"
 #include "PauseComponent.h"
 #include "TextRenderer.h"
+#include "GameOver.h"
 
 class DefaultScene final : public Scene
 {
@@ -57,6 +58,14 @@ public:
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
+		std::function<void()>death = [this]() { Death(); };
+		std::function<void()>* deathPtr = new std::function<void()>(death);
+		Character::SetFunc(deathPtr);
+
+	}
+
+	void Death() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<GameOver>();
 	}
 
 	void Pause() {
@@ -112,7 +121,6 @@ public:
 		if (Character::GetSpriteRenderer() == nullptr) {
 			Character::SetSpriteRenderer(new SpriteRenderer);
 			Character::SetInventory(new Inventory);
-			
 		}
 		Character::SetMaxHealth(100);
 
