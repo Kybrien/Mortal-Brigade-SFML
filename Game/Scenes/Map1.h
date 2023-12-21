@@ -7,6 +7,7 @@
 #include "Inventory.h"
 #include "Character.h"
 #include "ChooseMap.h"
+#include "HealthBar.h"
 
 class ChooseMap;
 
@@ -17,8 +18,10 @@ public:
 	{
 		UsePlayerCamera(true);
 
-		GameObject* map = CreateMapGameObject("Map", "map_1");
+		AssetModule::Play("ambient");
+		AssetModule::Loop(true);
 
+		GameObject* map = CreateMapGameObject("Map", "map_1");
 
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 8.f, 32 * 25.f));
 		GameObject* mine1 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 14.f, 32 * 16.f));
@@ -48,16 +51,16 @@ public:
 		GameObject* coral6 = CreateCollectableGameObject("Coral", Maths::Vector2f(32 * 14.f, 32 * 37.f), "coral", 25.f, "Coral", 10.f);
 		GameObject* ore2 = CreateCollectableGameObject("Ore", Maths::Vector2f(32 * 14.f, 32 * 37.f), "ore", 40.f, "Ore", 10.f);
 
-
-
-
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 9.f, 32 * 30.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 9.f, 32 * 29.f));
+
+		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
 
 		SetPlayer(player);
 	}
 
 	void MapSelection() {
+		AssetModule::Stop();
 		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
 	}
 
@@ -154,6 +157,18 @@ public:
 		collectable->SetMaxActivationDistance(_max_activation_distance);
 		collectable->SetActionText(_text);
 		collectable->SetPrice(_price);
+
+		return game_object;
+	}
+
+	GameObject* CreateHealthBarGameObject(const std::string& _name)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+
+		HealthBar* health_bar = game_object->CreateComponent<HealthBar>();
+		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
+		health->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		health->SetText("Health");
 
 		return game_object;
 	}

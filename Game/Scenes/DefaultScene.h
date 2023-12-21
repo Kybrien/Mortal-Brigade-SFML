@@ -17,6 +17,9 @@
 #include "FireSpot.h"
 #include "Enemy.h"
 #include "Character.h"
+#include "MenuPause.h"
+#include "PauseComponent.h"
+#include "TextRenderer.h"
 
 class DefaultScene final : public Scene
 {
@@ -24,6 +27,8 @@ public:
 	DefaultScene() : Scene("DefaultScene")
 	{
 		UsePlayerCamera(true);
+
+		AssetModule::PlaySound("welcome_back");
 
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
 
@@ -35,8 +40,14 @@ public:
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
 
 		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 25.f, 32 * 26.f));
+
+		std::function<void()> pause_func = [this]() { Pause(); };
+		GameObject* pause = CreatePauseMenu(pause_func);
     
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));
+
+		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
+		GameObject* quota = CreateQuotaGameObject("QuotaText");
 
 		SetPlayer(player);
 
@@ -48,8 +59,13 @@ public:
 
 	}
 
+	void Pause() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<MenuPause>(false);
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("MenuPause");
+	}
+
 	void MapSelection() {
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>();
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseMap>(true);
 	}
 
 	GameObject* CreateTeleporterGameObject(const std::string& _name, const Maths::Vector2f _position)
@@ -97,8 +113,6 @@ public:
 		Character::SetInventory(new Inventory);
 		Character::SetMaxHealth(100);
 
-
-
 		SpriteRenderer* sprite_renderer = Character::GetSpriteRenderer();
 		game_object->AddComponent(sprite_renderer);
 		sprite_renderer->LoadSprite("player");
@@ -110,7 +124,6 @@ public:
 		SquareCollider* square_collider = game_object->CreateComponent<SquareCollider>();
 		square_collider->SetWidth(32.f);
 		square_collider->SetHeight(32.f);
-
 
 		Inventory* inventory = Character::GetInventory();
 		game_object->AddComponent(inventory);
@@ -229,6 +242,39 @@ public:
 		collectable->SetCurrentScene(this);
 		collectable->SetMaxActivationDistance(_max_activation_distance);
 		collectable->SetActionText(_text);
+
+		return game_object;
+	}
+
+
+	GameObject* CreatePauseMenu(std::function<void()> _func) {
+		GameObject* game_object = CreateGameObject("Pause");
+
+		PauseComponent* resume = game_object->CreateComponent<PauseComponent>();
+		resume->Execute(_func);
+
+		return game_object;
+	}
+
+	GameObject* CreateHealthBarGameObject(const std::string& _name)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+
+		HealthBar* health_bar = game_object->CreateComponent<HealthBar>();
+		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
+		health->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		health->SetText("Health");
+
+		return game_object;
+	}
+
+	GameObject* CreateQuotaGameObject(const std::string& _name)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+
+		TextRenderer* quota = game_object->CreateComponent<TextRenderer>();
+		quota->SetPosition(Maths::Vector2f(0.03f, 0.03f));
+		quota->SetText("Quota: 0 / 100");
 
 		return game_object;
 	}

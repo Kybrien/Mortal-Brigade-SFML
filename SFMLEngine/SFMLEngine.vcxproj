@@ -22,7 +22,9 @@
     <ClInclude Include="include\Components\Character.h" />
     <ClInclude Include="include\Components\Enemy.h" />
     <ClInclude Include="include\Components\FireSpot.h" />
+    <ClInclude Include="include\Components\HealthBar.h" />
     <ClInclude Include="include\Components\MineElec.h" />
+    <ClInclude Include="include\Components\PauseComponent.h" />
     <ClInclude Include="include\Components\Teleporter.h" />
     <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
     <ClCompile Include="src\Components\Button.cpp" />
@@ -30,14 +32,17 @@
     <ClCompile Include="src\Components\Collectable.cpp" />
     <ClCompile Include="src\Components\Enemy.cpp" />
     <ClCompile Include="src\Components\FireSpot.cpp" />
+    <ClCompile Include="src\Components\HealthBar.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Light.cpp" />
     <ClCompile Include="src\Components\Mine.cpp" />
     <ClCompile Include="src\Components\MineElec.cpp" />
     <ClCompile Include="src\Components\PathFinding.cpp" />
+    <ClCompile Include="src\Components\PauseComponent.cpp" />
     <ClCompile Include="src\Components\Player.cpp" />
     <ClCompile Include="src\Components\ProximityPrompt.cpp" />
     <ClCompile Include="src\Components\Teleporter.cpp" />
+    <ClCompile Include="src\Components\TextRenderer.cpp" />
     <ClCompile Include="src\Components\TileMap.cpp" />
     <ClCompile Include="src\Lighting\LightDirectionEmission.cpp" />
     <ClCompile Include="src\Lighting\LightPointEmission.cpp" />
@@ -67,6 +72,7 @@
     <ClInclude Include="include\Components\PathFinding.h" />
     <ClInclude Include="include\Components\Player.h" />
     <ClInclude Include="include\Components\ProximityPrompt.h" />
+    <ClInclude Include="include\Components\TextRenderer.h" />
     <ClInclude Include="include\json.hpp" />
     <ClInclude Include="include\Components\TileMap.h" />
     <ClInclude Include="include\Lighting\LightDirectionEmission.hpp" />

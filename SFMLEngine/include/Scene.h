@@ -14,6 +14,8 @@ public:
 
 	void Render(sf::RenderWindow* _window) const;
 
+	void RenderGui(sf::RenderWindow* _window) const;
+
 	std::string GetName() const;
 
 	GameObject* CreateGameObject(const std::string& _name);
@@ -32,6 +34,11 @@ public:
 	void SetPlayer(GameObject* _player) { player = _player; }
 	GameObject* GetPlayer() { return player; }
 
+	void MarkForDeletion() { marked_for_deletion = true; }
+
+	// Vérifie si la scène est marquée pour la suppression
+	bool IsMarkedForDeletion() const { return marked_for_deletion; }
+
 private:
 	std::string name;
 	std::vector<GameObject*> gameObjects;
@@ -39,4 +46,5 @@ private:
 	std::vector<SquareCollider*> light_colliders;
 	GameObject* player = nullptr;
 	bool player_camera = false;
+	bool marked_for_deletion = false;
 };

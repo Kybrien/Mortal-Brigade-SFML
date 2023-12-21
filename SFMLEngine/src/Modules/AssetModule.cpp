@@ -8,6 +8,7 @@ sf::Music* AssetModule::music = nullptr;
 std::map<std::string, sf::Texture*> AssetModule::assets;
 std::map<std::string, sf::Music*> AssetModule::sounds;
 std::map<std::string, sf::Music*> AssetModule::musics;
+std::map<std::string, sf::Font*> AssetModule::fonts;
 
 void AssetModule::Init()
 {
@@ -17,7 +18,7 @@ void AssetModule::Init()
 	AddMusic("menu", "../Assets/Sounds/background_main_menu.ogg");
 	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg");
   
-  //Monsters SFX and Musics
+	//Monsters SFX and Musics
 	AddMusic("monster_red_chase", "../Assets/Sounds/red_chase.ogg");
 	AddSound("monster_red_looking", "../Assets/Sounds/red_looking.ogg");
 	AddSound("monster_red_kill", "../Assets/Sounds/red_kill.ogg");
@@ -41,15 +42,18 @@ void AssetModule::Init()
 	AddMusic("level_int", "../Assets/Sounds/level01_int.ogg");
 	AddMusic("level01_ext", "../Assets/Sounds/level01_ext.ogg");
 	AddMusic("level02_ext", "../Assets/Sounds/level02_ext.ogg");
+	AddMusic("ambient", "../Assets/Sounds/ambient.ogg");
 	AddSound("entering_int", "../Assets/Sounds/entering_int.ogg");
 	AddSound("mine_explo", "../Assets/Sounds/mine_explo.ogg");
 	AddSound("mine_lightning", "../Assets/Sounds/mine_lighning.ogg");
+	AddSound("welcome_back", "../Assets/Sounds/welcome_back.ogg");
   
-  std::cout << "Musics and Sounds successfully added.";
+  std::cout << "Musics and Sounds successfully added." << std::endl;
   
 
 	// Images
 	AddAsset("menu_background", "../Assets/Images/menu_background.png");
+	AddAsset("pause_background", "../Assets/Images/pause_background.png");
 	AddAsset("map_selection_background", "../Assets/Images/map_selection_background.png");
 
 	// Sprites
@@ -59,6 +63,10 @@ void AssetModule::Init()
 	AddAsset("playerButtonGreen", "../Assets/Sprites/CharacterSpriteSheetGreen.png");
 	AddAsset("playerButtonYellow", "../Assets/Sprites/CharacterSpriteSheetYellow.png");
 	AddAsset("playerButtonRed", "../Assets/Sprites/CharacterSpriteSheetRed.png");
+
+	AddAsset("bg_health_bar", "../Assets/Sprites/bg_health_bar.png");
+	AddAsset("health_bar", "../Assets/Sprites/health_bar.png");
+
 	AddAsset("red", "../Assets/Sprites/red.png");
 	AddAsset("mine", "../Assets/Sprites/mine.png");
 	AddAsset("mine_elec", "../Assets/Sprites/mine_elec.png");
@@ -73,15 +81,21 @@ void AssetModule::Init()
 	AddAsset("moon_3", "../Assets/Sprites/moon_3.png");
 	AddAsset("fire", "../Assets/Sprites/Fire.png");
 
-	std::cout << "Image and sprites successfully added.";
+	std::cout << "Image and sprites successfully added." << std::endl;
+
+	AddFont("arial", "../Assets/Fonts/arial.ttf");
+	AddFont("vcr_osd", "../Assets/Fonts/VCR_OSD_MONO.ttf");
+	std::cout << "Fonts successfully added." << std::endl;
 }
 
 void AssetModule::Play(std::string _key) {
 	if (AssetModule::musics.find(_key) != AssetModule::musics.end())
 	{
 		AssetModule::music = AssetModule::musics.at(_key);
-		AssetModule::music->setVolume(volume);
-		AssetModule::music->play();
+		if (AssetModule::music->getStatus() != sf::Music::Playing) {
+			AssetModule::music->setVolume(volume);
+			AssetModule::music->play();
+		}
 	}
 	else
 	{
@@ -93,8 +107,10 @@ void AssetModule::PlaySound(std::string _key) {
 	if (AssetModule::sounds.find(_key) != AssetModule::sounds.end())
 	{
 		AssetModule::sound = AssetModule::sounds.at(_key);
-		AssetModule::sound->setVolume(volume);
-		AssetModule::sound->play();
+		if (AssetModule::music->getStatus() != sf::Music::Playing) {
+			AssetModule::sound->setVolume(volume);
+			AssetModule::sound->play();
+		}
 	}
 	else
 	{
@@ -110,6 +126,22 @@ void AssetModule::AddAsset(std::string _key, std::string _fileName)
 	}
 	if (AssetModule::assets.find(_key) != AssetModule::assets.end()) {
 		AssetModule::assets.at(_key)->loadFromFile(_fileName);
+	}
+}
+
+void AssetModule::AddFont(std::string _key, std::string _fileName)
+{
+	sf::Font* font = new sf::Font();
+	if (!font->loadFromFile(_fileName))
+	{
+		std::cout << "Couldn't load font " << _fileName << std::endl;
+		return;
+	}
+	if (AssetModule::fonts.find(_key) == AssetModule::fonts.end()) {
+		AssetModule::fonts.insert(std::make_pair(_key, font));
+	}
+	if (AssetModule::fonts.find(_key) != AssetModule::fonts.end()) {
+		AssetModule::fonts.at(_key)->loadFromFile(_fileName);
 	}
 }
 

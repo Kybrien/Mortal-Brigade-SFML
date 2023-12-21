@@ -27,6 +27,17 @@ void Scene::Render(sf::RenderWindow* _window) const
 	}
 }
 
+
+void Scene::RenderGui(sf::RenderWindow* _window) const
+{
+	for (GameObject* const& game_object : gameObjects)
+	{
+		if (game_object->IsActive()) {
+			game_object->RenderGui(_window);
+		}
+	}
+}
+
 std::string Scene::GetName() const
 {
 	return name;

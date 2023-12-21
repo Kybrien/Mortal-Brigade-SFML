@@ -3,6 +3,7 @@
 #include <map>
 #include <SFML/Audio/Music.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/Font.hpp>
 
 #include "Module.h"
 
@@ -44,6 +45,9 @@ public:
 	static void AddAsset(std::string _key, std::string _fileName);
 	static sf::Texture* GetAsset(std::string _key) { return assets.at(_key); }
 
+	static void AddFont(std::string _key, std::string _fileName);
+	static sf::Font* GetFont(std::string _key) { return fonts.at(_key); }
+
 private:
 	static float volume;
 	static float maxVolume;
@@ -52,4 +56,5 @@ private:
 	static std::map<std::string, sf::Texture*> assets;
 	static std::map<std::string, sf::Music*> sounds;
 	static std::map<std::string, sf::Music*> musics;
+	static std::map<std::string, sf::Font*> fonts;
 };

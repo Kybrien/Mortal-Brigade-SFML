@@ -15,6 +15,7 @@ public:
 
 	virtual void Update(float _delta_time);
 	virtual void Render(sf::RenderWindow* _window);
+	virtual void RenderGui(sf::RenderWindow* _window);
 
 	GameObject* GetOwner() const { return owner; }
 	void SetOwner(GameObject* _owner) { owner = _owner; }

@@ -13,6 +13,7 @@ public:
 	static void SetSpriteRenderer(SpriteRenderer* _spriteRenderer) { spriteRenderer = _spriteRenderer; }
 
 	static int GetHealth() { return health; }
+	static int GetMaxHealth() { return maxHealth; }
 	static Inventory* GetInventory() { return inventory; }
 	static SpriteRenderer* GetSpriteRenderer() { return spriteRenderer; }
 

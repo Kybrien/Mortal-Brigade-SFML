@@ -1,3 +1,4 @@
+#include <iostream>
 #include "Modules/SceneModule.h"
 
 #include "ModuleManager.h"
@@ -27,13 +28,49 @@ void SceneModule::Render()
 	}
 }
 
+void SceneModule::RenderGui()
+{
+	Module::RenderGui();
+
+	for (const Scene* scene : scenes)
+	{
+		scene->RenderGui(windowModule->GetWindow());
+	}
+}
+
+// UPDATE DE BASE
+// 
+//void SceneModule::Update()
+//{
+//	Module::Update();
+//
+//	for (const Scene* scene : scenes)
+//	{
+//		scene->Update(timeModule->GetDeltaTime());
+//	}
+//}
+
+// NOUVEAU UPDATE
+
 void SceneModule::Update()
 {
 	Module::Update();
 
-	for (const Scene* scene : scenes)
+	for (auto it = scenes.begin(); it != scenes.end();)
 	{
+		const Scene* scene = *it;
 		scene->Update(timeModule->GetDeltaTime());
+
+		if (scene->IsMarkedForDeletion())
+		{
+			std::cout << "Scene " << scene->GetName() << " removed." << std::endl;
+			delete scene;
+			it = scenes.erase(it);
+		}
+		else
+		{
+			++it;
+		}
 	}
 }
 
@@ -47,4 +84,27 @@ Scene* SceneModule::GetScene(const std::string& _scene_name) const
 		}
 	}
 	return nullptr;
+}
+
+bool SceneModule::SetMainScene(const std::string& _scene_name) {
+	Scene* new_main_scene = GetScene(_scene_name);
+	if (new_main_scene != nullptr) {
+		mainScene = new_main_scene;
+		return true;
+	}
+	return false;
+}
+
+bool SceneModule::RemoveScene(const std::string& _scene_name)
+{
+	for (auto it = scenes.begin(); it != scenes.end(); ++it)
+	{
+		if ((*it)->GetName() == _scene_name)
+		{
+			(*it)->MarkForDeletion();
+			//delete* it;
+			return true;
+		}
+	}
+	return false;
 }
