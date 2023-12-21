@@ -271,10 +271,11 @@ public:
 	GameObject* CreateQuotaGameObject(const std::string& _name)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-
-		TextRenderer* quota = game_object->CreateComponent<TextRenderer>();
+		Character::SetQuotaUI(new TextRenderer);
+		TextRenderer* quota = Character::GetQuotaUI();
+		game_object->AddComponent(quota);
 		quota->SetPosition(Maths::Vector2f(0.03f, 0.03f));
-		quota->SetText("Quota: 0 / 100");
+		quota->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + " / " + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
 
 		return game_object;
 	}

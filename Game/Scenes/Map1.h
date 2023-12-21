@@ -55,6 +55,7 @@ public:
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 9.f, 32 * 29.f));
 
 		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
+		GameObject* quota = CreateQuotaGameObject("QuotaText");
 
 		SetPlayer(player);
 	}
@@ -194,6 +195,17 @@ public:
 		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
 		health->SetPosition(Maths::Vector2f(0.03f, 0.87f));
 		health->SetText("Health");
+
+		return game_object;
+	}
+
+	GameObject* CreateQuotaGameObject(const std::string& _name)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+
+		TextRenderer* quota = Character::GetQuotaUI();
+		game_object->AddComponent(quota);
+		
 
 		return game_object;
 	}
