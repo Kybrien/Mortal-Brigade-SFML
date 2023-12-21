@@ -15,8 +15,8 @@ void AssetModule::Init()
 	Module::Init();
 
 	// Sounds
-	AddMusic("menu", "../Assets/Sounds/background_main_menu.ogg");
-	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg");
+	AddMusic("menu", "../Assets/Sounds/background_main_menu.ogg"); //ok
+	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg"); //ok
   
 	//Monsters SFX and Musics
 	AddMusic("monster_red_chase", "../Assets/Sounds/red_chase.ogg");
@@ -45,7 +45,8 @@ void AssetModule::Init()
 	AddMusic("ambient", "../Assets/Sounds/ambient.ogg");
 	AddSound("entering_int", "../Assets/Sounds/entering_int.ogg");
 	AddSound("mine_explo", "../Assets/Sounds/mine_explo.ogg");
-	AddSound("mine_lightning", "../Assets/Sounds/mine_lighning.ogg");
+	AddSound("fire_burning", "../Assets/Sounds/fire.ogg");
+	//AddSound("mine_lightning", "../Assets/Sounds/mine_lighning.ogg");
 	AddSound("welcome_back", "../Assets/Sounds/welcome_back.ogg");
   
   std::cout << "Musics and Sounds successfully added." << std::endl;
