@@ -84,6 +84,18 @@ public:
 		GameObject* collectable10 = CreateCollectableGameObject(Maths::Vector2f(32 * 11.f, 32 * 3.f));
 		GameObject* collectable11 = CreateCollectableGameObject(Maths::Vector2f(32 * 5.f, 32 * 3.f));
 
+		//Enemies
+		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 9.f, 32 * 5.f));
+		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 5.f, 32 * 20.f));
+		GameObject* enemy2 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 34.f));
+		GameObject* enemy3 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 25.f, 32 * 19.f));
+		GameObject* lullaby1 = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 28.f, 32 * 33.f));
+		GameObject* enemy5 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 11.f, 32 * 36.f));
+		GameObject* enemy6 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 44.f, 32 * 15.f));
+		GameObject* enemy7 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 54.f, 32 * 48.f));
+		GameObject* lullaby2 = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 29.f, 32 * 2.f));
+		
+
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 35.f, 32 * 54.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 35.f, 32 * 53.f));
 
@@ -142,7 +154,32 @@ public:
 
 		return game_object;
 	}
+	GameObject* CreateLullabyMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
 
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("lullaby");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(64, 64));
+		sprite_renderer->SetScale(0.5f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		sprite_renderer->SetEnd(sf::Vector2i(1, 0));
+		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
+		Lullaby* enemy = game_object->CreateComponent<Lullaby>();
+		enemy->SetScene(this);
+		enemy->SetSpeed(40.f);
+		enemy->SetMaxHealth(30);
+		enemy->SetAttackSpeed(2.f);
+		enemy->SetDamage(1000);
+		enemy->SetDetectionRange(50.f);
+
+
+		return game_object;
+	}
 	GameObject* CreateMineGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);

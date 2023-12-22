@@ -129,26 +129,26 @@ public:
 
 		//Enemy
 		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 20.f, 32 * 3.f));
-		GameObject* enemy1 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 60.f, 32 * 15.f));
+		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 60.f, 32 * 15.f));
 		GameObject* enemy2 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 77.f, 32 * 3.f));
 		GameObject* enemy3 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 95.f, 32 * 10.f));
 		GameObject* enemy4 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 3.f, 32 * 24.f));
-		GameObject* enemy5 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 17.f, 32 * 38.f));
+		GameObject* lullaby2 = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 17.f, 32 * 38.f));
 		GameObject* enemy6 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 37.f, 32 * 32.f));
 		GameObject* enemy7 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 77.f, 32 * 28.f));
 		GameObject* enemy8 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 10.f, 32 * 57.f));
-		GameObject* enemy9 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 48.f, 32 * 43.f));
+		GameObject* lullaby3 = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 48.f, 32 * 43.f));
 		GameObject* enemy10 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 50.f, 32 * 47.f));
 		GameObject* enemy11 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 92.f, 32 * 52.f));
 		GameObject* enemy12 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 82.f, 32 * 61.f));
-		GameObject* enemy13 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 23.f, 32 * 67.f));
+		GameObject* lullaby4 = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 23.f, 32 * 67.f));
 		GameObject* enemy14 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 5.f, 32 * 72.f));
 		GameObject* enemy15 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 45.f, 32 * 56.f));
-		GameObject* enemy16 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 10.f, 32 * 91.f));
+		GameObject* lullaby5 = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 10.f, 32 * 91.f));
 		GameObject* enemy17 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 34.f, 32 * 86.f));
 		GameObject* enemy18 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 55.f, 32 * 84.f));
 		GameObject* enemy19 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 76.f, 32 * 82.f));
-		GameObject* enemy20 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 93.f, 32 * 84.f));
+		GameObject* lullaby6 = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 93.f, 32 * 84.f));
 
 		//Collectable
 		GameObject* collectable = CreateCollectableGameObject(Maths::Vector2f(32 * 26.f, 32 * 3.f));
@@ -264,7 +264,32 @@ public:
 
 		return game_object;
 	}
+	GameObject* CreateLullabyMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
 
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("lullaby");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(64, 64));
+		sprite_renderer->SetScale(0.5f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		sprite_renderer->SetEnd(sf::Vector2i(1, 0));
+		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
+		Lullaby* enemy = game_object->CreateComponent<Lullaby>();
+		enemy->SetScene(this);
+		enemy->SetSpeed(40.f);
+		enemy->SetMaxHealth(30);
+		enemy->SetAttackSpeed(2.f);
+		enemy->SetDamage(1000);
+		enemy->SetDetectionRange(50.f);
+
+
+		return game_object;
+	}
 	GameObject* CreateCollectableGameObject(const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject("Collectable");
