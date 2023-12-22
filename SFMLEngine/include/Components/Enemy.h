@@ -23,9 +23,10 @@ public:
 	float GetSpeed() { return speed; }
 	float GetDetectionRange() { return detectionRange; }
 
+
 	bool IsPlayerInRange();
 
-	void Attack(GameObject* player);
+	void Attack();
 
 protected:
 	int health;
@@ -34,5 +35,6 @@ protected:
 	float damage;
 	float speed;
 	float detectionRange;
+	bool canAttack = true;
 	Scene* scene = nullptr;
 };

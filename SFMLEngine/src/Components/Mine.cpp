@@ -9,6 +9,8 @@ void Mine::Update(float _delta_time) {
     Component::Update(_delta_time);
     GameObject* player = scene->GetPlayer();
     if ((player->GetPosition() - GetOwner()->GetPosition()).Magnitude() < 20) {
+        AssetModule::SetSoundVolume("mine_explo", 30.f);
+        AssetModule::PlaySound("mine_explo");
         Explode();
     }
 }
@@ -16,12 +18,9 @@ void Mine::Update(float _delta_time) {
 void Mine::Explode() {
     if (!isExploded) {
         isExploded = true;
-        AssetModule::SetSoundVolume("mine_explo", 10.f);
         GameObject* player = scene->FindGameObject("Player");
         Character::SetHealth(-60);
-        std::cout << "BOOM Le jouer declenche une mine et perd 60pts de vie" << std::endl;
-        AssetModule::PlaySound("mine_explo");
-        
+        std::cout << "BOOM Le jouer declenche une mine et perd 60pts de vie" << std::endl;        
 
         //Generation du sprite
         SpriteRenderer  *sprite_renderer = GetOwner()->GetComponent<SpriteRenderer>();

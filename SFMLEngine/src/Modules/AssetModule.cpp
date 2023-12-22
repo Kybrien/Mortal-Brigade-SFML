@@ -20,7 +20,6 @@ void AssetModule::Init()
   
 	//Monsters SFX and Musics
 	AddSound("monster_red_chase", "../Assets/Sounds/red_chase.ogg"); //ok
-	AddSound("monster_red_kill", "../Assets/Sounds/red_kill.ogg");
 
 	AddSound("monster_lullaby_sleep", "../Assets/Sounds/lullaby.ogg"); //ok
 	AddSound("monster_lullaby_scream", "../Assets/Sounds/lullaby_scream.ogg"); //ok
@@ -32,12 +31,11 @@ void AssetModule::Init()
 	//AddSound("inventory_close", "../Assets/Sounds/inventory_close.ogg"); 
 
 	//Scene SFX
-	AddMusic("ambient", "../Assets/Sounds/ambient.ogg");
-	AddSound("entering_int", "../Assets/Sounds/entering_int.ogg");
-	AddSound("mine_explo", "../Assets/Sounds/mine_explo.ogg");
-	AddSound("fire_burning", "../Assets/Sounds/fire.ogg");
+	AddMusic("ambient", "../Assets/Sounds/ambient.ogg"); //ok
+	AddSound("mine_explo", "../Assets/Sounds/mine_explo.ogg"); //ok
+	AddSound("fire_burning", "../Assets/Sounds/fire.ogg"); //ok
 	//AddSound("mine_lightning", "../Assets/Sounds/mine_lighning.ogg");
-	AddSound("welcome_back", "../Assets/Sounds/welcome_back.ogg");
+	AddSound("welcome_back", "../Assets/Sounds/welcome_back.ogg"); //ok
   
 	std::cout << "Musics and Sounds successfully added." << std::endl;
 

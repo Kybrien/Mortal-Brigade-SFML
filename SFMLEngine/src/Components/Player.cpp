@@ -17,8 +17,7 @@ void Player::Update(float _delta_time)
 	bool sprinting = false;
 	int sprint_speed = 70;
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && Character::GetStamina() > 0.f) {
-		std::cout << "Stamina: " << Character::GetStamina() << std::endl;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && Character::GetSprint() == true) {
 		speed = sprint_speed;
 		sprinting = true;
 	}

@@ -3,6 +3,7 @@
 #include "Components/SpriteRenderer.h"
 
 void RED::Update(float _delta_time) {
+	SetCooldown(_delta_time);
 	if (IsPlayerInRange()) {
 		SpriteRenderer* sprite = GetOwner()->GetComponent<SpriteRenderer>();
 		sprite->SetBegin(sf::Vector2i(0, 2));

@@ -16,12 +16,14 @@ public:
 	static void SetInventory(Inventory* _inventory) { inventory = _inventory; }
 	static void SetSpriteRenderer(SpriteRenderer* _spriteRenderer) { spriteRenderer = _spriteRenderer; }
 	static void SetQuotaUI(TextRenderer* _quotaUI) { quotaUI = _quotaUI; }
-	static void AddVisistedMoon(int _moon) { moonVisited->push_back(_moon); }
+	static void SetFunc(std::function<void()>* _func) { func = _func; }
+	
 
 	static int GetHealth() { return health; }
 	static int GetMaxHealth() { return maxHealth; }
 	static float GetStamina() { return stamina; }
 	static float GetMaxStamina() { return maxStamina; }
+	static bool GetSprint() { return canSprint; }
 
 	static Inventory* GetInventory() { return inventory; }
 	static SpriteRenderer* GetSpriteRenderer() { return spriteRenderer; }
@@ -30,13 +32,14 @@ public:
 
 
 	static void Reset() { health = maxHealth, inventory = nullptr, spriteRenderer = nullptr, quotaUI = nullptr, moonVisited->clear(); }
-	static void SetFunc(std::function<void()>* _func) { func = _func; }
+	static void AddVisistedMoon(int _moon) { moonVisited->push_back(_moon); }
 
 private:
 	static int maxHealth;
 	static int health;
 	static float maxStamina;
 	static float stamina;
+	static bool canSprint;
 	static Inventory* inventory;
 	static SpriteRenderer* spriteRenderer;
 	static TextRenderer* quotaUI;

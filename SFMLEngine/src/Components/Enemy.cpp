@@ -9,15 +9,20 @@ Enemy::Enemy() {
 	speed = 0.f;
 }
 
-void Enemy::Attack(GameObject* player) {
-	/*player->GetComponent<Character>()->SetHealth(-GetOwner()->GetComponent<Enemy>()->GetDamage());*/
-	Character::SetHealth(-GetOwner()->GetComponent<Enemy>()->GetDamage());
+void Enemy::Attack() {
+	if (cooldown >= attackSpeed) {
+		Character::SetHealth(-GetOwner()->GetComponent<Enemy>()->GetDamage());
+		cooldown = 0;
+	}
 }
 
 bool Enemy::IsPlayerInRange() {
 	if (!scene->GetPlayer())
 		return false;
 	if ((scene->GetPlayer()->GetPosition() - GetOwner()->GetPosition()).Magnitude() < detectionRange) {
+		if ((scene->GetPlayer()->GetPosition() - GetOwner()->GetPosition()).Magnitude() < 20.f && canAttack == true) {
+			Attack();
+		}
 		return true;
 	}
 	return false;
