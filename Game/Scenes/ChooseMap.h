@@ -24,6 +24,7 @@ public:
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "map_selection_background");
 
         AssetModule::Play("moon_selection");
+        AssetModule::SetMusicVolume("moon_selection", 20.f);
         AssetModule::Loop("moon_selection", true);
 
         GameObject* select_text = CreateSelectTextGameObject("SelectionText", Maths::Vector2f(0.5f, 0.07f));

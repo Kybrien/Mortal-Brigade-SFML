@@ -30,6 +30,7 @@ public:
 		UsePlayerCamera(true);
 
 		AssetModule::PlaySound("welcome_back");
+		AssetModule::SetSoundVolume("welcome_back", 30.f);
 
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
 

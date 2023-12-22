@@ -25,7 +25,7 @@ namespace ltbl
 		, mSpecularCompTexture()
 		, mDirectionEmissionRange(1000.0f)
 		, mDirectionEmissionRadiusMultiplier(1.1f)
-		, mAmbientColor(sf::Color(16, 16, 16))
+		//, /*mAmbientColor(sf::Color(16, 16, 16))*/
 		, mUseNormals(useNormals)
 	{
 		// Load Texture

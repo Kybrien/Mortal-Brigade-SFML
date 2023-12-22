@@ -20,6 +20,7 @@ public:
         GameObject* background = CreateBackgroundGameObject("Background", "menu_background");
 
         AssetModule::Play("menu");
+        AssetModule::SetMusicVolume("menu", 20.f);
         AssetModule::Loop("menu" ,true);
 
         // Création des boutons du menu

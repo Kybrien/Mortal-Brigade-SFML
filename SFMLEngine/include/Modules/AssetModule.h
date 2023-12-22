@@ -16,16 +16,8 @@ public:
 
 	static float GetVolume() { return volume; }
 	static float GetMaxVolume() { return maxVolume; }
-	static void SetVolume(std::string _name ,float _volume) {
-		volume = _volume;
-		if(sf::Music* sound = GetSound(_name)){
-			sound->setVolume(_volume);
-		}
-		if (sf::Music* music = GetMusic(_name)) {
-			music->setVolume(_volume);
-		}
-
-	}
+	static void SetMusicVolume(std::string _name, float _volume) { GetMusic(_name)->setVolume(_volume); }
+	static void SetSoundVolume(std::string _name, float _volume) { GetSound(_name)->setVolume(_volume); }
 
 	static void Loop(std::string _name, bool _state) { GetMusic(_name)->setLoop(_state); }
 	static void LoopSound(std::string _name, bool _state) { GetSound(_name)->setLoop(_state); }

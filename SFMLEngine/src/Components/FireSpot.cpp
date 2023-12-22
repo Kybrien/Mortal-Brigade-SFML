@@ -17,6 +17,7 @@ void FireSpot::Update(float _delta_time) {
 void FireSpot::Burning() {
     if (count >= 1.f) {
         AssetModule::PlaySound("fire_burning");
+        AssetModule::SetSoundVolume("fire_burning", 50.f);
         count = 0.f;
         Character::SetHealth(-10);
         std::cout << "Player is burning" << std::endl;

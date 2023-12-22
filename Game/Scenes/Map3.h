@@ -22,6 +22,7 @@ public:
 		UsePlayerCamera(true);
 
 		AssetModule::Play("ambient");
+		AssetModule::SetMusicVolume("ambient", 20.f);
 		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_3");
