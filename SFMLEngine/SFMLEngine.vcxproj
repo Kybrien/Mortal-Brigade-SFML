@@ -24,9 +24,12 @@
     <ClInclude Include="include\Components\Enemy.h" />
     <ClInclude Include="include\Components\FireSpot.h" />
     <ClInclude Include="include\Components\HealthBar.h" />
+    <ClInclude Include="include\Components\Lullaby.h" />
     <ClInclude Include="include\Components\MineElec.h" />
     <ClInclude Include="include\Components\OpenLocker.h" />
     <ClInclude Include="include\Components\PauseComponent.h" />
+    <ClInclude Include="include\Components\Red.h" />
+    <ClInclude Include="include\Components\StaminaBar.h" />
     <ClInclude Include="include\Components\Teleporter.h" />
     <ClCompile Include="src\Components\BackgroundRenderer.cpp" />
     <ClCompile Include="src\Components\Button.cpp" />
@@ -38,6 +41,7 @@
     <ClCompile Include="src\Components\HealthBar.cpp" />
     <ClCompile Include="src\Components\Inventory.cpp" />
     <ClCompile Include="src\Components\Light.cpp" />
+    <ClCompile Include="src\Components\Lullaby.cpp" />
     <ClCompile Include="src\Components\Mine.cpp" />
     <ClCompile Include="src\Components\MineElec.cpp" />
     <ClCompile Include="src\Components\OpenLocker.cpp" />
@@ -45,6 +49,8 @@
     <ClCompile Include="src\Components\PauseComponent.cpp" />
     <ClCompile Include="src\Components\Player.cpp" />
     <ClCompile Include="src\Components\ProximityPrompt.cpp" />
+    <ClCompile Include="src\Components\Red.cpp" />
+    <ClCompile Include="src\Components\StaminaBar.cpp" />
     <ClCompile Include="src\Components\Teleporter.cpp" />
     <ClCompile Include="src\Components\TextRenderer.cpp" />
     <ClCompile Include="src\Components\TileMap.cpp" />

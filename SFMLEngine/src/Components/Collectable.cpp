@@ -1,7 +1,8 @@
 #include <iostream>
+#include "Modules/SceneModule.h"
+#include "Modules/AssetModule.h"
 #include "Components/Collectable.h"
 #include "Components/Inventory.h"
-#include "Modules/SceneModule.h"
 #include "Components/Character.h"
 #include "Components/TextRenderer.h"
 #include "Modules/AssetModule.h"

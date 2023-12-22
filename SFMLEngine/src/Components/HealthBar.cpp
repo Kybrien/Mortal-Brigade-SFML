@@ -25,7 +25,7 @@ void HealthBar::RenderGui(sf::RenderWindow* _window) {
 
 	const GameObject* owner = GetOwner();
 
-	const Maths::Vector2u position = Maths::Vector2u(50, _window->getSize().y - _window->getSize().y / 10);
+	const Maths::Vector2f position = Maths::Vector2f(50, _window->getSize().y - _window->getSize().y * 0.18);
 	background->setPosition(position.x, position.y);
 	background->setRotation(owner->GetRotation());
 	health_bar->setPosition(position.x, position.y);

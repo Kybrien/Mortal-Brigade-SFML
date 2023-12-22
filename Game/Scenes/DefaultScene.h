@@ -15,7 +15,11 @@
 #include "Teleporter.h"
 #include "ChooseMap.h"
 #include "FireSpot.h"
+
 #include "Enemy.h"
+#include "Lullaby.h"
+#include "Red.h"
+
 #include "Character.h"
 #include "MenuPause.h"
 #include "PauseComponent.h"
@@ -40,6 +44,7 @@ public:
 
 		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 5.f)); 
 
+		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 19.f, 32 * 6.f)); 
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
 
@@ -48,7 +53,7 @@ public:
     
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));
 
-		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
+		GameObject* player_hud = CreatePlayerHudGameObject("PlayerHud");
 		GameObject* quota = CreateQuotaGameObject("QuotaText");
 
 		std::function<void()> openLocker = [this]() { Locker(); };
@@ -62,8 +67,6 @@ public:
 
 		SetPlayer(player);
 
-		PathFinding* ai = enemy->CreateComponent<PathFinding>();
-		ai->FindPath(GetColliders(), enemy->GetPosition(), GetPlayer());
 		//GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
@@ -127,6 +130,7 @@ public:
 			Character::SetInventory(new Inventory);
 		}
 		Character::SetMaxHealth(100);
+		Character::SetMaxStamina(100);
 
 		SpriteRenderer* sprite_renderer = Character::GetSpriteRenderer();
 		game_object->AddComponent(sprite_renderer);
@@ -146,6 +150,33 @@ public:
 		return game_object;
 	}
 
+	GameObject* CreateLullabyMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("lullaby");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(64, 64));
+		sprite_renderer->SetScale(0.5f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		sprite_renderer->SetEnd(sf::Vector2i(1, 0));
+		sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
+		Lullaby* enemy = game_object->CreateComponent<Lullaby>();
+		enemy->SetScene(this);
+		enemy->SetSpeed(40.f);
+		enemy->SetMaxHealth(30);
+		enemy->SetAttackSpeed(2.f);
+		enemy->SetDamage(1000);
+		enemy->SetDetectionRange(50.f);
+
+
+		return game_object;
+	}
+
 	GameObject* CreateREDMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);
@@ -161,14 +192,13 @@ public:
 		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
 
-		Enemy* red_enemy_class = game_object->CreateComponent<Enemy>();
-		red_enemy_class->SetName("RED");
-		red_enemy_class->SetSpeed(40.f);
+		RED* red_enemy_class = game_object->CreateComponent<RED>();
+		red_enemy_class->SetScene(this);
+		red_enemy_class->SetSpeed(50.f);
 		red_enemy_class->SetMaxHealth(30);
-		red_enemy_class->SetAttackSpeed(2.f);
+		red_enemy_class->SetAttackSpeed(20.f);
 		red_enemy_class->SetDamage(10);
-		red_enemy_class->SetDetectionRange(50.f);
-
+		red_enemy_class->SetDetectionRange(150.f);
 
 		return game_object;
 	}
@@ -272,14 +302,19 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateHealthBarGameObject(const std::string& _name)
+	GameObject* CreatePlayerHudGameObject(const std::string& _name)
 	{
 		GameObject* game_object = CreateGameObject(_name);
 
 		HealthBar* health_bar = game_object->CreateComponent<HealthBar>();
 		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
-		health->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		health->SetPosition(Maths::Vector2f(0.03f, 0.79f));
 		health->SetText("Health");
+
+		StaminaBar* stamina_bar = game_object->CreateComponent<StaminaBar>();
+		TextRenderer* stamina = game_object->CreateComponent<TextRenderer>();
+		stamina->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		stamina->SetText("Stamina");
 
 		return game_object;
 	}

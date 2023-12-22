@@ -48,6 +48,9 @@
     <ClCompile Include="src\Components\PauseComponent.cpp" />
     <ClCompile Include="src\Components\HealthBar.cpp" />
     <ClCompile Include="src\Components\TextRenderer.cpp" />
+    <ClCompile Include="src\Components\StaminaBar.cpp" />
+    <ClCompile Include="src\Components\Lullaby.cpp" />
+    <ClCompile Include="src\Components\Red.cpp" />
     <ClCompile Include="src\Components\CoolDownComponent.cpp" />
     <ClCompile Include="src\Components\OpenLocker.cpp" />
   </ItemGroup>
@@ -96,6 +99,9 @@
     <ClInclude Include="include\Components\PauseComponent.h" />
     <ClInclude Include="include\Components\HealthBar.h" />
     <ClInclude Include="include\Components\TextRenderer.h" />
+    <ClInclude Include="include\Components\StaminaBar.h" />
+    <ClInclude Include="include\Components\Lullaby.h" />
+    <ClInclude Include="include\Components\Red.h" />
     <ClInclude Include="include\Components\CoolDownComponent.h" />
     <ClInclude Include="include\Components\OpenLocker.h" />
   </ItemGroup>

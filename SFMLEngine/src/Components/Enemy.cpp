@@ -1,12 +1,24 @@
 #include "Components/Enemy.h"
-#include"Components/Character.h"
+#include "Components/Character.h"
 
-Enemy::Enemy(){}
+Enemy::Enemy() {
+	health = 0;
+	attackSpeed = 0.f;
+	damage = 0.f;
+	detectionRange = 0.f;
+	speed = 0.f;
+}
 
 void Enemy::Attack(GameObject* player) {
-	std::cout << "Player Life Before = " << Character::GetHealth() << std::endl;
 	/*player->GetComponent<Character>()->SetHealth(-GetOwner()->GetComponent<Enemy>()->GetDamage());*/
 	Character::SetHealth(-GetOwner()->GetComponent<Enemy>()->GetDamage());
-	std::cout << " Attack " << std::endl;
-	std::cout << "Player Life After = " << Character::GetHealth() << std::endl;
+}
+
+bool Enemy::IsPlayerInRange() {
+	if (!scene->GetPlayer())
+		return false;
+	if ((scene->GetPlayer()->GetPosition() - GetOwner()->GetPosition()).Magnitude() < detectionRange) {
+		return true;
+	}
+	return false;
 }

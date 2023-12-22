@@ -23,8 +23,8 @@ void AssetModule::Init()
 	AddSound("monster_red_looking", "../Assets/Sounds/red_looking.ogg");
 	AddSound("monster_red_kill", "../Assets/Sounds/red_kill.ogg");
 
-	AddMusic("monster_lullaby_sleep", "../Assets/Sounds/lullaby_sleep.ogg"); //ok
-	AddMusic("monster_lullaby_chase", "../Assets/Sounds/lullaby_chase.ogg");
+	AddMusic("monster_lullaby_sleep", "../Assets/Sounds/lullaby.ogg"); //ok
+	AddMusic("monster_lullaby_scream", "../Assets/Sounds/lullaby_scream.ogg");
 	AddSound("monster_lullaby_kill", "../Assets/Sounds/lullaby_kill.ogg");
 	
 	AddSound("monster_ex_explosion", "../Assets/Sounds/ex_explosion.ogg");
@@ -49,8 +49,7 @@ void AssetModule::Init()
 	//AddSound("mine_lightning", "../Assets/Sounds/mine_lighning.ogg");
 	AddSound("welcome_back", "../Assets/Sounds/welcome_back.ogg");
   
-  std::cout << "Musics and Sounds successfully added." << std::endl;
-  
+	std::cout << "Musics and Sounds successfully added." << std::endl;
 
 	// Images
 	AddAsset("menu_background", "../Assets/Images/menu_background.png");
@@ -70,8 +69,12 @@ void AssetModule::Init()
 
 	AddAsset("bg_health_bar", "../Assets/Sprites/bg_health_bar.png");
 	AddAsset("health_bar", "../Assets/Sprites/health_bar.png");
+	AddAsset("stamina_bar", "../Assets/Sprites/stamina_bar.png");
+
+	AddAsset("proximity_prompt", "../Assets/Images/ProximityPrompt.png");
 
 	AddAsset("red", "../Assets/Sprites/red.png");
+	AddAsset("lullaby", "../Assets/Sprites/lullaby.png");
 	AddAsset("mine", "../Assets/Sprites/mine.png");
 	AddAsset("mine_elec", "../Assets/Sprites/mine_elec.png");
 	AddAsset("amethyst", "../Assets/Sprites/amethyst.png");

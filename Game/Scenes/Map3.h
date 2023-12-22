@@ -169,7 +169,8 @@ public:
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 39.f, 32 * 1.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 39.f, 32 * 2.f));
 
-		GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
+		GameObject* player_hud = CreatePlayerHudGameObject("PlayerHud");
+		//GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
 		GameObject* quota = CreateQuotaGameObject("QuotaText");
 
 		SetPlayer(player);
@@ -269,7 +270,7 @@ public:
 
 		int randomCollectable = rand() % 4;
 		std::string name;
-		float price;
+		float price = 0.f;
 		switch (randomCollectable)
 		{
 		case 0:
@@ -360,14 +361,19 @@ public:
 		return game_object;
 	}
 
-	GameObject* CreateHealthBarGameObject(const std::string& _name)
+	GameObject* CreatePlayerHudGameObject(const std::string& _name)
 	{
 		GameObject* game_object = CreateGameObject(_name);
 
 		HealthBar* health_bar = game_object->CreateComponent<HealthBar>();
 		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
-		health->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		health->SetPosition(Maths::Vector2f(0.03f, 0.79f));
 		health->SetText("Health");
+
+		StaminaBar* stamina_bar = game_object->CreateComponent<StaminaBar>();
+		TextRenderer* stamina = game_object->CreateComponent<TextRenderer>();
+		stamina->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		stamina->SetText("Stamina");
 
 		return game_object;
 	}

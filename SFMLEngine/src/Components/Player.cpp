@@ -1,4 +1,5 @@
 #include "Components/Player.h"
+#include "Components/Character.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/SquareCollider.h"
 #include "Modules/InputModule.h"
@@ -12,8 +13,18 @@ void Player::Update(float _delta_time)
 	SpriteRenderer* playerSprite = player->GetComponent<SpriteRenderer>();
 	SquareCollider* playerCollider = player->GetComponent<SquareCollider>();
 
+	int speed = 50;
+	bool sprinting = false;
+	int sprint_speed = 70;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && Character::GetStamina() > 0.f) {
+		std::cout << "Stamina: " << Character::GetStamina() << std::endl;
+		speed = sprint_speed;
+		sprinting = true;
+	}
+
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {
-		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, -1) * _delta_time * 50;
+		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, -1) * _delta_time * speed;
 
 		player->SetPosition(newPos);
 		playerSprite->SetDirection("UP");
@@ -22,7 +33,7 @@ void Player::Update(float _delta_time)
 		moving = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(-1, 0) * _delta_time * 50;
+		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(-1, 0) * _delta_time * speed;
 
 		player->SetPosition(newPos);
 		playerSprite->SetDirection("LEFT");
@@ -31,7 +42,7 @@ void Player::Update(float _delta_time)
 		moving = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, 1) * _delta_time * 50;
+		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(0, 1) * _delta_time * speed;
 
 		player->SetPosition(newPos);
 		playerSprite->SetDirection("DOWN");
@@ -40,7 +51,7 @@ void Player::Update(float _delta_time)
 		moving = true;
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(1, 0) * _delta_time * 50;
+		Maths::Vector2f newPos = player->GetPosition() + Maths::Vector2f(1, 0) * _delta_time * speed;
 
 		player->SetPosition(newPos);
 		playerSprite->SetDirection("RIGHT");
@@ -49,8 +60,17 @@ void Player::Update(float _delta_time)
 		moving = true;
 	}
 
-	if (moving)
+	if (moving) {
 		playerSprite->IncrementCount(_delta_time);
+
+		if (sprinting) {
+			Character::SetStamina(_delta_time * -20.f);
+		}
+	}
+	if (moving || (!moving && sprinting) || (!moving && !sprinting))
+	{
+		Character::SetStamina(_delta_time * 10.f);
+	}
 
 	for (int i = 0; i < current_scene->GetColliders().size(); i++) {
 		if (SquareCollider::IsColliding(*playerCollider, *current_scene->GetColliders()[i])) {
