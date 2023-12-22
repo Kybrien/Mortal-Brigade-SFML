@@ -125,7 +125,6 @@ public:
 		if (Character::GetSpriteRenderer() == nullptr) {
 			Character::SetSpriteRenderer(new SpriteRenderer);
 			Character::SetInventory(new Inventory);
-			
 		}
 		Character::SetMaxHealth(100);
 
