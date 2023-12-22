@@ -9,6 +9,7 @@
 #include "DefaultScene.h"
 #include "QuotasReached.h"
 #include "Enemy.h"
+#include "FireSpot.h"
 
 
 
@@ -27,29 +28,63 @@ public:
 
 		GameObject* map = CreateMapGameObject("Map", "map_3");
 
-		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 20.f, 32 * 3.f));
-		GameObject* enemy1 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 60.f, 32 * 15.f));
-		GameObject* enemy2 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 77.f, 32 * 3.f));
-		GameObject* enemy3 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 95.f, 32 * 10.f));
-		GameObject* enemy4 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 3.f, 32 * 24.f));
-		GameObject* enemy5 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 17.f, 32 * 38.f));
-		GameObject* enemy6 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 37.f, 32 * 32.f));
-		GameObject* enemy7 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 77.f, 32 * 28.f));
-		GameObject* enemy8 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 10.f, 32 * 57.f));
-		GameObject* enemy9 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 48.f, 32 * 43.f));
-		GameObject* enemy10 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 50.f, 32 * 47.f));
-		GameObject* enemy11 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 92.f, 32 * 52.f));
-		GameObject* enemy12 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 82.f, 32 * 61.f));
-		GameObject* enemy13 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 23.f, 32 * 67.f));
-		GameObject* enemy14 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 5.f, 32 * 72.f));
-		GameObject* enemy15 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 45.f, 32 * 56.f));
-		GameObject* enemy16 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 10.f, 32 * 91.f));
-		GameObject* enemy17 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 34.f, 32 * 86.f));
-		GameObject* enemy18 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 55.f, 32 * 84.f));
-		GameObject* enemy19 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 76.f, 32 * 82.f));
-		GameObject* enemy20 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 93.f, 32 * 84.f));
+		//Fire
+		GameObject* fire = CreateFireGameObject("Fire", Maths::Vector2f(32 * 38.f, 32 * 3.f));
+		GameObject* fire2 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 40.f, 32 * 3.f));
+		GameObject* fire3 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 38.f, 32 * 3.f));
+		GameObject* fire4 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 11.f, 32 * 12.f));
+		GameObject* fire5 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 7.f, 32 * 23.f));
+		GameObject* fire6 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 23.f, 32 * 22.f));
+		GameObject* fire7 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 28.f, 32 * 39.f));
+		GameObject* fire8 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 32.f, 32 * 47.f));
+		GameObject* fire9 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 8.f, 32 * 43.f));
+		GameObject* fire10 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 11.f, 32 * 56.f));
+		GameObject* fire11 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 21.f, 32 * 63.f));
+		GameObject* fire12 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 8.f, 32 * 70.f));
+		GameObject* fire13 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 31.f, 32 * 73.f));
+		GameObject* fire14 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 3.f, 32 * 82.f));
+		GameObject* fire15 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 3.f, 32 * 28.f));
+		GameObject* fire16 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 26.f, 32 * 87.f));
+		GameObject* fire17 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 14.f, 32 * 94.f));
+		GameObject* fire18 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 37.f, 32 * 26.f));
+		GameObject* fire19 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 44.f, 32 * 56.f));
+		GameObject* fire20 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 45.f, 32 * 95.f));
+		GameObject* fire21 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 55.f, 32 * 84.f));
+		GameObject* fire22 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 57.f, 32 * 71.f));
+		GameObject* fire23 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 74.f, 32 * 85.f));
+		GameObject* fire24 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 86.f, 32 * 78.f));
+		GameObject* fire25 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 92.f, 32 * 66.f));
+		GameObject* fire26 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 78.f, 32 * 61.f));
+		GameObject* fire27 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 76.f, 32 * 55.f));
+		GameObject* fire28 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 96.f, 32 * 54.f));
+		GameObject* fire29 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 97.f, 32 * 66.f));
+		GameObject* fire30 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 96.f, 32 * 92.f));
+		GameObject* fire31 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 65.f, 32 * 44.f));
+		GameObject* fire32 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 75.f, 32 * 43.f));
+		GameObject* fire33 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 96.f, 32 * 34.f));
+		GameObject* fire34 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 60.f, 32 * 33.f));
+		GameObject* fire35 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 88.f, 32 * 25.f));
+		GameObject* fire36 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 79.f, 32 * 21.f));
+		GameObject* fire37 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 63.f, 32 * 28.f));
+		GameObject* fire38 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 83.f, 32 * 8.f));
+		GameObject* fire39 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 94.f, 32 * 5.f));
+		GameObject* fire40 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 69.f, 32 * 15.f));
+		GameObject* fire41 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 52.f, 32 * 17.f));
+		GameObject* fire42 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 62.f, 32 * 9.f));
+		GameObject* fire43 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 65.f, 32 * 4.f));
+		GameObject* fire44 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 52.f, 32 * 3.f));
+		GameObject* fire45 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 42.f, 32 * 17.f));
+		GameObject* fire46 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 41.f));//
+		GameObject* fire47 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 60.f, 32 * 42.f));
+		GameObject* fire48 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 60.f, 32 * 48.f));
+		GameObject* fire49 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 49.f));
+		GameObject* fire50 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 43.f, 32 * 49.f));
+		GameObject* fire51 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 42.f, 32 * 48.f));
+		GameObject* fire52 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 43.f, 32 * 41.f));
+		GameObject* fire53 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 42.f, 32 * 42.f));
 
 
+		//Mine
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 8.f, 32 * 6.f));
 		GameObject* mine1 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 21.f, 32 * 15.f));
 		GameObject* mine2 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 41.f, 32 * 13.f));
@@ -89,9 +124,30 @@ public:
 		GameObject* mine36 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 83.f, 32 * 81.f));
 		GameObject* mine37 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 76.f, 32 * 92.f));
 
-		
+		//Enemy
+		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 20.f, 32 * 3.f));
+		GameObject* enemy1 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 60.f, 32 * 15.f));
+		GameObject* enemy2 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 77.f, 32 * 3.f));
+		GameObject* enemy3 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 95.f, 32 * 10.f));
+		GameObject* enemy4 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 3.f, 32 * 24.f));
+		GameObject* enemy5 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 17.f, 32 * 38.f));
+		GameObject* enemy6 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 37.f, 32 * 32.f));
+		GameObject* enemy7 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 77.f, 32 * 28.f));
+		GameObject* enemy8 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 10.f, 32 * 57.f));
+		GameObject* enemy9 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 48.f, 32 * 43.f));
+		GameObject* enemy10 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 50.f, 32 * 47.f));
+		GameObject* enemy11 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 92.f, 32 * 52.f));
+		GameObject* enemy12 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 82.f, 32 * 61.f));
+		GameObject* enemy13 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 23.f, 32 * 67.f));
+		GameObject* enemy14 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 5.f, 32 * 72.f));
+		GameObject* enemy15 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 45.f, 32 * 56.f));
+		GameObject* enemy16 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 10.f, 32 * 91.f));
+		GameObject* enemy17 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 34.f, 32 * 86.f));
+		GameObject* enemy18 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 55.f, 32 * 84.f));
+		GameObject* enemy19 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 76.f, 32 * 82.f));
+		GameObject* enemy20 = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 93.f, 32 * 84.f));
 
-
+		//Collectable
 		GameObject* collectable = CreateCollectableGameObject(Maths::Vector2f(32 * 26.f, 32 * 3.f));
 		GameObject* collectable1 = CreateCollectableGameObject(Maths::Vector2f(32 * 96.f, 32 * 3.f));
 		GameObject* collectable2 = CreateCollectableGameObject(Maths::Vector2f(32 * 74.f, 32 * 8.f));
@@ -108,7 +164,6 @@ public:
 		GameObject* collectable13 = CreateCollectableGameObject(Maths::Vector2f(32 * 2.f, 32 * 97.f));
 		GameObject* collectable14 = CreateCollectableGameObject(Maths::Vector2f(32 * 54.f, 32 * 93.f));
 		GameObject* collectable15 = CreateCollectableGameObject(Maths::Vector2f(32 * 83.f, 32 * 96.f));
-
 
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 39.f, 32 * 1.f));
@@ -281,6 +336,30 @@ public:
 
 		return game_object;
 	}
+
+
+	GameObject* CreateFireGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+		FireSpot* firespot = game_object->CreateComponent<FireSpot>();
+		firespot->SetScene(this);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		/*SpriteRenderer* sprite_renderer = GetOwner()->GetComponent<SpriteRenderer>();*/
+		sprite_renderer->LoadSprite("fire");
+		/*GetOwner()->SetPosition(GetOwner()->GetPosition() - Maths::Vector2f(64, 64));*/
+		sprite_renderer->SetTextureSize(Maths::Vector2u(24, 32));
+		sprite_renderer->SetScale(1.0f);
+		sprite_renderer->SetAnimSpeed(1.0f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		sprite_renderer->SetEnd(sf::Vector2i(7, 0));
+		//sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
+		return game_object;
+	}
+
 	GameObject* CreateHealthBarGameObject(const std::string& _name)
 	{
 		GameObject* game_object = CreateGameObject(_name);
