@@ -10,18 +10,19 @@ void RED::Update(float _delta_time) {
 		sprite->SetEnd(sf::Vector2i(9, 2));
 
 		if (!sound_playing) {
-			AssetModule::SetSoundVolume("monster_red_kill", 25.f);
-			AssetModule::PlaySound("monster_red_chase");
-			AssetModule::LoopSound("monster_red_chase", true);
+			std::cout << "sound red" << std::endl;
+			AssetModule::PlaySound("red_chase");
+			AssetModule::SetSoundVolume("red_chase", 25.f);
+			AssetModule::LoopSound("red_chase", true);
 			sound_playing = true;
 		}
 		if (path.empty()) {
 			FindPath(scene->GetColliders(), GetOwner()->GetPosition(), scene->GetPlayer());
 		}
 	}
-	if (!IsPlayerInRange()) {
+	if (!IsPlayerInRange() && sound_playing == true) {
 		sound_playing = false;
-		AssetModule::StopSound("monster_red_chase");
+		AssetModule::StopSound("red_chase");
 	}
 
 	if (!path.empty()) {

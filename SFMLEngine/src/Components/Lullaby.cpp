@@ -22,7 +22,7 @@ void Lullaby::Update(float _delta_time) {
 		if (count >= sleep_time) {
 			FindPath(scene->GetColliders(), GetOwner()->GetPosition(), scene->GetPlayer());
 			SpriteRenderer* sprite = GetOwner()->GetComponent<SpriteRenderer>();
-			sprite->SetBegin(sf::Vector2i(0, 1));
+			sprite->SetBegin(sf::Vector2i(1, 1));
 			sprite->SetEnd(sf::Vector2i(12, 1));
 			chasing = true;
 			canAttack = true;

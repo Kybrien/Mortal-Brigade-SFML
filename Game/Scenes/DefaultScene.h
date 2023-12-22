@@ -47,12 +47,8 @@ public:
 
 		std::function<void()> openLocker = [this]() { Locker(); };
 
-		GameObject* locker1 = CreateLockerGameObject(Maths::Vector2f(32 * 14.f, 32 * 4.f), openLocker);
 		GameObject* locker2 = CreateLockerGameObject(Maths::Vector2f(32 * 15.f, 32 * 4.f), openLocker);
-		GameObject* locker3 = CreateLockerGameObject(Maths::Vector2f(32 * 16.f, 32 * 4.f), openLocker);
-		GameObject* locker4 = CreateLockerGameObject(Maths::Vector2f(32 * 18.f, 32 * 4.f), openLocker);
 		GameObject* locker5 = CreateLockerGameObject(Maths::Vector2f(32 * 19.f, 32 * 4.f), openLocker);
-		GameObject* locker6 = CreateLockerGameObject(Maths::Vector2f(32 * 20.f, 32 * 4.f), openLocker);
 
 		SetPlayer(player);
 
@@ -324,7 +320,7 @@ public:
 		OpenLocker* locker = game_object->CreateComponent<OpenLocker>();
 		locker->SetFunc(_func);
 		locker->SetCurrentScene(this);
-		locker->SetMaxActivationDistance(25.f);
+		locker->SetMaxActivationDistance(50.f);
 
 		return game_object;
 	}

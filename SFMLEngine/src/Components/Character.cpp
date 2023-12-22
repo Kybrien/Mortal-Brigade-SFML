@@ -10,7 +10,6 @@ void Character::SetHealth(int _health) {
 		health += _health;
 	}
 	if (health <= 0) {
-		std::cout << "dead" << std::endl;
 		(*func)();
 	}
 }
@@ -28,11 +27,9 @@ void Character::SetStamina(float _stamina) {
 
 	if (stamina == 0) {
 		canSprint = false;
-		std::cout << canSprint << std::endl;
 	}
 	else if (stamina == maxStamina) {
 		canSprint = true;
-		std::cout << canSprint << std::endl;
 	}
 }
 

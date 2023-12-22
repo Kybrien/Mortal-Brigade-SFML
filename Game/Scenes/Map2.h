@@ -201,7 +201,10 @@ public:
 		GameObject* game_object = CreateGameObject("Collectable");
 		game_object->SetPosition(_position);
 
-		int randomCollectable = rand() % 4;
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> distrib(0, 3);
+		int randomCollectable = distrib(gen);
 		std::string name;
 		float price = 0.f;
 		switch (randomCollectable)

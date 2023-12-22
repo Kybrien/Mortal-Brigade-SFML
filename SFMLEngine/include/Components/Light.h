@@ -16,10 +16,13 @@ public:
 
 	void Render(sf::RenderWindow* _window) override;
 
+	void SetRender(bool _render) { renderBool = _render; }
+
 private:
 	sf::Texture* pointLightTexture = nullptr;
 	ltbl::LightSystem* ls = nullptr;
 	ltbl::LightPointEmission* light = nullptr;
 	std::vector<sf::RectangleShape*> shapes;
 	std::shared_ptr<ltbl::LightShape> lightShape = std::make_shared<ltbl::LightShape>();
+	bool renderBool = true;
 };

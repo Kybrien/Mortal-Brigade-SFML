@@ -19,7 +19,7 @@ void AssetModule::Init()
 	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg"); //ok
   
 	//Monsters SFX and Musics
-	AddSound("monster_red_chase", "../Assets/Sounds/red_chase.ogg"); //ok
+	AddSound("red_chase", "../Assets/Sounds/red_chase.ogg"); //ok
 
 	AddSound("monster_lullaby_sleep", "../Assets/Sounds/lullaby.ogg"); //ok
 	AddSound("monster_lullaby_scream", "../Assets/Sounds/lullaby_scream.ogg"); //ok

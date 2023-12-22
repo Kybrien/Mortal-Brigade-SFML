@@ -60,7 +60,16 @@ void CameraModule::Update()
 	}
 	else {
 		camera->setSize(window->getSize().x, window->getSize().y);
-		camera->setCenter(window->getSize().x / 2, window->getSize().y / 2);
+		if (scene->GetPlayer()) {
+			GameObject* player = scene->GetPlayer();
+			SquareCollider* player_collider = player->GetComponent<SquareCollider>();
+			sf::Vector2f playerPosition = sf::Vector2f(player->GetPosition().x + player_collider->GetWidth() / 2, player->GetPosition().y + player_collider->GetHeight() / 2);
+			camera->setCenter(playerPosition);
+		}
+		else {
+			camera->setCenter(window->getSize().x / 2, window->getSize().y / 2);
+		}
+		
 	}
 
 	window->setView(*camera);

@@ -2,6 +2,7 @@
 #include "Components/Character.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/SquareCollider.h"
+#include "Components/Light.h"
 #include "Modules/InputModule.h"
 
 void Player::Update(float _delta_time)
@@ -20,6 +21,18 @@ void Player::Update(float _delta_time)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift) && Character::GetSprint() == true) {
 		speed = sprint_speed;
 		sprinting = true;
+	}
+
+
+	if (current_scene->GetName() == "Map1Scene" || current_scene->GetName() == "Map2Scene" || current_scene->GetName() == "Map3Scene") {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Subtract)) {
+			current_scene->UsePlayerCamera(false);
+			current_scene->GetPlayer()->GetComponent<Light>()->SetRender(false);
+		}
+		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Add)) {
+			current_scene->UsePlayerCamera(true);
+			current_scene->GetPlayer()->GetComponent<Light>()->SetRender(true);
+		}
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z)) {

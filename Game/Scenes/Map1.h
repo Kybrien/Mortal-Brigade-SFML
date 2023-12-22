@@ -13,6 +13,7 @@
 #include "QuotasReached.h"
 #include "QuotasNotReached.h"
 #include "RED.h"
+#include <random>
 
 #include "Lullaby.h"
 
@@ -34,6 +35,7 @@ public:
 		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_1");
+
 
 		//Mines
 		GameObject* mine = CreateMineGameObject("Mine", Maths::Vector2f(32 * 8.f, 32 * 25.f));
@@ -220,28 +222,35 @@ public:
 	{
 		GameObject* game_object = CreateGameObject("Collectable");
 		game_object->SetPosition(_position);
+		std::random_device rd;  
+		std::mt19937 gen(rd());
+		std::uniform_int_distribution<int> distrib(0, 3);
+		int randomCollectable = distrib(gen);
 
-		int randomCollectable = rand() % 4;
 		std::string name;
 		float price = 0.f;
 		switch (randomCollectable)
 		{
-		case 0:
-			break;
-		case 1:
-			name = "coral";
-			price = 10.f;
-			break;
-		case 2:
-			name = "amethyst";
-			price = 20.f;
-			break;
-		case 3:
-			name = "ore";
-			price = 30.f;
-			break;
-		default:
-			break;
+			case 0:
+				std::cout << "no gen";
+				break;
+			case 1:
+				name = "coral";
+				price = 10.f;
+				std::cout << "coral";
+				break;
+			case 2:
+				name = "amethyst";
+				price = 20.f;
+				std::cout << "amethyst";
+				break;
+			case 3:
+				std::cout << "ore";
+				name = "ore";
+				price = 30.f;
+				break;
+			default:
+				break;
 		}
 
 		if (randomCollectable > 0) {

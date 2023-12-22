@@ -14,6 +14,7 @@ void Collectable::Prompt() {
 
     if (inventory) {
         AssetModule::PlaySound("item_pickup");
+        AssetModule::SetSoundVolume("item_pickup", 20.f);
         inventory->Add(name, 1);
         inventory->AddMoney(GetPrice());
         TextRenderer* quotas = Character::GetQuotaUI();

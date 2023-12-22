@@ -2,8 +2,6 @@
 #include "Components/Button.h"
 #include "Components/SpriteRenderer.h"
 #include <iostream>
-#include <thread>   // Pour std::this_thread::sleep_for
-#include <chrono>   // Pour std::chrono::milliseconds
 
 void Button::Render(sf::RenderWindow* _window) {
     RectangleShapeRenderer::Render(_window);
@@ -29,7 +27,6 @@ void Button::Render(sf::RenderWindow* _window) {
             clicked = true;
             on_click();
             std::cout << "Clicked" << std::endl;
-            std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
     }
     _window->draw(*shape);
