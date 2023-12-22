@@ -37,12 +37,6 @@ public:
 		AssetModule::SetSoundVolume("welcome_back", 30.f);
 
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
-		
-		//GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
-
-		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 3.f, 32 * 5.f));
-
-		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 3.f, 32 * 14.f)); 
 
 		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 19.f, 32 * 6.f)); 
 
@@ -63,10 +57,6 @@ public:
 		GameObject* locker6 = CreateLockerGameObject(Maths::Vector2f(32 * 20.f, 32 * 4.f), openLocker);
 
 		SetPlayer(player);
-
-		//GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
-
-		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
 		std::function<void()>* death = new std::function<void()>([this]() { Death(); });
 		Character::SetFunc(death);
@@ -211,7 +201,7 @@ public:
 		return game_object;
 	}
 
-	//pb de sprite renderer 
+	//pb de sprite renderer ??
 	GameObject* CreateMineElecGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);

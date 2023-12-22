@@ -15,8 +15,6 @@
 #include "RED.h"
 
 
-
-
 class ChooseMap;
 class DefaultScene;
 
@@ -28,8 +26,10 @@ public:
 		UsePlayerCamera(true);
 		AssetModule::StopAll();
 
+		AssetModule::PlaySound("player_spawn");
+
 		AssetModule::Play("ambient");
-		AssetModule::SetMusicVolume("ambient", 20.f);
+		AssetModule::SetMusicVolume("ambient", 35.f);
 		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_1");
@@ -84,7 +84,6 @@ public:
 		GameObject* fire17 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 3.f, 32 * 49.f));
 
 		//Enemies
-		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 9.f, 32 * 27.f));
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 9.f, 32 * 30.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 9.f, 32 * 29.f));
