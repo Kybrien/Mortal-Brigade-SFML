@@ -21,6 +21,7 @@ class ChooseMap : public Scene {
 public:
     ChooseMap() : Scene("ChooseMapScene") {
         // Création de l'arrière-plan pour la sélection de la carte
+        AssetModule::StopAll();
         GameObject* background = CreateBackgroundGameObject("MapSelectionBackground", "map_selection_background");
 
         AssetModule::Play("moon_selection");

@@ -10,6 +10,7 @@ class DefaultScene;
 class QuotasReached : public Scene {
 public:
     QuotasReached() :  Scene("QuotasReached") {
+        AssetModule::StopAll();
 
         GameObject* bg = CreateBackgroundGameObject("bg", "quotasOk");
 

@@ -21,6 +21,7 @@ public:
 	Map3() : Scene("Map3Scene")
 	{
 		UsePlayerCamera(true);
+		AssetModule::StopAll();
 
 		AssetModule::Play("ambient");
 		AssetModule::SetMusicVolume("ambient", 20.f);
@@ -74,7 +75,7 @@ public:
 		GameObject* fire43 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 65.f, 32 * 4.f));
 		GameObject* fire44 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 52.f, 32 * 3.f));
 		GameObject* fire45 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 42.f, 32 * 17.f));
-		GameObject* fire46 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 41.f));//
+		GameObject* fire46 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 41.f));
 		GameObject* fire47 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 60.f, 32 * 42.f));
 		GameObject* fire48 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 60.f, 32 * 48.f));
 		GameObject* fire49 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 49.f));

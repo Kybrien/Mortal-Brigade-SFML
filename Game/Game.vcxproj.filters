@@ -12,7 +12,6 @@
     <ClInclude Include="Scenes\MenuScene.h" />
     <ClInclude Include="Scenes\SelectCharacter.h" />
     <ClInclude Include="Scenes\Map3.h" />
-    <ClInclude Include="Scenes\MenuPause.h" />
     <ClInclude Include="Scenes\QuotasReached.h" />
     <ClInclude Include="Scenes\QuotasNotReached.h" />
     <ClInclude Include="Scenes\Death.h" />

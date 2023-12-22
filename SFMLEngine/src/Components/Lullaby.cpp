@@ -13,6 +13,7 @@ void Lullaby::Update(float _delta_time) {
 			AssetModule::StopSound("monster_lullaby_sleep");
 			AssetModule::PlaySound("monster_lullaby_sleep");
 			AssetModule::SetSoundVolume("monster_lullaby_sleep", 25.f);
+
 		}
 	}
 	if (!sleeping && !chasing) {

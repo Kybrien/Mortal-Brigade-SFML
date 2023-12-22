@@ -19,6 +19,7 @@ public:
 	Map2() : Scene("Map2Scene")
 	{
 		UsePlayerCamera(true);
+		AssetModule::StopAll();
 
 		AssetModule::Play("ambient");
 		AssetModule::SetMusicVolume("ambient", 20.f);

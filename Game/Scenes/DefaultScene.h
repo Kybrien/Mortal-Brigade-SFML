@@ -21,7 +21,6 @@
 #include "Red.h"
 
 #include "Character.h"
-#include "MenuPause.h"
 #include "PauseComponent.h"
 #include "TextRenderer.h"
 #include "Death.h"
@@ -32,24 +31,22 @@ public:
 	DefaultScene() : Scene("DefaultScene")
 	{
 		UsePlayerCamera(true);
+		AssetModule::StopAll();
 
 		AssetModule::PlaySound("welcome_back");
 		AssetModule::SetSoundVolume("welcome_back", 30.f);
 
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
-
+		
 		//GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
 
 		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 3.f, 32 * 5.f));
 
-		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 5.f)); 
+		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 3.f, 32 * 14.f)); 
 
 		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 19.f, 32 * 6.f)); 
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
-
-		std::function<void()> pause_func = [this]() { Pause(); };
-		GameObject* pause = CreatePauseMenu(pause_func);
     
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));
 
@@ -73,11 +70,6 @@ public:
 
 		std::function<void()>* death = new std::function<void()>([this]() { Death(); });
 		Character::SetFunc(death);
-	}
-
-	void Pause() {
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<MenuPause>(false);
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("MenuPause");
 	}
 
 	void MapSelection() {

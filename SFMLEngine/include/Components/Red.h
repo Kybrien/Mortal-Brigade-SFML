@@ -7,4 +7,6 @@ class RED : public Enemy {
 public:
 	void Update(float _delta_time) override;
 
+private:
+	bool sound_playing = false;
 };

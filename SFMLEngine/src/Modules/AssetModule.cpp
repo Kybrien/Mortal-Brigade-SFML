@@ -19,7 +19,7 @@ void AssetModule::Init()
 	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg"); //ok
   
 	//Monsters SFX and Musics
-	AddMusic("monster_red_chase", "../Assets/Sounds/red_chase.ogg"); //ok
+	AddSound("monster_red_chase", "../Assets/Sounds/red_chase.ogg"); //ok
 	AddSound("monster_red_kill", "../Assets/Sounds/red_kill.ogg");
 
 	AddSound("monster_lullaby_sleep", "../Assets/Sounds/lullaby.ogg"); //ok
@@ -104,12 +104,12 @@ void AssetModule::AddAsset(std::string _key, std::string _fileName)
 	if (AssetModule::assets.find(_key) == AssetModule::assets.end()) {
 		AssetModule::assets.insert(std::make_pair(_key, texture));
 	}
-	if (AssetModule::assets.find(_key) != AssetModule::assets.end()) {
-		AssetModule::assets.at(_key)->loadFromFile(_fileName);
+	if (AssetModule::assets.find(_key) != AssetModule::assets.end()) { 
+		AssetModule::assets.at(_key)->loadFromFile(_fileName); 
 	}
 }
 
-void AssetModule::AddFont(std::string _key, std::string _fileName)
+void AssetModule::AddFont(std::string _key, std::string _fileName) 
 {
 	sf::Font* font = new sf::Font();
 	if (!font->loadFromFile(_fileName))
