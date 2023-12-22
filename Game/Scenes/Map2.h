@@ -8,6 +8,7 @@
 #include "Character.h"
 #include "DefaultScene.h"
 #include "QuotasReached.h"
+#include "FireSpot.h"
 
 class DefaultScene;
 
@@ -39,6 +40,32 @@ public:
 		GameObject* mine14 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 15.f, 32 * 14.f));
 		GameObject* mine15 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 3.f, 32 * 8.f));
 		GameObject* mine16 = CreateMineGameObject("Mine", Maths::Vector2f(32 * 23.f, 32 * 6.1f));
+
+		GameObject* fire = CreateFireGameObject("Fire", Maths::Vector2f(32 * 37.f, 32 * 47.f));
+		GameObject* fire2 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 51.f, 32 * 47.f));
+		GameObject* fire3 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 45.f, 32 * 39.f));
+		GameObject* fire4 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 55.f, 32 * 34.f));
+		GameObject* fire5 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 47.f, 32 * 24.f));
+		GameObject* fire6 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 56.f, 32 * 15.f));
+		GameObject* fire7 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 43.f, 32 * 15.f));
+		GameObject* fire8 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 53.f, 32 * 9.f));
+		GameObject* fire9 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 43.f, 32 * 4.f));
+		GameObject* fire10 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 31.f, 32 * 8.f));
+		GameObject* fire11 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 20.f, 32 * 3.f));
+		GameObject* fire12 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 2.f, 32 * 10.f));
+		GameObject* fire13 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 22.f, 32 * 12.f));
+		GameObject* fire14 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 14.f, 32 * 22.f));
+		GameObject* fire15 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 3.f, 32 * 21.f));
+		GameObject* fire16 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 8.f, 32 * 29.f));
+		GameObject* fire17 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 19.f, 32 * 32.f));
+		GameObject* fire18 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 6.f, 32 * 39.f));
+		GameObject* fire19 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 16.f, 32 * 49.f));
+		GameObject* fire20 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 39.f, 32 * 39.f));
+		GameObject* fire21 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 30.f, 32 * 33.f));
+		GameObject* fire22 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 40.f, 32 * 20.f));
+		GameObject* fire23 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 30.f, 32 * 19.f));
+		GameObject* fire24 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 26.f, 32 * 13.f));
+
 
 		GameObject* collectable1 = CreateCollectableGameObject(Maths::Vector2f(32 * 49.f, 32 * 44.f));
 		GameObject* collectable2 = CreateCollectableGameObject(Maths::Vector2f(32 * 51.f, 32 * 26.f));
@@ -171,6 +198,28 @@ public:
 			collectable->SetActionText(name);
 			collectable->SetPrice(price);
 		}
+		return game_object;
+	}
+
+	GameObject* CreateFireGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+		FireSpot* firespot = game_object->CreateComponent<FireSpot>();
+		firespot->SetScene(this);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		/*SpriteRenderer* sprite_renderer = GetOwner()->GetComponent<SpriteRenderer>();*/
+		sprite_renderer->LoadSprite("fire");
+		/*GetOwner()->SetPosition(GetOwner()->GetPosition() - Maths::Vector2f(64, 64));*/
+		sprite_renderer->SetTextureSize(Maths::Vector2u(24, 32));
+		sprite_renderer->SetScale(1.0f);
+		sprite_renderer->SetAnimSpeed(1.0f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 0));
+		sprite_renderer->SetEnd(sf::Vector2i(7, 0));
+		//sprite_renderer->SetOffset(Maths::Vector2i(0, 0));
+
 		return game_object;
 	}
 
