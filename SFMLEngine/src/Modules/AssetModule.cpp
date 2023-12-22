@@ -19,27 +19,19 @@ void AssetModule::Init()
 	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg"); //ok
   
 	//Monsters SFX and Musics
-	AddMusic("monster_red_chase", "../Assets/Sounds/red_chase.ogg");
-	AddSound("monster_red_looking", "../Assets/Sounds/red_looking.ogg");
+	AddMusic("monster_red_chase", "../Assets/Sounds/red_chase.ogg"); //ok
 	AddSound("monster_red_kill", "../Assets/Sounds/red_kill.ogg");
 
 	AddSound("monster_lullaby_sleep", "../Assets/Sounds/lullaby.ogg"); //ok
-	AddSound("monster_lullaby_scream", "../Assets/Sounds/lullaby_scream.ogg");
-	AddSound("monster_lullaby_kill", "../Assets/Sounds/lullaby_kill.ogg");
-	
-	AddSound("monster_ex_explosion", "../Assets/Sounds/ex_explosion.ogg");
-	AddSound("monster_ex_monstre", "../Assets/Sounds/ex_monstre.ogg");
+	AddSound("monster_lullaby_scream", "../Assets/Sounds/lullaby_scream.ogg"); //ok
 
 	// Player SFX
 	AddSound("player_spawn", "../Assets/Sounds/player_spawn.ogg");
 	AddSound("item_pickup", "../Assets/Sounds/item_pickup.ogg"); //ok
-	AddSound("inventory_open", "../Assets/Sounds/inventory_open.ogg"); //ok
-	AddSound("inventory_close", "../Assets/Sounds/inventory_close.ogg"); //ok
+	//AddSound("inventory_open", "../Assets/Sounds/inventory_open.ogg"); Display of the inventory not implemented yet
+	//AddSound("inventory_close", "../Assets/Sounds/inventory_close.ogg"); 
 
 	//Scene SFX
-	AddMusic("level_int", "../Assets/Sounds/level01_int.ogg");
-	AddMusic("level01_ext", "../Assets/Sounds/level01_ext.ogg");
-	AddMusic("level02_ext", "../Assets/Sounds/level02_ext.ogg");
 	AddMusic("ambient", "../Assets/Sounds/ambient.ogg");
 	AddSound("entering_int", "../Assets/Sounds/entering_int.ogg");
 	AddSound("mine_explo", "../Assets/Sounds/mine_explo.ogg");

@@ -190,7 +190,7 @@ public:
 		sprite_renderer->SetAutoIncrement(true);
 		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
 		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
-		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
+		/*sprite_renderer->SetOffset(Maths::Vector2i(5, 5));*/
 
 		RED* red_enemy_class = game_object->CreateComponent<RED>();
 		red_enemy_class->SetScene(this);
