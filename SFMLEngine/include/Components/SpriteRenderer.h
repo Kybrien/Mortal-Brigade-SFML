@@ -40,6 +40,7 @@ public:
 	void SetLoop(bool _loop) { loop = _loop; }
 
 
+
 private:
 	sf::Sprite* sprite = nullptr;
 	sf::Texture* texture = nullptr;

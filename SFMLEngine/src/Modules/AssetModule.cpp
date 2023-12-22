@@ -23,8 +23,8 @@ void AssetModule::Init()
 	AddSound("monster_red_looking", "../Assets/Sounds/red_looking.ogg");
 	AddSound("monster_red_kill", "../Assets/Sounds/red_kill.ogg");
 
-	AddMusic("monster_lullaby_sleep", "../Assets/Sounds/lullaby.ogg"); //ok
-	AddMusic("monster_lullaby_scream", "../Assets/Sounds/lullaby_scream.ogg");
+	AddSound("monster_lullaby_sleep", "../Assets/Sounds/lullaby.ogg"); //ok
+	AddSound("monster_lullaby_scream", "../Assets/Sounds/lullaby_scream.ogg");
 	AddSound("monster_lullaby_kill", "../Assets/Sounds/lullaby_kill.ogg");
 	
 	AddSound("monster_ex_explosion", "../Assets/Sounds/ex_explosion.ogg");
@@ -32,9 +32,7 @@ void AssetModule::Init()
 
 	// Player SFX
 	AddSound("player_spawn", "../Assets/Sounds/player_spawn.ogg");
-	AddSound("player_death", "../Assets/Sounds/player_death.ogg"); //ok
 	AddSound("item_pickup", "../Assets/Sounds/item_pickup.ogg"); //ok
-	//AddSound("player_movement", "../Assets/Sounds/player_movement.ogg");
 	AddSound("inventory_open", "../Assets/Sounds/inventory_open.ogg"); //ok
 	AddSound("inventory_close", "../Assets/Sounds/inventory_close.ogg"); //ok
 

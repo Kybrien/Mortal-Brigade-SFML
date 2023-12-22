@@ -46,7 +46,7 @@ void SpriteRenderer::Update(float _delta_time) {
 			animation.y++;
 			
 		}
-		if (animation.x == endTexture.x && animation.y == endTexture.y) {
+		if (animation.x == endTexture.x && animation.y == endTexture.y ) {
 			if (loop) {
 				animation = beginTexture;
 			}

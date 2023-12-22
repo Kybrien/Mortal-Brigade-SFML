@@ -273,4 +273,21 @@ public:
 
 		return game_object;
 	}
+
+	GameObject* CreatePlayerHudGameObject(const std::string& _name)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+
+		HealthBar* health_bar = game_object->CreateComponent<HealthBar>();
+		TextRenderer* health = game_object->CreateComponent<TextRenderer>();
+		health->SetPosition(Maths::Vector2f(0.03f, 0.79f));
+		health->SetText("Health");
+
+		StaminaBar* stamina_bar = game_object->CreateComponent<StaminaBar>();
+		TextRenderer* stamina = game_object->CreateComponent<TextRenderer>();
+		stamina->SetPosition(Maths::Vector2f(0.03f, 0.87f));
+		stamina->SetText("Stamina");
+
+		return game_object;
+	}
 };

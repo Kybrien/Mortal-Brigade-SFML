@@ -170,7 +170,6 @@ public:
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 39.f, 32 * 2.f));
 
 		GameObject* player_hud = CreatePlayerHudGameObject("PlayerHud");
-		//GameObject* health_bar = CreateHealthBarGameObject("HealthBar");
 		GameObject* quota = CreateQuotaGameObject("QuotaText");
 
 		SetPlayer(player);
@@ -327,7 +326,6 @@ public:
 		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
 
 		Enemy* red_enemy_class = game_object->CreateComponent<Enemy>();
-		red_enemy_class->SetName("RED");
 		red_enemy_class->SetSpeed(40.f);
 		red_enemy_class->SetMaxHealth(30);
 		red_enemy_class->SetAttackSpeed(2.f);
