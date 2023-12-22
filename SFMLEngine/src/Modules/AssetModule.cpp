@@ -3,8 +3,8 @@
 
 float AssetModule::volume = 100.f;
 float AssetModule::maxVolume = 100.f;
-sf::Music* AssetModule::sound = nullptr;
-sf::Music* AssetModule::music = nullptr;
+std::map<std::string, sf::Music*> soundsPlaying;
+std::map<std::string, sf::Music*> musicsPlaying;
 std::map<std::string, sf::Texture*> AssetModule::assets;
 std::map<std::string, sf::Music*> AssetModule::sounds;
 std::map<std::string, sf::Music*> AssetModule::musics;
@@ -15,8 +15,8 @@ void AssetModule::Init()
 	Module::Init();
 
 	// Sounds
-	AddMusic("menu", "../Assets/Sounds/background_main_menu.ogg");
-	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg");
+	AddMusic("menu", "../Assets/Sounds/background_main_menu.ogg"); //ok
+	AddMusic("moon_selection", "../Assets/Sounds/background_moon_selection.ogg"); //ok
   
 	//Monsters SFX and Musics
 	AddMusic("monster_red_chase", "../Assets/Sounds/red_chase.ogg");
@@ -45,7 +45,8 @@ void AssetModule::Init()
 	AddMusic("ambient", "../Assets/Sounds/ambient.ogg");
 	AddSound("entering_int", "../Assets/Sounds/entering_int.ogg");
 	AddSound("mine_explo", "../Assets/Sounds/mine_explo.ogg");
-	AddSound("mine_lightning", "../Assets/Sounds/mine_lighning.ogg");
+	AddSound("fire_burning", "../Assets/Sounds/fire.ogg");
+	//AddSound("mine_lightning", "../Assets/Sounds/mine_lighning.ogg");
 	AddSound("welcome_back", "../Assets/Sounds/welcome_back.ogg");
   
 	std::cout << "Musics and Sounds successfully added." << std::endl;
@@ -54,6 +55,9 @@ void AssetModule::Init()
 	AddAsset("menu_background", "../Assets/Images/menu_background.png");
 	AddAsset("pause_background", "../Assets/Images/pause_background.png");
 	AddAsset("map_selection_background", "../Assets/Images/map_selection_background.png");
+	AddAsset("GameOverBackground", "../Assets/Images/gameover_bg.jpg");
+	AddAsset("ejected", "../Assets/Images/Ejected.jpg");
+	AddAsset("quotasOk", "../Assets/Images/QuotasOK.png");
 
 	// Sprites
 	AddAsset("player", "../Assets/Sprites/CharacterSpriteSheetPink.png");
@@ -83,6 +87,7 @@ void AssetModule::Init()
 	AddAsset("moon_2", "../Assets/Sprites/moon_2.png");
 	AddAsset("moon_3", "../Assets/Sprites/moon_3.png");
 	AddAsset("fire", "../Assets/Sprites/Fire.png");
+	AddAsset("cross", "../Assets/Sprites/cross.png");
 
 	std::cout << "Image and sprites successfully added." << std::endl;
 
@@ -92,33 +97,15 @@ void AssetModule::Init()
 }
 
 void AssetModule::Play(std::string _key) {
-	if (AssetModule::musics.find(_key) != AssetModule::musics.end())
-	{
-		AssetModule::music = AssetModule::musics.at(_key);
-		if (AssetModule::music->getStatus() != sf::Music::Playing) {
-			AssetModule::music->setVolume(volume);
-			AssetModule::music->play();
-		}
-	}
-	else
-	{
-		std::cout << "Couldn't load music " << _key << std::endl;
-	}
+	sf::Music* music = GetMusic(_key);
+	music->setVolume(volume);
+	music->play();
 }
 
 void AssetModule::PlaySound(std::string _key) {
-	if (AssetModule::sounds.find(_key) != AssetModule::sounds.end())
-	{
-		AssetModule::sound = AssetModule::sounds.at(_key);
-		if (AssetModule::music->getStatus() != sf::Music::Playing) {
-			AssetModule::sound->setVolume(volume);
-			AssetModule::sound->play();
-		}
-	}
-	else
-	{
-		std::cout << "Couldn't load sound " << _key << std::endl;
-	}
+	sf::Music* sound = GetSound(_key);
+	sound->setVolume(volume);
+	sound->play();
 }
 
 void AssetModule::AddAsset(std::string _key, std::string _fileName)
@@ -160,9 +147,37 @@ void AssetModule::AddMusic(std::string _key, std::string _fileName) {
 	AssetModule::musics.insert(std::make_pair(_key, _music));
 }
 
+sf::Music* AssetModule::GetSound(std::string _name) {
+	auto it = sounds.find(_name);
+
+	// Vérifier si la clé a été trouvée
+	if (it != sounds.end()) {
+		// Retourner la valeur associée à la clé
+		return it->second;
+	}
+}
+
+sf::Music* AssetModule::GetMusic(std::string _name) {
+	auto it = musics.find(_name);
+
+	// Vérifier si la clé a été trouvée
+	if (it != musics.end()) {
+		// Retourner la valeur associée à la clé
+		return it->second;
+	}
+}
+
+void AssetModule::StopAll() {
+	for (auto& sound : AssetModule::sounds) {
+		sound.second->stop();
+	}
+	for (auto& music : AssetModule::musics) {
+		music.second->stop();
+	}
+}
+
+
 AssetModule::~AssetModule() {
-	delete AssetModule::sound;
-	delete AssetModule::music;
 	for (auto& sound : AssetModule::sounds) {
 		delete sound.second;
 	}

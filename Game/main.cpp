@@ -6,6 +6,7 @@
 #include "Scenes/Map1.h"
 #include "Scenes/Map2.h"
 #include "Scenes/SelectCharacter.h"
+#include "Scenes/QuotasReached.h"
 
 int main()
 {

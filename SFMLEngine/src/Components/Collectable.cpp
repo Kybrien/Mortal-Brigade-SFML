@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include "Modules/SceneModule.h"
 #include "Modules/AssetModule.h"
@@ -6,17 +5,25 @@
 #include "Components/Inventory.h"
 #include "Components/Character.h"
 #include "Components/TextRenderer.h"
+#include "Modules/AssetModule.h"
 
 void Collectable::Prompt() {
     std::cout << "Collecting !!";
     Inventory* inventory = Character::GetInventory();
+    
 
     if (inventory) {
         AssetModule::PlaySound("item_pickup");
         inventory->Add(name, 1);
         inventory->AddMoney(GetPrice());
         TextRenderer* quotas = Character::GetQuotaUI();
-        quotas->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + " / " + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
+        quotas->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + "/" + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
+        if (Character::GetInventory()->GetTotalMoney() >= Character::GetInventory()->GetQuotas()) {
+            quotas->SetColor(sf::Color::Green);
+        }
+        else {
+            quotas->SetColor(sf::Color::White);
+        }
 
         inventory->DisplayInventory();
         std::cout << "Total Money: " << inventory->GetTotalMoney() << std::endl;

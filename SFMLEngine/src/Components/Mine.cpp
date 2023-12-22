@@ -1,6 +1,7 @@
 #include "Components/Mine.h"
 #include "Components/SpriteRenderer.h"
 #include "Components/Character.h"
+#include "Modules/AssetModule.h"
 
 
 
@@ -16,8 +17,9 @@ void Mine::Explode() {
     if (!isExploded) {
         isExploded = true;
         GameObject* player = scene->FindGameObject("Player");
-        Character::SetHealth(-100);
+        Character::SetHealth(-50);
         std::cout << "BOOM" << std::endl;
+        AssetModule::PlaySound("mine_explo");
 
         //Generation du sprite
         SpriteRenderer  *sprite_renderer = GetOwner()->GetComponent<SpriteRenderer>();

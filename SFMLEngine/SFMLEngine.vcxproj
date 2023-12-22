@@ -20,11 +20,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\Character.h" />
+    <ClInclude Include="include\Components\CoolDownComponent.h" />
     <ClInclude Include="include\Components\Enemy.h" />
     <ClInclude Include="include\Components\FireSpot.h" />
     <ClInclude Include="include\Components\HealthBar.h" />
     <ClInclude Include="include\Components\Lullaby.h" />
     <ClInclude Include="include\Components\MineElec.h" />
+    <ClInclude Include="include\Components\OpenLocker.h" />
     <ClInclude Include="include\Components\PauseComponent.h" />
     <ClInclude Include="include\Components\Red.h" />
     <ClInclude Include="include\Components\StaminaBar.h" />
@@ -33,6 +35,7 @@
     <ClCompile Include="src\Components\Button.cpp" />
     <ClCompile Include="src\Components\Character.cpp" />
     <ClCompile Include="src\Components\Collectable.cpp" />
+    <ClCompile Include="src\Components\CoolDownComponent.cpp" />
     <ClCompile Include="src\Components\Enemy.cpp" />
     <ClCompile Include="src\Components\FireSpot.cpp" />
     <ClCompile Include="src\Components\HealthBar.cpp" />
@@ -41,6 +44,7 @@
     <ClCompile Include="src\Components\Lullaby.cpp" />
     <ClCompile Include="src\Components\Mine.cpp" />
     <ClCompile Include="src\Components\MineElec.cpp" />
+    <ClCompile Include="src\Components\OpenLocker.cpp" />
     <ClCompile Include="src\Components\PathFinding.cpp" />
     <ClCompile Include="src\Components\PauseComponent.cpp" />
     <ClCompile Include="src\Components\Player.cpp" />

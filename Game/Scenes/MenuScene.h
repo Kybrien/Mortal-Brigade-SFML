@@ -20,28 +20,24 @@ public:
         GameObject* background = CreateBackgroundGameObject("Background", "menu_background");
 
         AssetModule::Play("menu");
-        AssetModule::Loop(true);
+        AssetModule::SetMusicVolume("menu", 20.f);
+        AssetModule::Loop("menu" ,true);
 
         // Création des boutons du menu
         std::function<void()> play_func = [this]() { Play(); };
-        std::function<void()> option_func = [this]() { Option(); };
         std::function<void()> quit_func = [this]() { Quit(); };
         std::function<void()> empty_func = [this]() { EmptyFunc(); };
 
         GameObject* playButton = CreateButtonGameObject("PlayButton", 792.f, 300.f, "Play", play_func);
-        GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", option_func);
+        GameObject* optionsButton = CreateButtonGameObject("OptionsButton", 930.f, 300.f, "Options", empty_func);
         //GameObject* creditsButton = CreateButtonGameObject("CreditsButton", 930.f, 403.f, "Credits", play_func);
         GameObject* leaveButton = CreateButtonGameObject("LeaveButton", 792.f, 403.f, "Leave", quit_func);
     }
 
     void Play() {
         std::cout << "test" << std::endl;
-        AssetModule::Stop();
+        AssetModule::Stop("menu");
         Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<DefaultScene>();
-    }
-
-    void Option() {
-        Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseCharacter>();
     }
 
     void Quit() {

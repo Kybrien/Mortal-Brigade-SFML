@@ -51,6 +51,8 @@
     <ClCompile Include="src\Components\StaminaBar.cpp" />
     <ClCompile Include="src\Components\Lullaby.cpp" />
     <ClCompile Include="src\Components\Red.cpp" />
+    <ClCompile Include="src\Components\CoolDownComponent.cpp" />
+    <ClCompile Include="src\Components\OpenLocker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Components\BackgroundRenderer.h" />
@@ -100,6 +102,8 @@
     <ClInclude Include="include\Components\StaminaBar.h" />
     <ClInclude Include="include\Components\Lullaby.h" />
     <ClInclude Include="include\Components\Red.h" />
+    <ClInclude Include="include\Components\CoolDownComponent.h" />
+    <ClInclude Include="include\Components\OpenLocker.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="include\Maths\Vector2.inl" />

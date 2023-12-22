@@ -8,7 +8,7 @@
 #include "Inventory.h"
 #include "Light.h"
 #include "ProximityPrompt.h"
-#include "Collectable.h"
+#include "OpenLocker.h"
 #include "Mine.h"
 #include "MineElec.h"
 #include "PathFinding.h"
@@ -24,6 +24,7 @@
 #include "MenuPause.h"
 #include "PauseComponent.h"
 #include "TextRenderer.h"
+#include "Death.h"
 
 class DefaultScene final : public Scene
 {
@@ -33,18 +34,19 @@ public:
 		UsePlayerCamera(true);
 
 		AssetModule::PlaySound("welcome_back");
+		AssetModule::SetSoundVolume("welcome_back", 30.f);
 
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
 
 		//GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
+
+		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 3.f, 32 * 5.f));
 
 		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 5.f)); 
 
 		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 19.f, 32 * 6.f)); 
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
-
-		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 25.f, 32 * 26.f));
 
 		std::function<void()> pause_func = [this]() { Pause(); };
 		GameObject* pause = CreatePauseMenu(pause_func);
@@ -54,12 +56,23 @@ public:
 		GameObject* player_hud = CreatePlayerHudGameObject("PlayerHud");
 		GameObject* quota = CreateQuotaGameObject("QuotaText");
 
+		std::function<void()> openLocker = [this]() { Locker(); };
+
+		GameObject* locker1 = CreateLockerGameObject(Maths::Vector2f(32 * 14.f, 32 * 4.f), openLocker);
+		GameObject* locker2 = CreateLockerGameObject(Maths::Vector2f(32 * 15.f, 32 * 4.f), openLocker);
+		GameObject* locker3 = CreateLockerGameObject(Maths::Vector2f(32 * 16.f, 32 * 4.f), openLocker);
+		GameObject* locker4 = CreateLockerGameObject(Maths::Vector2f(32 * 18.f, 32 * 4.f), openLocker);
+		GameObject* locker5 = CreateLockerGameObject(Maths::Vector2f(32 * 19.f, 32 * 4.f), openLocker);
+		GameObject* locker6 = CreateLockerGameObject(Maths::Vector2f(32 * 20.f, 32 * 4.f), openLocker);
+
 		SetPlayer(player);
 
 		//GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
 
 		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
 
+		std::function<void()>* death = new std::function<void()>([this]() { Death(); });
+		Character::SetFunc(death);
 	}
 
 	void Pause() {
@@ -112,8 +125,10 @@ public:
 		Player* player_component = game_object->CreateComponent<Player>();
 		player_component->SetCurrentScene(this);
 
-		Character::SetSpriteRenderer(new SpriteRenderer);
-		Character::SetInventory(new Inventory);
+		if (Character::GetSpriteRenderer() == nullptr) {
+			Character::SetSpriteRenderer(new SpriteRenderer);
+			Character::SetInventory(new Inventory);
+		}
 		Character::SetMaxHealth(100);
 		Character::SetMaxStamina(100);
 
@@ -204,6 +219,7 @@ public:
 		return game_object;
 	}
 
+	//pb de sprite renderer 
 	GameObject* CreateMineElecGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);
@@ -306,12 +322,40 @@ public:
 	GameObject* CreateQuotaGameObject(const std::string& _name)
 	{
 		GameObject* game_object = CreateGameObject(_name);
-		Character::SetQuotaUI(new TextRenderer);
+		
+		if (Character::GetQuotaUI() == nullptr) {
+			Character::SetQuotaUI(new TextRenderer);	
+		}
+
 		TextRenderer* quota = Character::GetQuotaUI();
 		game_object->AddComponent(quota);
 		quota->SetPosition(Maths::Vector2f(0.03f, 0.03f));
-		quota->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + " / " + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
+		quota->SetText("Quota:" + std::to_string(static_cast<int>(Character::GetInventory()->GetTotalMoney())) + "/" + std::to_string(static_cast<int>(Character::GetInventory()->GetQuotas())));
+		quota->SetColor(sf::Color::White);
 
 		return game_object;
 	}
+
+	GameObject* CreateLockerGameObject(const Maths::Vector2f _position , std::function<void()> _func)
+	{
+		GameObject* game_object = CreateGameObject("Locker");
+		game_object->SetPosition(_position);
+
+		OpenLocker* locker = game_object->CreateComponent<OpenLocker>();
+		locker->SetFunc(_func);
+		locker->SetCurrentScene(this);
+		locker->SetMaxActivationDistance(25.f);
+
+		return game_object;
+	}
+
+	void Locker() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<ChooseCharacter>(false);
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("ChooseCharacterScene");
+	}
+
+	void Death() {
+		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<GameOver>();
+	}
+
 };
