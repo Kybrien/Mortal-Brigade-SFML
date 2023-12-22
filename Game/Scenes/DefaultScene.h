@@ -38,8 +38,6 @@ public:
 
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
 
-		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 19.f, 32 * 6.f)); 
-
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
     
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));

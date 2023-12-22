@@ -12,6 +12,10 @@
 class GameOver : public Scene {
 public:
     GameOver() : Scene("GameOver") {
+        AssetModule::StopAll();
+
+        AssetModule::PlaySound("death");
+        AssetModule::SetSoundVolume("death" , 10.f);
         // Création de l'arrière-plan de l'écran de Game Over
         GameObject* background = CreateBackgroundGameObject("GameOverBackground", "GameOverBackground");
 
@@ -21,7 +25,7 @@ public:
 
         Character::Reset();
 
-        AssetModule::StopAll();
+        
     }
 
     void Restart() {

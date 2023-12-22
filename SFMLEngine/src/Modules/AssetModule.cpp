@@ -27,6 +27,7 @@ void AssetModule::Init()
 	// Player SFX
 	AddSound("player_spawn", "../Assets/Sounds/player_spawn.ogg");
 	AddSound("item_pickup", "../Assets/Sounds/item_pickup.ogg"); //ok
+	AddSound("death", "../Assets/Sounds/Player_death.ogg"); //ok
 	//AddSound("inventory_open", "../Assets/Sounds/inventory_open.ogg"); Display of the inventory not implemented yet
 	//AddSound("inventory_close", "../Assets/Sounds/inventory_close.ogg"); 
 
@@ -143,6 +144,8 @@ sf::Music* AssetModule::GetSound(std::string _name) {
 		// Retourner la valeur associée à la clé
 		return it->second;
 	}
+	auto secour = sounds.begin();
+	return secour->second;
 }
 
 sf::Music* AssetModule::GetMusic(std::string _name) {
@@ -153,6 +156,8 @@ sf::Music* AssetModule::GetMusic(std::string _name) {
 		// Retourner la valeur associée à la clé
 		return it->second;
 	}
+	auto secour = musics.begin();
+	return secour->second;
 }
 
 void AssetModule::StopAll() {
