@@ -12,6 +12,7 @@
 #include "FireSpot.h"
 #include "QuotasReached.h"
 #include "QuotasNotReached.h"
+#include "RED.h"
 
 
 class ChooseMap;
@@ -23,9 +24,12 @@ public:
 	Map1() : Scene("Map1Scene")
 	{
 		UsePlayerCamera(true);
+		AssetModule::StopAll();
+
+		AssetModule::PlaySound("player_spawn");
 
 		AssetModule::Play("ambient");
-		AssetModule::SetMusicVolume("ambient", 20.f);
+		AssetModule::SetMusicVolume("ambient", 35.f);
 		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_1");
@@ -78,6 +82,8 @@ public:
 		GameObject* fire15 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 11.f, 32 * 56.f));
 		GameObject* fire16 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 9.f, 32 * 44.f));
 		GameObject* fire17 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 3.f, 32 * 49.f));
+
+		//Enemies
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 9.f, 32 * 30.f));
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32 * 9.f, 32 * 29.f));
@@ -221,6 +227,32 @@ public:
 			collectable->SetActionText(name);
 			collectable->SetPrice(price);
 		}
+		return game_object;
+	}
+
+	GameObject* CreateREDMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("red");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(48, 48));
+		sprite_renderer->SetScale(0.8f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
+		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
+		/*sprite_renderer->SetOffset(Maths::Vector2i(5, 5));*/
+
+		RED* red_enemy_class = game_object->CreateComponent<RED>();
+		red_enemy_class->SetScene(this);
+		red_enemy_class->SetSpeed(50.f);
+		red_enemy_class->SetMaxHealth(30);
+		red_enemy_class->SetAttackSpeed(20.f);
+		red_enemy_class->SetDamage(10);
+		red_enemy_class->SetDetectionRange(150.f);
+
 		return game_object;
 	}
 

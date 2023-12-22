@@ -21,9 +21,12 @@ public:
 	Map3() : Scene("Map3Scene")
 	{
 		UsePlayerCamera(true);
+		AssetModule::StopAll();
+
+		AssetModule::PlaySound("player_spawn");
 
 		AssetModule::Play("ambient");
-		AssetModule::SetMusicVolume("ambient", 20.f);
+		AssetModule::SetMusicVolume("ambient", 35.f);
 		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_3");
@@ -74,7 +77,7 @@ public:
 		GameObject* fire43 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 65.f, 32 * 4.f));
 		GameObject* fire44 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 52.f, 32 * 3.f));
 		GameObject* fire45 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 42.f, 32 * 17.f));
-		GameObject* fire46 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 41.f));//
+		GameObject* fire46 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 41.f));
 		GameObject* fire47 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 60.f, 32 * 42.f));
 		GameObject* fire48 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 60.f, 32 * 48.f));
 		GameObject* fire49 = CreateFireGameObject("Fire", Maths::Vector2f(32 * 59.f, 32 * 49.f));
@@ -323,19 +326,18 @@ public:
 		sprite_renderer->SetAutoIncrement(true);
 		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
 		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
-		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
+		/*sprite_renderer->SetOffset(Maths::Vector2i(5, 5));*/
 
-		Enemy* red_enemy_class = game_object->CreateComponent<Enemy>();
-		red_enemy_class->SetSpeed(40.f);
+		RED* red_enemy_class = game_object->CreateComponent<RED>();
+		red_enemy_class->SetScene(this);
+		red_enemy_class->SetSpeed(50.f);
 		red_enemy_class->SetMaxHealth(30);
-		red_enemy_class->SetAttackSpeed(2.f);
+		red_enemy_class->SetAttackSpeed(20.f);
 		red_enemy_class->SetDamage(10);
-		red_enemy_class->SetDetectionRange(50.f);
-
+		red_enemy_class->SetDetectionRange(150.f);
 
 		return game_object;
 	}
-
 
 	GameObject* CreateFireGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{

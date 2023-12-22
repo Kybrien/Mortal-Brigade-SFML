@@ -11,6 +11,7 @@ class MenuScene;
 class QuotasNotReached : public Scene {
 public:
     QuotasNotReached() : Scene("QuotasReached") {
+        AssetModule::StopAll();
 
         GameObject* bg = CreateBackgroundGameObject("bg" , "ejected");
 

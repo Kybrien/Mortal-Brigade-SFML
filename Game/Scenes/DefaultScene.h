@@ -21,7 +21,6 @@
 #include "Red.h"
 
 #include "Character.h"
-#include "MenuPause.h"
 #include "PauseComponent.h"
 #include "TextRenderer.h"
 #include "Death.h"
@@ -32,24 +31,16 @@ public:
 	DefaultScene() : Scene("DefaultScene")
 	{
 		UsePlayerCamera(true);
+		AssetModule::StopAll();
 
 		AssetModule::PlaySound("welcome_back");
 		AssetModule::SetSoundVolume("welcome_back", 30.f);
 
 		GameObject* map = CreateMapGameObject("Map", "map_ship");
 
-		//GameObject* door = CreateProximityPromptGameObject("Door1", Maths::Vector2f(32 * 25.f, 32 * 26.f), 20.f, "Test");
-
-		GameObject* FireSpot = CreateFireGameObject("FireSpot", Maths::Vector2f(32 * 3.f, 32 * 5.f));
-
-		GameObject* enemy = CreateREDMonsterGameObject("Enemy", Maths::Vector2f(32 * 2.f, 32 * 5.f)); 
-
 		GameObject* lullaby = CreateLullabyMonsterGameObject("Lullaby1", Maths::Vector2f(32 * 19.f, 32 * 6.f)); 
 
 		GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 17.f, 32 * 12.5f));
-
-		std::function<void()> pause_func = [this]() { Pause(); };
-		GameObject* pause = CreatePauseMenu(pause_func);
     
 		GameObject* player = CreatePlayerGameObject("Player", Maths::Vector2f(32*3.f, 32*6.f));
 
@@ -67,17 +58,8 @@ public:
 
 		SetPlayer(player);
 
-		//GameObject* teleporter = CreateTeleporterGameObject("Teleporter", Maths::Vector2f(32 * 28.f, 32 * 25.f));
-
-		//GameObject* enemy2 = CreateDummyGameObject("Enemy2", 0.f, sf::Color::Green);
-
 		std::function<void()>* death = new std::function<void()>([this]() { Death(); });
 		Character::SetFunc(death);
-	}
-
-	void Pause() {
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetScene<MenuPause>(false);
-		Engine::GetInstance()->GetModuleManager()->GetModule<SceneModule>()->SetMainScene("MenuPause");
 	}
 
 	void MapSelection() {
@@ -190,7 +172,7 @@ public:
 		sprite_renderer->SetAutoIncrement(true);
 		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
 		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
-		sprite_renderer->SetOffset(Maths::Vector2i(5, 5));
+		/*sprite_renderer->SetOffset(Maths::Vector2i(5, 5));*/
 
 		RED* red_enemy_class = game_object->CreateComponent<RED>();
 		red_enemy_class->SetScene(this);
@@ -219,7 +201,7 @@ public:
 		return game_object;
 	}
 
-	//pb de sprite renderer 
+	//pb de sprite renderer ??
 	GameObject* CreateMineElecGameObject(const std::string& _name, const Maths::Vector2f _position)
 	{
 		GameObject* game_object = CreateGameObject(_name);

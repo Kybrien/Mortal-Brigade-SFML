@@ -9,6 +9,7 @@
 #include "DefaultScene.h"
 #include "QuotasReached.h"
 #include "FireSpot.h"
+#include "Red.h"
 
 class DefaultScene;
 
@@ -18,9 +19,12 @@ public:
 	Map2() : Scene("Map2Scene")
 	{
 		UsePlayerCamera(true);
+		AssetModule::StopAll();
+
+		AssetModule::PlaySound("player_spawn");
 
 		AssetModule::Play("ambient");
-		AssetModule::SetMusicVolume("ambient", 20.f);
+		AssetModule::SetMusicVolume("ambient", 35.f);
 		AssetModule::Loop("ambient",true);
 
 		GameObject* map = CreateMapGameObject("Map", "map_2");
@@ -244,6 +248,32 @@ public:
 		Teleporter* teleporter = game_object->CreateComponent<Teleporter>();
 		teleporter->SetScene(this);
 		teleporter->SetFunction(map_select_func);
+
+		return game_object;
+	}
+
+	GameObject* CreateREDMonsterGameObject(const std::string& _name, const Maths::Vector2f _position)
+	{
+		GameObject* game_object = CreateGameObject(_name);
+		game_object->SetPosition(_position);
+
+		SpriteRenderer* sprite_renderer = game_object->CreateComponent<SpriteRenderer>();
+		sprite_renderer->LoadSprite("red");
+		sprite_renderer->SetTextureSize(Maths::Vector2u(48, 48));
+		sprite_renderer->SetScale(0.8f);
+		sprite_renderer->SetAnimSpeed(0.5f);
+		sprite_renderer->SetAutoIncrement(true);
+		sprite_renderer->SetBegin(sf::Vector2i(0, 1));
+		sprite_renderer->SetEnd(sf::Vector2i(9, 1));
+		/*sprite_renderer->SetOffset(Maths::Vector2i(5, 5));*/
+
+		RED* red_enemy_class = game_object->CreateComponent<RED>();
+		red_enemy_class->SetScene(this);
+		red_enemy_class->SetSpeed(50.f);
+		red_enemy_class->SetMaxHealth(30);
+		red_enemy_class->SetAttackSpeed(20.f);
+		red_enemy_class->SetDamage(10);
+		red_enemy_class->SetDetectionRange(150.f);
 
 		return game_object;
 	}
