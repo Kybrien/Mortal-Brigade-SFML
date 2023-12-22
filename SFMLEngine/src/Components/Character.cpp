@@ -25,6 +25,15 @@ void Character::SetStamina(float _stamina) {
 	else {
 		stamina += _stamina;
 	}
+
+	if (stamina == 0) {
+		canSprint = false;
+		std::cout << canSprint << std::endl;
+	}
+	else if (stamina == maxStamina) {
+		canSprint = true;
+		std::cout << canSprint << std::endl;
+	}
 }
 
 
@@ -32,6 +41,7 @@ int Character::maxHealth = 0;
 int Character::health = 0;
 float Character::maxStamina = 0;
 float Character::stamina = 0;
+bool Character::canSprint = true;
 Inventory* Character::inventory = nullptr;
 SpriteRenderer* Character::spriteRenderer = nullptr;
 TextRenderer* Character::quotaUI = nullptr;

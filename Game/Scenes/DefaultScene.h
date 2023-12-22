@@ -196,7 +196,7 @@ public:
 		red_enemy_class->SetScene(this);
 		red_enemy_class->SetSpeed(50.f);
 		red_enemy_class->SetMaxHealth(30);
-		red_enemy_class->SetAttackSpeed(20.f);
+		red_enemy_class->SetAttackSpeed(2.f);
 		red_enemy_class->SetDamage(10);
 		red_enemy_class->SetDetectionRange(150.f);
 
