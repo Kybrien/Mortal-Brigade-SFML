@@ -13,6 +13,7 @@ public:
 
 	sf::Vector2i GetAnimation() { return animation; }
 	void SetAnimation(int y) { animation.y = y; }
+	void ResetAnimation() { animation = sf::Vector2i(0, 0); }
 
 	void SetBegin(sf::Vector2i _begin) { beginTexture = _begin; }
 	void SetEnd(sf::Vector2i _end) { endTexture = _end; }

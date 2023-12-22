@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
+#include "Modules/SceneModule.h"
+#include "Modules/AssetModule.h"
 #include "Components/Collectable.h"
 #include "Components/Inventory.h"
-#include "Modules/SceneModule.h"
 #include "Components/Character.h"
 #include "Components/TextRenderer.h"
 
@@ -11,6 +12,7 @@ void Collectable::Prompt() {
     Inventory* inventory = Character::GetInventory();
 
     if (inventory) {
+        AssetModule::PlaySound("item_pickup");
         inventory->Add(name, 1);
         inventory->AddMoney(GetPrice());
         TextRenderer* quotas = Character::GetQuotaUI();

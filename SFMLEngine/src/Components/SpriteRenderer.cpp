@@ -51,7 +51,7 @@ void SpriteRenderer::Update(float _delta_time) {
 				animation = beginTexture;
 			}
 			else {
-				
+				animation = sf::Vector2i(endTexture.x - texture_size_x, endTexture.y - texture_size_y);
 			}
 		}
 		sprite->setTextureRect(sf::IntRect(animation.x * texture_size_x + offset_x, animation.y * texture_size_y + offset_y, texture_size_x, texture_size_y));

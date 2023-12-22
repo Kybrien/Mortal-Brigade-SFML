@@ -3,19 +3,20 @@
 #include <iostream>
 
 #include "Engine.h"
+#include "Modules/AssetModule.h"
 #include "Modules/SceneModule.h"
 #include "Modules/InputModule.h"
 
 ProximityPrompt::ProximityPrompt() {
 	max_activation_distance = 0;
-
-	texture = new sf::Texture();
-
-	if (!texture->loadFromFile("../Assets/Images/ProximityPrompt.png"))
-		std::cout << "Could not load ProximityPrompt.png";
-	sprite = new sf::Sprite(*texture);
+	sprite = new sf::Sprite(*AssetModule::GetAsset("proximity_prompt"));
 
 	sprite->setScale(0.04f, 0.04f);
+}
+
+ProximityPrompt::~ProximityPrompt() {
+	delete sprite;
+	sprite = nullptr;
 }
 
 bool ProximityPrompt::CanBePrompted() {

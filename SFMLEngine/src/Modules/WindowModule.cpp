@@ -19,7 +19,7 @@ void WindowModule::Init()
 
 	sf::Sprite loading_screen;
 	sf::Texture texture;
-	texture.loadFromFile("../Assets/Images/loading_screen.jpg");
+	texture.loadFromFile("../Assets/Images/loading_screen.png");
 	loading_screen.setTexture(texture);
 	window->draw(loading_screen);
 	window->display();

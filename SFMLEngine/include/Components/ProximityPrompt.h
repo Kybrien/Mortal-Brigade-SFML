@@ -10,6 +10,7 @@ class ProximityPrompt : public Component
 {
 public:
 	ProximityPrompt();
+	~ProximityPrompt();
 
 	void SetActionText(std::string _action_text) { action_text = _action_text; }
 	void SetMaxActivationDistance(float _max_activation_distance) { max_activation_distance = _max_activation_distance; }
@@ -33,5 +34,4 @@ protected:
 	bool pressed = false;
 
 	sf::Sprite* sprite;
-	sf::Texture* texture;
 };
