@@ -7,8 +7,8 @@ All the animations were made by myself using Aseprite, and the maps were done on
    
 CREDITS   
 This project was done by :
-[Kais D.](https://github.com/KakaTheRat)
-[Maurad B.](https://github.com/BySkullZ)
-[Gwendal A.](https://github.com/LiLPray)
-[Lucie Q.](https://github.com/Euexia)
-[Adrien P.](https://github.com/Kybrien)
+[Kais D.](https://github.com/KakaTheRat)   
+[Maurad B.](https://github.com/BySkullZ)   
+[Gwendal A.](https://github.com/LiLPray)   
+[Lucie Q.](https://github.com/Euexia)   
+[Adrien P.](https://github.com/Kybrien)   
