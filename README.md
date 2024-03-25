@@ -9,6 +9,6 @@ CREDITS
 This project was done by :   
 [Kais D.](https://github.com/KakaTheRat) / 
 [Maurad B.](https://github.com/BySkullZ)   
-[Gwendal A.](https://github.com/LiLPray) /   
+[Gwendal A.](https://github.com/LiLPray) / 
 [Lucie Q.](https://github.com/Euexia)   
 [Adrien P.](https://github.com/Kybrien) 
